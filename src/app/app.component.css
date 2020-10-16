@@ -1,0 +1,16 @@
+h1{
+	background-color: grey;
+	margin-top:0;
+	padding: 20px;
+	font-size:1.6em;
+	font-family: Arial;
+	color:white;
+}
+
+.rotate45 {
+    -webkit-transform: rotate(450deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

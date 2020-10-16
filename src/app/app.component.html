@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <h1>
+    P's Adventure
+  </h1>
+  <img src="../assets/img/skeleton.png" style="width:120;height:150px;">
+</div>
+
+<div *ngIf="this.gameState.stage === 1">
+  <app-title-screen-app [localGameState]=gameState></app-title-screen-app>
+</div>
+
+<div *ngIf="this.gameState.stage === 2">
+  <app-tavern-app [localGameState]=gameState></app-tavern-app>
+</div>
+
+<div *ngIf="this.gameState.stage === 3">
+  <app-battle-screen [localGameState]=gameState></app-battle-screen>
+</div>
+
+<div *ngIf="this.gameState.stage === 4">
+  <app-score-screen [localGameState]=gameState></app-score-screen>
+</div>

@@ -1,0 +1,10 @@
+<p>score-screen works!</p>
+
+<ul>
+    <li *ngFor="let player of sortedPlayerList; let indeOfElement=index;">
+        {{player.name}} ({{player.life}})
+    </li>
+</ul>
+
+<button class="button" (click)="onNext()">Next</button>
+

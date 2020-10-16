@@ -1,0 +1,11 @@
+<p>battle-screen works!</p>
+
+<ul>
+    <li *ngFor="let battleLog of battleLogs; let indeOfElement=index;">
+        {{battleLog}}
+    </li>
+</ul>
+
+
+<button class="button" (click)="onNext()">Next</button>
+

@@ -1,0 +1,36 @@
+<p>Welcome to the Tavern!</p>
+
+<p>Time Left:  {{this.counter}}</p>
+
+<button class="button" (click)="onRefresh()">Refresh</button>
+
+<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
+<!---  Display the pool if necessary for debuggin
+<ul>
+<li *ngFor="let creature of this.localGameState.creaturePool.tier1; let indeOfElement=index;">
+  {{creature.name}}
+</li>
+</ul>
+--->
+
+<ul>
+    <li *ngFor="let tavernCreature of tavernCreatureList; let indeOfElement=index;">
+      
+      <button class="button" *ngIf="!tavernCreature.sold" (click)="onBuy(indeOfElement)">Buy</button>
+      <button class="button" *ngIf="tavernCreature.sold" [disabled] = "true" (click)="onBuy(indeOfElement)">Buy</button>
+      {{ tavernCreature.creature.name }} {{ tavernCreature.creature.attack}} / {{ tavernCreature.creature.life}} ({{tavernCreature.creature.speed}}) {{tavernCreature.poolSlot}}
+      {{ tavernCreature.creature.image }}
+
+      <img src="{{tavernCreature.creature.image}}" style="width:120;height:150px;">
+
+     
+    </li>
+</ul>
+
+<ul>
+  <li *ngFor="let creature of this.localGameState.playerList[0].creatureList">
+    {{ creature.name}}
+  </li>
+</ul>
+
+
