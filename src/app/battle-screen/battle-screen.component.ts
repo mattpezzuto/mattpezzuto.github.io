@@ -68,28 +68,30 @@ export class BattleScreenComponent implements OnInit {
         console.log('in loop' + matchIndex);
 
 
-        for (var i = 0; i< creatureListTeam1.length; i++) {
-          creatureListTeam1[i].incrementSpeed();
+        console.log('before:' + creatureListTeam1[0].getCurrentSpeed());
+        for (var i55 = 0; i55< creatureListTeam1.length; i55++) {
+          creatureListTeam1[i55].incrementSpeed();
         }
-        for (var i = 0; i< creatureListTeam2.length; i++) {
-          creatureListTeam2[i].incrementSpeed();
+        console.log(creatureListTeam1[0].getCurrentSpeed());
+        for (var i66 = 0; i66< creatureListTeam2.length; i66++) {
+          creatureListTeam2[i66].incrementSpeed();
         }
 
-        creatureListTeam1.sort((a,b) => b.speed - a.speed);
-        creatureListTeam2.sort((a,b) => b.speed - a.speed);
+        creatureListTeam1.sort((a,b) => b.getCurrentSpeed() - a.getCurrentSpeed());
+        creatureListTeam2.sort((a,b) => b.getCurrentSpeed() - a.getCurrentSpeed());
 
         // Find fastest player
-        if (creatureListTeam1[0].speed > creatureListTeam2[0].speed) {
+        if (creatureListTeam1[0].getCurrentSpeed() > creatureListTeam2[0].getCurrentSpeed()) {
           creatureListTeam2[0].currentLife = creatureListTeam2[0].currentLife - creatureListTeam1[0].attack * 2;  // strong attack
           creatureListTeam1[0].currentLife = creatureListTeam1[0].currentLife - creatureListTeam2[0].attack * 1;  // counter attack
-          // creatureListTeam1[0].currentSpeed = 0;
+          creatureListTeam1[0].clearSpeed();
           this.battleLogs.push(
             creatureListTeam1[0].name + "(1)" + " attacks " + creatureListTeam2[0].name + "(2)"
           );
         } else {
           creatureListTeam1[0].currentLife = creatureListTeam1[0].currentLife - creatureListTeam2[0].attack * 2;  // strong attack
           creatureListTeam2[0].currentLife = creatureListTeam2[0].currentLife - creatureListTeam1[0].attack * 1;  // counter attack
-          // creatureListTeam2[0].currentSpeed = 0;
+          creatureListTeam2[0].clearSpeed();
           this.battleLogs.push(
             creatureListTeam2[0].name + "(2)" + " attacks " + creatureListTeam1[0].name + "(1)"
           );

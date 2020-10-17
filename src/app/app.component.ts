@@ -22,7 +22,7 @@ export class AppComponent {
     let player = new Player();
     player.name = "matt";
     player.life = 40;
-    player.gold = 100;
+    player.gold = 0;
     player.computerControlled = false;
     player.creatureList = [];
 

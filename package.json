@@ -1,5 +1,6 @@
 {
-  "name": "russ-project",
+  "name": "gog",
+  "homepage": "https://mattpezzuto.github.io/gog",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

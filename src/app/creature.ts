@@ -4,7 +4,7 @@ export class Creature {
     readonly name: string;
     readonly life: number;
     readonly attack: number;
-    readonly speed: number;
+    private readonly speed: number;
     readonly image: string;
 
     private currentSpeed: number;
@@ -42,6 +42,10 @@ export class Creature {
 
     public incrementSpeed() {
         this.currentSpeed += this.speed;
+    }
+
+    public clearSpeed() {
+        this.currentSpeed = 0;
     }
 
 }
