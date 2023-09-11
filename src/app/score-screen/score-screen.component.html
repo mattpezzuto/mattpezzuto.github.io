@@ -1,4 +1,89 @@
-<p>score-screen works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+
+.itemPlayer1 { grid-area: player1; }
+.itemPlayer2 { grid-area: player2; }
+.itemPlayer3 { grid-area: player3; }
+.itemPlayer4 { grid-area: player4; }
+.itemPlayer5 { grid-area: player5; }
+.itemPlayer6 { grid-area: player6; }
+.itemPlayer7 { grid-area: player7; }
+.itemPlyaer8 { grid-area: player8; }
+.itemLifePlayer1 { grid-area: lifePlayer1; }
+.itemLifePlayer2 { grid-area: lifePlayer2; }
+.itemPLifelayer3 { grid-area: lifePlayer3; }
+.itemLifePlayer4 { grid-area: lifePlayer4; }
+.itemLifePlayer5 { grid-area: lifePlayer5; }
+.itemLifePlayer6 { grid-area: lifePlayer6; }
+.itemLifePlayer7 { grid-area: lifePlayer7; }
+.itemLifePlayer8 { grid-area: lifePlayer8; }
+.itemNextBtn { grid-area: nextBtn; }
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'player1 lifePlayer1'
+    'player2 lifePlayer2'
+	'player3 lifePlayer3'
+	'player4 lifePlayer4'
+    'player5 lifePlayer5'
+    'player6 lifePlayer6'
+    'player7 lifePlayer7'
+    'player8 lifePlayer8'
+    'nextBtn nextBtn';
+
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Score Screen</p>
+  </div>
+
+  <div class="itemPlayer1">player1</div>
+  <div class="itemLifePlayer1">lifeplayer1</div>
+  <div class="itemPlayer2">player2</div>
+  <div class="itemLifePlayer2">lifeplayer2</div>
+    <div class="itemPlayer3">player3</div>
+    <div class="itemLifePlayer3">lifeplayer3</div>
+    <div class="itemPlayer4">player4</div>
+    <div class="itemLifePlayer4">lifeplayer4</div>
+    <div class="itemPlayer5">player5</div>
+    <div class="itemLifePlayer5">lifeplayer1</div>
+    <div class="itemPlayer6">player2</div>
+    <div class="itemLifePlayer6">lifeplayer2</div>
+    <div class="itemPlayer7">player1</div>
+    <div class="itemLifePlayer7">lifeplayer1</div>
+    <div class="itemPlayer8">player8</div>
+    <div class="itemLifePlayer8">lifeplayer8</div>
+    <div class="itemNextBtn">
+        <button class="button" (click)="onNext()">Next</button>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
 
 <ul>
     <li *ngFor="let player of sortedPlayerList; let indeOfElement=index;">
