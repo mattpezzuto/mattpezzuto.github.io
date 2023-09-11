@@ -1,14 +1,19 @@
 .button {
-    border:  none;
-    position: relative;
-    display: inline-block;
-    background: blue;
-    color: #fff;
-    padding: 0.4em 0.6em;
-    font-size: 1.3em;
-    border-radius: 1em;
-  }
+  border:  none;
+  position: relative;
+  display: inline-block;
+  background: blue;
+  color: #fff;
+  padding: 0.4em 0.6em;
+  font-size: 0.8em;
+  border-radius: 1em;
+}
 
-  button:disabled {
-    background: #dddddd;
-  }
+button:disabled {
+  background: #dddddd;
+} 
+
+p {
+  margin: 0px;
+  padding: 0px;
+}

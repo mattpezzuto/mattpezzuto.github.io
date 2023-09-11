@@ -1,38 +1,155 @@
-<p>Welcome to the Tavern!</p>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.itemHeader { grid-area: header; }
+.itemGold { grid-area: gold; }
+.itemMenu { grid-area: menu; }
+.itemBoard { grid-area: board; }
+.itemShop1 { grid-area: shop1; }
+.itemShop2 { grid-area: shop2; }
+.itemShop3 { grid-area: shop3; }
+.itemShopBtn1 { grid-area: btnShop1; }
+.itemShopBtn2 { grid-area: btnShop2; }
+.itemShopBtn3 { grid-area: btnShop3; }
+.itemBoard1 { grid-area: board1; }
+.itemBoard2 { grid-area: board2; }
+.itemBoard3 { grid-area: board3; }
+.itemBoard4 { grid-area: board4; }
+.itemBoard5 { grid-area: board5; }
+.itemBoardBtn1 { grid-area: boardBtn1; }
+.itemBoardBtn2 { grid-area: boardBtn2; }
+.itemBoardBtn3 { grid-area: boardBtn3; }
+.itemBoardBtn4 { grid-area: boardBtn4; }
+.itemBoardBtn5 { grid-area: boardBtn5; }
+.itemHand1 { grid-area: hand1; }
+.itemHand2 { grid-area: hand2; }
+.itemHand3 { grid-area: hand3; }
+.itemHand4 { grid-area: hand4; }
+.itemHand5 { grid-area: hand5; }
 
-<p>Time Left:  {{this.counter}}</p>
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header gold'
+    'shop1 shop1 shop2 shop2 shop3 shop3'
+    'btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'
+	  'menu board board board board board'
+	  'menu board1 board2 board3 board4 board5'
+    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5'
+    'menu hand1 hand2 hand3 hand4 hand5';
 
-<button class="button" (click)="onRefresh()">Refresh</button>
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="itemHeader">
+    <p>Guilds of Greystone</p>
+    <p>Shop</p>
+  </div>
+  <div class="itemGold">
+    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>
+    <p>Time Left:  {{this.counter}}</p>
+    <button class="button" (click)="onRefresh()">Refresh ({{refreshCounter}})</button>
+    </div>
+
+  <div class="itemMenu">
+    <p>Menu</p>
+  </div>
+ 
+
+  <div class="itemShop1">
+    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.name}}</p>
+    <img src="{{getTavernCreature(0).creature.image}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShop2">
+    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.name}}</p>
+    <img src="{{getTavernCreature(1).creature.image}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShop3">
+    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.name}}</p>
+    <img src="{{getTavernCreature(2).creature.image}}" style="width:120;height:150px;">
+  </div>  
+  <div class="itemShopBtn1">
+    <button class="button" *ngIf="!getTavernCreature(0).sold" (click)="onBuy(0)">Buy</button>
+    <button class="button" *ngIf="getTavernCreature(0).sold" [disabled] = "true" (click)="onBuy(0)">Buy</button>
+  </div>
+  <div class="itemShopBtn2">
+    <button class="button" *ngIf="!getTavernCreature(1).sold" (click)="onBuy(1)">Buy</button>
+    <button class="button" *ngIf="getTavernCreature(1).sold" [disabled] = "true" (click)="onBuy(1)">Buy</button>
+  </div>
+  <div class="itemShopBtn3">
+    <button class="button" *ngIf="!getTavernCreature(2).sold" (click)="onBuy(2)">Buy</button>
+    <button class="button" *ngIf="getTavernCreature(2).sold" [disabled] = "true" (click)="onBuy(2)">Buy</button>
+  </div>
+
+  <div class="itemBoard">Board</div>  
+  <div class="itemBoard1">
+    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).name}}</p>
+  </div>  
+  <div class="itemBoard2">
+    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).name}}</p>
+  </div>  
+  <div class="itemBoard3">
+    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).name}}</p>
+  </div>  
+  <div class="itemBoard4">
+    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).name}}</p>
+  </div>  
+  <div class="itemBoard5">
+    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).name}}</p>
+  </div>  
+  
+  <div class="itemBoardBtn1">
+    <button class="button" (click)="onMoveRight(0)">>>></button>
+    <button class="button" (click)="onRefresh()">Sell</button>
+  </div>
+  <div class="itemBoardBtn2">
+    <button class="button" (click)="onMoveRight(0)"><<<</button>
+    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onMoveRight(1)">>>></button>
+  </div>
+  <div class="itemBoardBtn3">
+    <button class="button" (click)="onMoveRight(1)"><<<</button>
+    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onMoveRight(2)">>>></button>
+  </div>
+  <div class="itemBoardBtn4">
+    <button class="button" (click)="onMoveRight(2)"><<<</button>
+    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onMoveRight(3)">>>></button>
+  </div>
+  <div class="itemBoardBtn5">
+    <button class="button" (click)="onMoveRight(3)"><<<</button>
+    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onMoveRight(4)">>>></button>
+  </div>
+  <div class="itemHand1">Card1</div>  
+  <div class="itemHand2">Card2</div>  
+  <div class="itemHand3">Card33</div>  
+  <div class="itemHand4">Card44</div>  
+  <div class="itemHand5">Card55</div>
+
+</div>
 
 <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
-<!---  Display the pool if necessary for debuggin
-<ul>
-<li *ngFor="let creature of this.localGameState.creaturePool.tier1; let indeOfElement=index;">
-  {{creature.name}}
-</li>
-</ul>
---->
-
-<p>Gold = {{this.localGameState.playerList[0].gold}}</p>
-
-<ul>
-    <li *ngFor="let tavernCreature of tavernCreatureList; let indeOfElement=index;">
-      
-      <button class="button" *ngIf="!tavernCreature.sold" (click)="onBuy(indeOfElement)">Buy</button>
-      <button class="button" *ngIf="tavernCreature.sold" [disabled] = "true" (click)="onBuy(indeOfElement)">Buy</button>
-      {{ tavernCreature.creature.name }} {{ tavernCreature.creature.attack}} / {{ tavernCreature.creature.life}} ({{tavernCreature.creature.speed}}) {{tavernCreature.poolSlot}}
-      {{ tavernCreature.creature.image }}
-
-      <img src="{{tavernCreature.creature.image}}" style="width:120;height:150px;">
-
-     
-    </li>
-</ul>
-
 <ul>
   <li *ngFor="let creature of this.localGameState.playerList[0].creatureList">
     {{ creature.name}}
   </li>
 </ul>
 
-
+</body>
+</html>
