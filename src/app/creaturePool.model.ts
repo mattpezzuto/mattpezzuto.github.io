@@ -46,8 +46,8 @@ export class CreaturePool {
                 name = 'Orc'; life = 18; attack = 10; dex = 8; armor = 3; image = 'orc.png'; break;
             case CreatureType.Paladin:
                 name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; image = 'paladin.png'; break;
-            case CreatureType.Skeleton:
-                name = 'Skeleton'; life = 12; attack = 5; dex = 8; armor = 2; image = 'black.jpg'; break;
+            case CreatureType.SkeletonWarrior:
+                name = 'Skeleton Warrior'; life = 12; attack = 5; dex = 8; armor = 2; image = 'skeletonwarrior.png'; break;
             case CreatureType.Wizard:
                 name = 'Wizard'; life = 10; attack = 10; dex = 8; armor = 1; image = 'wizard.png'; break;
             case CreatureType.Sorcerous: 

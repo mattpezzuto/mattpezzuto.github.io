@@ -91,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<p>score-screen works!</p>\r\n\r\n<ul>\r\n    <li *ngFor=\"let player of sortedPlayerList; let indeOfElement=index;\">\r\n        {{player.name}} ({{player.life}})\r\n    </li>\r\n</ul>\r\n\r\n<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n";
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemLifeHeader { grid-area: lifeHeader}\r\n.itemRecordHeader { grid-area: recordHeader}\r\n.itemPlayer1 { grid-area: player1; }\r\n.itemPlayer2 { grid-area: player2; }\r\n.itemPlayer3 { grid-area: player3; }\r\n.itemPlayer4 { grid-area: player4; }\r\n.itemPlayer5 { grid-area: player5; }\r\n.itemPlayer6 { grid-area: player6; }\r\n.itemPlayer7 { grid-area: player7; }\r\n.itemPlayer8 { grid-area: player8; }\r\n.itemLifePlayer1 { grid-area: lifePlayer1; }\r\n.itemLifePlayer2 { grid-area: lifePlayer2; }\r\n.itemPLifelayer3 { grid-area: lifePlayer3; }\r\n.itemLifePlayer4 { grid-area: lifePlayer4; }\r\n.itemLifePlayer5 { grid-area: lifePlayer5; }\r\n.itemLifePlayer6 { grid-area: lifePlayer6; }\r\n.itemLifePlayer7 { grid-area: lifePlayer7; }\r\n.itemLifePlayer8 { grid-area: lifePlayer8; }\r\n.itemRecordPlayer1 { grid-area: recordPlayer1; }\r\n.itemRecordPlayer2 { grid-area: recordPlayer2; }\r\n.itemPRecordlayer3 { grid-area: recordPlayer3; }\r\n.itemRecordPlayer4 { grid-area: recordPlayer4; }\r\n.itemRecordPlayer5 { grid-area: recordPlayer5; }\r\n.itemRecordPlayer6 { grid-area: recordPlayer6; }\r\n.itemRecordPlayer7 { grid-area: recordPlayer7; }\r\n.itemRecordPlayer8 { grid-area: recordPlayer8; }\r\n.itemNextBtn { grid-area: nextBtn; }\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header'\r\n    'playerHeader playerHeader lifePlayerHeader recordPlayerHeader'\r\n    'player1 player1 lifePlayer1 recordPlayer1'\r\n    'player2 player2 lifePlayer2 recordPlayer2'\r\n\t'player3 player3 lifePlayer3 recordPlayer3'\r\n\t'player4 player4 lifePlayer4 recordPlayer4'\r\n    'player5 player5 lifePlayer5 recordPlayer5'\r\n    'player6 player6 lifePlayer6 recordPlayer6'\r\n    'player7 player7 lifePlayer7 recordPlayer7'\r\n    'player8 player8 lifePlayer8 recordPlayer8'\r\n    'nextBtn nextBtn nextBtn nextBtn';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Score Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>Player</b></div>\r\n  <div class=\"itemLifePlayerHeader\"><b>Life</b></div>\r\n  <div class=\"itemRecordPlayerHeader\"><b>Record</b></div>\r\n  <div class=\"itemPlayer1\">{{sortedPlayerList[0].name}}</div>\r\n  <div class=\"itemLifePlayer1\">{{sortedPlayerList[0].life}}</div>\r\n  <div class=\"recordPlayer1\">{{sortedPlayerList[0].getRecord()}}</div>\r\n  <div class=\"itemPlayer2\">{{sortedPlayerList[1].name}}</div>\r\n  <div class=\"itemLifePlayer2\">{{sortedPlayerList[1].life}}</div>\r\n  <div class=\"recordPlayer2\">{{sortedPlayerList[1].getRecord()}}</div>\r\n  <div class=\"itemPlayer3\">{{sortedPlayerList[2].name}}</div>\r\n  <div class=\"itemLifePlayer3\">{{sortedPlayerList[2].life}}</div>\r\n  <div class=\"recordPlayer3\">{{sortedPlayerList[2].getRecord()}}</div>\r\n  <div class=\"itemPlayer4\">{{sortedPlayerList[3].name}}</div>\r\n  <div class=\"itemLifePlayer4\">{{sortedPlayerList[3].life}}</div>\r\n  <div class=\"recordPlayer4\">{{sortedPlayerList[3].getRecord()}}</div>\r\n  <div class=\"itemPlayer5\">{{sortedPlayerList[4].name}}</div>\r\n  <div class=\"itemLifePlayer5\">{{sortedPlayerList[4].life}}</div>\r\n  <div class=\"recordPlayer5\">{{sortedPlayerList[4].getRecord()}}</div>\r\n  <div class=\"itemPlayer6\">{{sortedPlayerList[5].name}}</div>\r\n  <div class=\"itemLifePlayer6\">{{sortedPlayerList[5].life}}</div>\r\n  <div class=\"recordPlayer6\">{{sortedPlayerList[5].getRecord()}}</div>\r\n  <div class=\"itemPlayer7\">{{sortedPlayerList[6].name}}</div>\r\n  <div class=\"itemLifePlayer7\">{{sortedPlayerList[6].life}}</div>\r\n  <div class=\"recordPlayer7\">{{sortedPlayerList[6].getRecord()}}</div>\r\n  <div class=\"itemPlayer8\">{{sortedPlayerList[7].name}}</div>\r\n  <div class=\"itemLifePlayer8\">{{sortedPlayerList[7].life}}</div>\r\n  <div class=\"recordPlayer8\">{{sortedPlayerList[7].getRecord()}}</div>\r\n  <div class=\"itemNextBtn\">\r\n        <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n    </div>\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -952,7 +952,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Gnome);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Goblin);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Dwarf);
-          this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Skeleton);
+          this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].SkeletonWarrior);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Elf);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Orc);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Paladin);
@@ -1224,14 +1224,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (winner === 0) {
               slotLoser = slotTeam2;
               slotWinner = slotTeam1;
+              this.localGameState.playerList[slotWinner].incrementWins();
+              this.localGameState.playerList[slotLoser].incrementLoses();
               this.battleLogs.push(this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
               --this.localGameState.playerList[slotLoser].life;
             } else if (winner === 1) {
               slotLoser = slotTeam1;
               slotWinner = slotTeam2;
+              this.localGameState.playerList[slotWinner].incrementWins();
+              this.localGameState.playerList[slotLoser].incrementLoses();
               this.battleLogs.push(this.localGameState.playerList[slotWinner].name + " (2)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
               --this.localGameState.playerList[slotLoser].life;
             } else {
+              this.localGameState.playerList[slotTeam1].incrementTies();
+              this.localGameState.playerList[slotTeam2].incrementTies();
               this.battleLogs.push(this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + ".");
             }
           }
@@ -1377,7 +1383,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       CreatureType[CreatureType["Goblin"] = 1] = "Goblin";
       CreatureType[CreatureType["Genie"] = 2] = "Genie";
       CreatureType[CreatureType["Dwarf"] = 3] = "Dwarf";
-      CreatureType[CreatureType["Skeleton"] = 4] = "Skeleton";
+      CreatureType[CreatureType["SkeletonWarrior"] = 4] = "SkeletonWarrior";
       CreatureType[CreatureType["Elf"] = 5] = "Elf";
       CreatureType[CreatureType["Orc"] = 6] = "Orc";
       CreatureType[CreatureType["Paladin"] = 7] = "Paladin";
@@ -1593,13 +1599,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               image = 'paladin.png';
               break;
 
-            case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Skeleton:
-              name = 'Skeleton';
+            case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].SkeletonWarrior:
+              name = 'Skeleton Warrior';
               life = 12;
               attack = 5;
               dex = 8;
               armor = 2;
-              image = 'black.jpg';
+              image = 'skeletonwarrior.png';
               break;
 
             case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Wizard:
@@ -1717,16 +1723,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! tslib */
     "./node_modules/tslib/tslib.es6.js");
 
-    var Player = function Player(name, computerControlled) {
-      _classCallCheck(this, Player);
+    var Player = /*#__PURE__*/function () {
+      function Player(name, computerControlled) {
+        _classCallCheck(this, Player);
 
-      this.name = name;
-      this.life = 40;
-      this.gold = 0;
-      this.refreshCounter = 10;
-      this.computerControlled = computerControlled;
-      this.creatureList = [];
-    };
+        this.name = name;
+        this.life = 40;
+        this.gold = 0;
+        this.refreshCounter = 10;
+        this.computerControlled = computerControlled;
+        this.creatureList = [];
+        this.wins = 0;
+        this.losses = 0;
+        this.ties = 0;
+      }
+
+      _createClass(Player, [{
+        key: "incrementWins",
+        value: function incrementWins() {
+          this.wins++;
+        }
+      }, {
+        key: "incrementLoses",
+        value: function incrementLoses() {
+          this.losses++;
+        }
+      }, {
+        key: "incrementTies",
+        value: function incrementTies() {
+          this.ties++;
+        }
+      }, {
+        key: "getRecord",
+        value: function getRecord() {
+          return this.wins + ' - ' + this.losses + ' - ' + this.ties;
+        }
+      }]);
+
+      return Player;
+    }();
     /***/
 
   },
@@ -1747,7 +1782,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Njb3JlLXNjcmVlbi9zY29yZS1zY3JlZW4uY29tcG9uZW50LmNzcyJ9 */";
+    __webpack_exports__["default"] = ".button {\r\n    border:  none;\r\n    position: relative;\r\n    display: inline-block;\r\n    background: blue;\r\n    color: #fff;\r\n    padding: 0.4em 0.6em;\r\n    font-size: 0.8em;\r\n    border-radius: 1em;\r\n  }\r\n  \r\n  button:disabled {\r\n    background: #dddddd;\r\n  }\r\n  \r\n  p {\r\n    margin: 0px;\r\n    padding: 0px;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2NvcmUtc2NyZWVuL3Njb3JlLXNjcmVlbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixxQkFBcUI7SUFDckIsZ0JBQWdCO0lBQ2hCLFdBQVc7SUFDWCxvQkFBb0I7SUFDcEIsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLFdBQVc7SUFDWCxZQUFZO0VBQ2QiLCJmaWxlIjoic3JjL2FwcC9zY29yZS1zY3JlZW4vc2NvcmUtc2NyZWVuLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uIHtcclxuICAgIGJvcmRlcjogIG5vbmU7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBiYWNrZ3JvdW5kOiBibHVlO1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBwYWRkaW5nOiAwLjRlbSAwLjZlbTtcclxuICAgIGZvbnQtc2l6ZTogMC44ZW07XHJcbiAgICBib3JkZXItcmFkaXVzOiAxZW07XHJcbiAgfVxyXG4gIFxyXG4gIGJ1dHRvbjpkaXNhYmxlZCB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjZGRkZGRkO1xyXG4gIH0gXHJcbiAgXHJcbiAgcCB7XHJcbiAgICBtYXJnaW46IDBweDtcclxuICAgIHBhZGRpbmc6IDBweDtcclxuICB9Il19 */";
     /***/
   },
 
@@ -1800,6 +1835,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.sortedPlayerList = currentPlayerList.sort(function (a, b) {
+            if (b.life === a.life) {
+              return b.wins - a.wins;
+            }
+
             return b.life - a.life;
           });
           console.log('players creature list length = ' + this.localGameState.playerList[0].creatureList.length); // Print Player List

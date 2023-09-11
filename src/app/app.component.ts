@@ -53,7 +53,7 @@ export class AppComponent {
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Gnome);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Goblin);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Dwarf);
-    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Skeleton);
+    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.SkeletonWarrior);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Elf);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Orc);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Paladin);

@@ -3,7 +3,9 @@
 <head>
 <style>
 .itemHeader { grid-area: header; }
-
+.itemPlayerHeader { grid-area: playerHeader}
+.itemLifeHeader { grid-area: lifeHeader}
+.itemRecordHeader { grid-area: recordHeader}
 .itemPlayer1 { grid-area: player1; }
 .itemPlayer2 { grid-area: player2; }
 .itemPlayer3 { grid-area: player3; }
@@ -11,7 +13,7 @@
 .itemPlayer5 { grid-area: player5; }
 .itemPlayer6 { grid-area: player6; }
 .itemPlayer7 { grid-area: player7; }
-.itemPlyaer8 { grid-area: player8; }
+.itemPlayer8 { grid-area: player8; }
 .itemLifePlayer1 { grid-area: lifePlayer1; }
 .itemLifePlayer2 { grid-area: lifePlayer2; }
 .itemPLifelayer3 { grid-area: lifePlayer3; }
@@ -20,26 +22,35 @@
 .itemLifePlayer6 { grid-area: lifePlayer6; }
 .itemLifePlayer7 { grid-area: lifePlayer7; }
 .itemLifePlayer8 { grid-area: lifePlayer8; }
+.itemRecordPlayer1 { grid-area: recordPlayer1; }
+.itemRecordPlayer2 { grid-area: recordPlayer2; }
+.itemPRecordlayer3 { grid-area: recordPlayer3; }
+.itemRecordPlayer4 { grid-area: recordPlayer4; }
+.itemRecordPlayer5 { grid-area: recordPlayer5; }
+.itemRecordPlayer6 { grid-area: recordPlayer6; }
+.itemRecordPlayer7 { grid-area: recordPlayer7; }
+.itemRecordPlayer8 { grid-area: recordPlayer8; }
 .itemNextBtn { grid-area: nextBtn; }
 
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header'
-    'player1 lifePlayer1'
-    'player2 lifePlayer2'
-	'player3 lifePlayer3'
-	'player4 lifePlayer4'
-    'player5 lifePlayer5'
-    'player6 lifePlayer6'
-    'player7 lifePlayer7'
-    'player8 lifePlayer8'
-    'nextBtn nextBtn';
+    'header header header header'
+    'playerHeader playerHeader lifePlayerHeader recordPlayerHeader'
+    'player1 player1 lifePlayer1 recordPlayer1'
+    'player2 player2 lifePlayer2 recordPlayer2'
+	'player3 player3 lifePlayer3 recordPlayer3'
+	'player4 player4 lifePlayer4 recordPlayer4'
+    'player5 player5 lifePlayer5 recordPlayer5'
+    'player6 player6 lifePlayer6 recordPlayer6'
+    'player7 player7 lifePlayer7 recordPlayer7'
+    'player8 player8 lifePlayer8 recordPlayer8'
+    'nextBtn nextBtn nextBtn nextBtn';
 
-  gap: 10px;
+  gap: 8px;
   background-color: #2196F3;
-  padding: 10px;
+  padding: 8px;
 }
 
 .grid-container > div {
@@ -58,38 +69,40 @@
     <p>Score Screen</p>
   </div>
 
-  <div class="itemPlayer1">player1</div>
-  <div class="itemLifePlayer1">lifeplayer1</div>
-  <div class="itemPlayer2">player2</div>
-  <div class="itemLifePlayer2">lifeplayer2</div>
-    <div class="itemPlayer3">player3</div>
-    <div class="itemLifePlayer3">lifeplayer3</div>
-    <div class="itemPlayer4">player4</div>
-    <div class="itemLifePlayer4">lifeplayer4</div>
-    <div class="itemPlayer5">player5</div>
-    <div class="itemLifePlayer5">lifeplayer1</div>
-    <div class="itemPlayer6">player2</div>
-    <div class="itemLifePlayer6">lifeplayer2</div>
-    <div class="itemPlayer7">player1</div>
-    <div class="itemLifePlayer7">lifeplayer1</div>
-    <div class="itemPlayer8">player8</div>
-    <div class="itemLifePlayer8">lifeplayer8</div>
-    <div class="itemNextBtn">
+  <div class="itemPlayerHeader"><b>Player</b></div>
+  <div class="itemLifePlayerHeader"><b>Life</b></div>
+  <div class="itemRecordPlayerHeader"><b>Record</b></div>
+  <div class="itemPlayer1">{{sortedPlayerList[0].name}}</div>
+  <div class="itemLifePlayer1">{{sortedPlayerList[0].life}}</div>
+  <div class="recordPlayer1">{{sortedPlayerList[0].getRecord()}}</div>
+  <div class="itemPlayer2">{{sortedPlayerList[1].name}}</div>
+  <div class="itemLifePlayer2">{{sortedPlayerList[1].life}}</div>
+  <div class="recordPlayer2">{{sortedPlayerList[1].getRecord()}}</div>
+  <div class="itemPlayer3">{{sortedPlayerList[2].name}}</div>
+  <div class="itemLifePlayer3">{{sortedPlayerList[2].life}}</div>
+  <div class="recordPlayer3">{{sortedPlayerList[2].getRecord()}}</div>
+  <div class="itemPlayer4">{{sortedPlayerList[3].name}}</div>
+  <div class="itemLifePlayer4">{{sortedPlayerList[3].life}}</div>
+  <div class="recordPlayer4">{{sortedPlayerList[3].getRecord()}}</div>
+  <div class="itemPlayer5">{{sortedPlayerList[4].name}}</div>
+  <div class="itemLifePlayer5">{{sortedPlayerList[4].life}}</div>
+  <div class="recordPlayer5">{{sortedPlayerList[4].getRecord()}}</div>
+  <div class="itemPlayer6">{{sortedPlayerList[5].name}}</div>
+  <div class="itemLifePlayer6">{{sortedPlayerList[5].life}}</div>
+  <div class="recordPlayer6">{{sortedPlayerList[5].getRecord()}}</div>
+  <div class="itemPlayer7">{{sortedPlayerList[6].name}}</div>
+  <div class="itemLifePlayer7">{{sortedPlayerList[6].life}}</div>
+  <div class="recordPlayer7">{{sortedPlayerList[6].getRecord()}}</div>
+  <div class="itemPlayer8">{{sortedPlayerList[7].name}}</div>
+  <div class="itemLifePlayer8">{{sortedPlayerList[7].life}}</div>
+  <div class="recordPlayer8">{{sortedPlayerList[7].getRecord()}}</div>
+  <div class="itemNextBtn">
         <button class="button" (click)="onNext()">Next</button>
     </div>
 
 </div>
 
-
 </body>
 </html>
 
-
-<ul>
-    <li *ngFor="let player of sortedPlayerList; let indeOfElement=index;">
-        {{player.name}} ({{player.life}})
-    </li>
-</ul>
-
-<button class="button" (click)="onNext()">Next</button>
 

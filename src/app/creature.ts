@@ -2,20 +2,20 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 export enum CreatureType {
 
-    Gnome,  // 1, 2, 'gnome.png');
-    Goblin, // 1, 2, 'black.jpg');
+    Gnome,
+    Goblin,
     Genie,
-    Dwarf, // 2, 2, 'black.jpg');
-    Skeleton, // 1, 1, 'skeleton.png');
-    Elf, // 1, 1, 'black.jpg');
-    Orc, // 2, 2, 'orc.jpg');
-    Paladin, // 1, 2, 'paladin.png');
-    Wizard, // 2, 1, 'black.jpg');
-    Necromancer, // 1, 2, 'black.jpg');
-    Archer, //2, 1, 'black.jpg');
+    Dwarf,
+    SkeletonWarrior,
+    Elf,
+    Orc,
+    Paladin, 
+    Wizard,
+    Necromancer,
+    Archer,
     Bard,
-    DragonEgg, // 1, 1, 'black.jpg');
-    DemonPortal, // 1, 1, 'black.jpg');
+    DragonEgg,
+    DemonPortal,
     Demon,
     Dragon,
     Sorcerous

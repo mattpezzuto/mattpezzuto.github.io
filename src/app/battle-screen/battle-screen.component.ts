@@ -119,6 +119,8 @@ export class BattleScreenComponent implements OnInit {
       if (winner === 0 ) {
         slotLoser = slotTeam2;
         slotWinner = slotTeam1;
+        this.localGameState.playerList[slotWinner].incrementWins();
+        this.localGameState.playerList[slotLoser].incrementLoses();
         this.battleLogs.push(
           this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + "."
         );
@@ -126,14 +128,18 @@ export class BattleScreenComponent implements OnInit {
       } else if (winner === 1) {
           slotLoser = slotTeam1;
           slotWinner = slotTeam2;
+          this.localGameState.playerList[slotWinner].incrementWins();
+          this.localGameState.playerList[slotLoser].incrementLoses();
           this.battleLogs.push(
             this.localGameState.playerList[slotWinner].name + " (2)" +  " beats " + this.localGameState.playerList[slotLoser].name + "."
           );
         --this.localGameState.playerList[slotLoser].life;
       } else {
+        this.localGameState.playerList[slotTeam1].incrementTies();
+        this.localGameState.playerList[slotTeam2].incrementTies();
         this.battleLogs.push(
           this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + "."
-        )
+        );
       }
 
     }

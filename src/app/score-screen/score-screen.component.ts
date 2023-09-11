@@ -21,7 +21,12 @@ export class ScoreScreenComponent implements OnInit {
     for(var i=0; i<this.localGameState.playerList.length; i++) {
       currentPlayerList.push(this.localGameState.playerList[i])
     }
-    this.sortedPlayerList = currentPlayerList.sort((a,b) => b.life - a.life);
+    this.sortedPlayerList = currentPlayerList.sort((a,b) => {
+      if (b.life === a.life ) {
+        return b.wins - a.wins;
+      }
+      return b.life - a.life;
+    });
 
     console.log('players creature list length = ' + this.localGameState.playerList[0].creatureList.length);
     // Print Player List
