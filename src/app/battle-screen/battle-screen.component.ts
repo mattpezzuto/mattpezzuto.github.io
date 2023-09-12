@@ -20,14 +20,16 @@ export class BattleScreenComponent implements OnInit {
     this.battleLogs = [];
 
     let playerIndexList: number[] = [];
-    for (var i : number = 0; i < 8; i++) {
+    for (var i : number = 1; i < 8; i++) {
       playerIndexList.push(i);
     }
     let randomPlayerList = this.shuffle(playerIndexList);
+    randomPlayerList.push(0);
     console.log('randomPlayerList: ' + randomPlayerList);
 
     // Perform Matches
     for (var matchIndex = 0; matchIndex < 4; matchIndex++) {
+      this.battleLogs = [];
       var creatureListTeam1: Creature[] = [];
       var creatureListTeam2: Creature[] = [];
 
@@ -80,21 +82,21 @@ export class BattleScreenComponent implements OnInit {
 
         if (creatureListTeam1[0].currentLife < 1 && creatureListTeam2[0].currentLife < 1) {
           this.battleLogs.push(
-            "..." + creatureListTeam1[0].name + " & " + creatureListTeam2[0].name + " die"
+            "..." + creatureListTeam1[0].getName() + " & " + creatureListTeam2[0].getName() + " die"
           );
           creatureListTeam1.splice(0, 1);
           creatureListTeam2.splice(0,1);
         } else {
           if (creatureListTeam1[0].currentLife < 1) {
             this.battleLogs.push(
-              "..." + creatureListTeam1[0].name + " (1) dies"
+              "..." + creatureListTeam1[0].getName() + " (1) dies"
             );
             creatureListTeam1.splice(0, 1);
           }
   
           if (creatureListTeam2[0].currentLife < 1) {
             this.battleLogs.push(
-              "..." + creatureListTeam2[0].name + " (2) dies"
+              "..." + creatureListTeam2[0].getName() + " (2) dies"
             );
             creatureListTeam2.splice(0,1);
           }        
@@ -145,44 +147,66 @@ export class BattleScreenComponent implements OnInit {
     }
   }
 
-  performAttack(creatureListAttack: Creature[], creatureListDefender: Creature[], attackPlayerName: string, defendPlayerName: string) {
+  logBuffAction(playerName: string, creatureName: string) {
+    this.battleLogs.push(
+      creatureName + "(" + playerName + ") buffs the party. "
+    );
+  }
+
+  performAttack(creatureListAttackTeam: Creature[], creatureListDefenderTeam: Creature[], attackPlayerName: string, defendPlayerName: string) {
               // defensive layer 1
-              var dodgedDefenderTeam: boolean = this.doesDefenderDodge(creatureListDefender[0].dex);
-              var dodgedAttackTeam: boolean = this.doesDefenderDodge(creatureListAttack[0].dex);
+              var dodgedDefenderTeam: boolean = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
+              var dodgedAttackTeam: boolean = this.doesDefenderDodge(creatureListAttackTeam[0].creatureStats.dex);
     
+              if (creatureListAttackTeam[0].getArmorBuff() > 0 && creatureListAttackTeam[0].currentArmorBuffUsed == false) {
+                for(var i = 0; i< creatureListAttackTeam.length; i++) {
+                  creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[0].getArmorBuff();
+                }
+                creatureListAttackTeam[0].currentArmorBuffUsed = true;
+
+                this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
+                  } else if (creatureListAttackTeam[0].getLifeBuff() > 0 && creatureListAttackTeam[0].currentLifeBuffUsed == false) {
+                    for(var i = 0; i< creatureListAttackTeam.length; i++) {
+                      creatureListAttackTeam[i].currentLife += creatureListAttackTeam[0].getLifeBuff();
+                    }
+                    creatureListAttackTeam[0].currentLifeBuffUsed = true;
+                    this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
+              } else {
+              
               this.battleLogs.push(
-                creatureListAttack[0].name + "(" + attackPlayerName + ") + attacks " + creatureListDefender[0].name + "(" + defendPlayerName + ")"
+                creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") + attacks " + creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")"
               );
               
               if (!dodgedAttackTeam) {
-                var dmg = this.getDamageAfterArmorCheck(creatureListDefender, creatureListAttack);
-                creatureListAttack[0].currentLife = creatureListAttack[0].currentLife - dmg;  // strong attack
-                this.battleLogs.push("... " + creatureListDefender[0].name + " deals " + dmg + " damage.");
+                var dmg = this.getDamageAfterArmorCheck(creatureListDefenderTeam, creatureListAttackTeam);
+                creatureListAttackTeam[0].currentLife = creatureListAttackTeam[0].currentLife - dmg;  // strong attack
+                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " deals " + dmg + " damage.");
 
               } else {
-                this.battleLogs.push("... " + creatureListAttack[0].name + " dodges attack.");
+                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " dodges attack.");
               }
               
               if (!dodgedDefenderTeam) {
-                var dmg = this.getDamageAfterArmorCheck(creatureListAttack, creatureListDefender);
-                creatureListDefender[0].currentLife = creatureListDefender[0].currentLife - dmg;  // counter attack
-                this.battleLogs.push("... " + creatureListAttack[0].name + " deals " + dmg + " damage.");
+                var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, creatureListDefenderTeam);
+                creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg;  // counter attack
+                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " deals " + dmg + " damage.");
               } else {
-                this.battleLogs.push("... " + creatureListDefender[0].name + " dodges attack.");
+                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " dodges attack.");
 
               }
+            }
               
 
     
   }
 
   getDamageAfterArmorCheck(attackerTeam: Creature[], defenderTeam: Creature[]): number {
-    var dmg = attackerTeam[0].attack;
+    var dmg = attackerTeam[0].creatureStats.attack;
     if (defenderTeam[0].currentArmor > 0) {
       dmg = Math.max(dmg - defenderTeam[0].currentArmor, 0);
       defenderTeam[0].currentArmor--;
     }
-    console.log('Reduced ' + (attackerTeam[0].attack - dmg) + ' damage');
+    console.log('Reduced ' + (attackerTeam[0].creatureStats.attack - dmg) + ' damage');
     return dmg;
   }
 
@@ -210,14 +234,23 @@ export class BattleScreenComponent implements OnInit {
     return isTurnTeam1;
   }
 
-  shuffle(list) {
-    return list.reduce((p, n) => {
-      const size = p.length;
-      const index = Math.trunc(Math.random() * (size - 1));
-      p.splice(index, 0, n);
-      return p;
-    }, []);
-  };
+   shuffle <T>(array: T[]): T[] {
+    let currentIndex = array.length,  randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+};
 
   onNext() {
     ++this.localGameState.stage;

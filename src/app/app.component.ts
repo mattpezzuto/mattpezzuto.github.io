@@ -49,7 +49,7 @@ export class AppComponent {
  
   createInitialCreaturePool(): Creature[] {
     let creatureList: Creature[] = [];
-    
+    console.log('herea');
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Gnome);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Goblin);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Dwarf);
@@ -57,6 +57,7 @@ export class AppComponent {
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Elf);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Orc);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Paladin);
+    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.TreeOfLife);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Wizard);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Necromancer);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Archer);

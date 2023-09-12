@@ -60,8 +60,9 @@
     <p>Shop</p>
   </div>
   <div class="itemGold">
+    <button class="button" (click)="onNext()">Proceed to Battle</button>
     <p>Gold = {{this.localGameState.playerList[0].gold}} </p>
-    <p>Time Left:  {{this.counter}}</p>
+    <!-- <p>Time Left:  {{this.counter}}</p> -->
     <button class="button" (click)="onRefresh()">Refresh ({{refreshCounter}})</button>
     </div>
 
@@ -71,16 +72,16 @@
  
 
   <div class="itemShop1">
-    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.name}}</p>
-    <img src="{{getTavernCreature(0).creature.image}}" style="width:120;height:150px;">
+    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>
+    <img src="{{getTavernCreature(0).creature.getImage()}}" style="width:120;height:150px;">
   </div>  
   <div class="itemShop2">
-    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.name}}</p>
-    <img src="{{getTavernCreature(1).creature.image}}" style="width:120;height:150px;">
+    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>
+    <img src="{{getTavernCreature(1).creature.getImage()}}" style="width:120;height:150px;">
   </div>  
   <div class="itemShop3">
-    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.name}}</p>
-    <img src="{{getTavernCreature(2).creature.image}}" style="width:120;height:150px;">
+    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>
+    <img src="{{getTavernCreature(2).creature.getImage()}}" style="width:120;height:150px;">
   </div>  
   <div class="itemShopBtn1">
     <button class="button" *ngIf="!getTavernCreature(0).sold" (click)="onBuy(0)">Buy</button>
@@ -97,43 +98,43 @@
 
   <div class="itemBoard">Board</div>  
   <div class="itemBoard1">
-    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).name}}</p>
+    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>
   </div>  
   <div class="itemBoard2">
-    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).name}}</p>
+    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).getName()}}</p>
   </div>  
   <div class="itemBoard3">
-    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).name}}</p>
+    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).getName()}}</p>
   </div>  
   <div class="itemBoard4">
-    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).name}}</p>
+    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).getName()}}</p>
   </div>  
   <div class="itemBoard5">
-    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).name}}</p>
+    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>
   </div>  
   
   <div class="itemBoardBtn1">
     <button class="button" (click)="onMoveRight(0)">>>></button>
-    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onSell(0)">Sell</button>
   </div>
   <div class="itemBoardBtn2">
     <button class="button" (click)="onMoveRight(0)"><<<</button>
-    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onSell(1)">Sell</button>
     <button class="button" (click)="onMoveRight(1)">>>></button>
   </div>
   <div class="itemBoardBtn3">
     <button class="button" (click)="onMoveRight(1)"><<<</button>
-    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onSell(2)">Sell</button>
     <button class="button" (click)="onMoveRight(2)">>>></button>
   </div>
   <div class="itemBoardBtn4">
     <button class="button" (click)="onMoveRight(2)"><<<</button>
-    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onSell(3)">Sell</button>
     <button class="button" (click)="onMoveRight(3)">>>></button>
   </div>
   <div class="itemBoardBtn5">
     <button class="button" (click)="onMoveRight(3)"><<<</button>
-    <button class="button" (click)="onRefresh()">Sell</button>
+    <button class="button" (click)="onSell(4)">Sell</button>
     <button class="button" (click)="onMoveRight(4)">>>></button>
   </div>
   <div class="itemHand1">Card1</div>  
@@ -145,11 +146,6 @@
 </div>
 
 <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>
-<ul>
-  <li *ngFor="let creature of this.localGameState.playerList[0].creatureList">
-    {{ creature.name}}
-  </li>
-</ul>
 
 </body>
 </html>

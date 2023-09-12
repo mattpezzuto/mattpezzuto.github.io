@@ -1,3 +1,4 @@
+import { templateSourceUrl } from '@angular/compiler';
 import {Creature, CreatureType} from './creature'
 
 export class CreaturePool {
@@ -15,7 +16,7 @@ export class CreaturePool {
 
     public addCreatureToPool(count: number, creatureType: CreatureType) {
         var name, image: string;
-        var life, attack, dex, armor: number;   
+        var life, attack, dex, armor, armorBuff: number = 0, lifeBuff: number = 0;   
 
         console.log('creatureType = ' + creatureType);
   
@@ -45,11 +46,15 @@ export class CreaturePool {
             case CreatureType.Orc:
                 name = 'Orc'; life = 18; attack = 10; dex = 8; armor = 3; image = 'orc.png'; break;
             case CreatureType.Paladin:
-                name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; image = 'paladin.png'; break;
+                name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; 
+                armorBuff = 2; image = 'paladin.png'; break;
             case CreatureType.SkeletonWarrior:
                 name = 'Skeleton Warrior'; life = 12; attack = 5; dex = 8; armor = 2; image = 'skeletonwarrior.png'; break;
             case CreatureType.Wizard:
                 name = 'Wizard'; life = 10; attack = 10; dex = 8; armor = 1; image = 'wizard.png'; break;
+            case CreatureType.TreeOfLife:
+                    name = 'Tree of Life'; life = 20; attack = 1; dex = 8; armor = 1; image = 'treeoflife.png'; 
+                    lifeBuff = 5; break;
             case CreatureType.Sorcerous: 
                 name = 'Sorcerous'; life = 10; attack = 10; dex = 8; armor = 1; image = 'sorcerous.png'; break;
 
@@ -60,7 +65,8 @@ export class CreaturePool {
         }
         for (var i = 0; i< count; i++) {
             console.log('Adding ' + name + ' to crature pool');
-            this.tier1.push(new Creature(name, life, attack, dex, armor, image));
+            var tempCreature: Creature = new Creature(creatureType);
+            this.tier1.push(tempCreature);
         }
       }
 

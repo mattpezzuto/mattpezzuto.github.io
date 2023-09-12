@@ -3,7 +3,6 @@ import { GameState } from '../gameState.model';
 
 import { Player } from '../player.model';
 
-
 @Component({
   selector: 'app-score-screen',
   templateUrl: './score-screen.component.html',
@@ -31,7 +30,7 @@ export class ScoreScreenComponent implements OnInit {
     console.log('players creature list length = ' + this.localGameState.playerList[0].creatureList.length);
     // Print Player List
     for(var i = 0; i<this.localGameState.playerList[0].creatureList.length; i++) {
-      console.log(this.localGameState.playerList[0].creatureList[i].name);
+      console.log(this.localGameState.playerList[0].creatureList[i].getName());
     }
   }
 

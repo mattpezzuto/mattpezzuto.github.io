@@ -25,30 +25,33 @@ export class TavernAppComponent implements OnInit {
   tavernCreatureList : TavernCreature[];
   
   constructor() {
+    console.log('in tavern consturctor');
+
     this.tavernCreatureList = [];
 
-    timer(1000,1000).pipe(
-      takeWhile( () => this.counter > -1 ),
-      map(() => this.counter--)
-      // map((x) => {
-      //   if (this.count === 0) { 
-      //     this.localGameState.stage=3; 
-      //   }})
-    ).subscribe( () => {
-      if (this.counter === -1) {
-        this.localGameState.stage = 3;
-        // Update other players
-        for (var i = 1; i < this.localGameState.playerList.length; i++ ) {
-          let slot = this.getRandomSlot(1);
-          this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
-        }
-      }
-    })
+    // timer(1000,1000).pipe(
+    //   takeWhile( () => this.counter > -1 ),
+    //   map(() => this.counter--)
+    //   // map((x) => {
+    //   //   if (this.count === 0) { 
+    //   //     this.localGameState.stage=3; 
+    //   //   }})
+    // ).subscribe( () => {
+    //   if (this.counter === -1) {
+    //     this.localGameState.stage = 3;
+    //     // Update other players
+    //     for (var i = 1; i < this.localGameState.playerList.length; i++ ) {
+    //       let slot = this.getRandomSlot(1);
+    //       this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+    //     }
+    //   }
+    // })
 
    }
 
   ngOnInit() {
     // Grab 3 creatures from the pool that will be for sale
+    console.log('in ngOnInit');
     this.refreshCounter = this.localGameState.playerList[0].refreshCounter;
 
     this.refreshTavernBoard();
@@ -60,6 +63,17 @@ export class TavernAppComponent implements OnInit {
       this.refreshCounter--;
       this.refreshTavernBoard();
     }
+  }
+
+  onSell(slot: number) {
+    if (this.localGameState.playerList[0].creatureList.length > slot) {
+      var tempCreature : Creature = this.localGameState.playerList[0].creatureList[slot].getCopy();
+      this.localGameState.playerList[0].creatureList.splice(slot, 1);
+      this.localGameState.creaturePool.addCreatureToPool(1, tempCreature.createType);
+      this.localGameState.playerList[0].gold += 50;
+
+    }
+
   }
 
   onMoveRight(slot: number) {
@@ -81,7 +95,7 @@ export class TavernAppComponent implements OnInit {
       return this.localGameState.playerList[0].creatureList[index];
     } 
     
-    return  new Creature("Empty", 1, 2, 3, 4, "noPic");
+    return  new Creature(CreatureType.Empty);
   }
 
   refreshTavernBoard() {
@@ -120,6 +134,16 @@ export class TavernAppComponent implements OnInit {
     }
   }
 
+  onNext() {
+    for (var i = 1; i < this.localGameState.playerList.length; i++ ) {
+        if (this.localGameState.playerList[i].creatureList.length < 8) {
+          let slot = this.getRandomSlot(1);
+          this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+        }
+        }
+    this.localGameState.stage++;
+  }
+
   doPurchase(slot: number) {
 
     this.tavernCreatureList[slot].sold = true;
@@ -128,14 +152,14 @@ export class TavernAppComponent implements OnInit {
     console.log("pool  sold slot " + this.tavernCreatureList[slot].poolSlot);
     console.log(this.tavernCreatureList[slot].sold);
 
-    if (this.tavernCreatureList[slot].creature.name === 'Demon Portal') {
+    if (this.tavernCreatureList[slot].creature.getName() === 'Demon Portal') {
       console.log('adding 3 demons');
       this.localGameState.creaturePool.addCreatureToPool(3, CreatureType.Demon);
       // this.localGameState.playerList[0].creatureList.push(new Creature('Imp', 2, 2, 'blank.jpg'));
-    } else if (this.tavernCreatureList[slot].creature.name === 'Dragon Egg') {
+    } else if (this.tavernCreatureList[slot].creature.getName() === 'Dragon Egg') {
         this.localGameState.creaturePool.addCreatureToPool(3, CreatureType.Dragon);
-        this.localGameState.playerList[0].creatureList.push(new Creature('Dragon Protector', 1, 3, 3, 4, 'blank.jpg'));
-    } else if (this.tavernCreatureList[slot].creature.name === 'Bard') {
+        // this.localGameState.playerList[0].creatureList.push(new Creature(CreatureType.Dragon);
+    } else if (this.tavernCreatureList[slot].creature.getName() === 'Bard') {
       this.localGameState.playerList[0].creatureList.push(this.tavernCreatureList[slot].creature);
       this.localGameState.playerList[0].refreshCounter++;
     } else {
@@ -145,7 +169,7 @@ export class TavernAppComponent implements OnInit {
     
     // Print Player List
     for(var i = 0; i<this.localGameState.playerList[0].creatureList.length; i++) {
-      console.log(this.localGameState.playerList[0].creatureList[i].name);
+      console.log(this.localGameState.playerList[0].creatureList[i].getName());
     }
 
   }
