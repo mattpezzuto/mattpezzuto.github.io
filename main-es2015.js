@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>battle-screen works!</p>\r\n\r\n<ul>\r\n    <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n        {{battleLog}}\r\n    </li>\r\n</ul>\r\n\r\n\r\n<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n<ul>\r\n    <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n        {{battleLog}}\r\n    </li>\r\n</ul>\r\n\r\n\r\n<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n");
 
 /***/ }),
 
@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header gold'\r\n    'shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5'\r\n    'menu hand1 hand2 hand3 hand4 hand5';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).name}}</p>\r\n  </div>  \r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">Card1</div>  \r\n  <div class=\"itemHand2\">Card2</div>  \r\n  <div class=\"itemHand3\">Card33</div>  \r\n  <div class=\"itemHand4\">Card44</div>  \r\n  <div class=\"itemHand5\">Card55</div>\r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n<ul>\r\n  <li *ngFor=\"let creature of this.localGameState.playerList[0].creatureList\">\r\n    {{ creature.name}}\r\n  </li>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header gold'\r\n    'shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5'\r\n    'menu hand1 hand2 hand3 hand4 hand5';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).name}}</p>\r\n  </div>  \r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onSell(0)\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(1)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(2)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(3)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(4)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">Card1</div>  \r\n  <div class=\"itemHand2\">Card2</div>  \r\n  <div class=\"itemHand3\">Card33</div>  \r\n  <div class=\"itemHand4\">Card44</div>  \r\n  <div class=\"itemHand5\">Card55</div>\r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n<ul>\r\n  <li *ngFor=\"let creature of this.localGameState.playerList[0].creatureList\">\r\n    {{ creature.name}}\r\n  </li>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n");
 
 /***/ }),
 
@@ -471,6 +471,7 @@ let AppComponent = class AppComponent {
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Elf);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Orc);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Paladin);
+        this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].TreeOfLife);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Wizard);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Necromancer);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Archer);
@@ -672,6 +673,9 @@ let BattleScreenComponent = class BattleScreenComponent {
             }
         }
     }
+    logBuffAction(playerName, creatureName) {
+        this.battleLogs.push(creatureName + "(" + playerName + ") buffs the party. ");
+    }
     performAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         // defensive layer 1
         var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].dex);
@@ -682,7 +686,14 @@ let BattleScreenComponent = class BattleScreenComponent {
                 creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[0].getArmorBuff();
             }
             creatureListAttackTeam[0].currentArmorBuffUsed = true;
-            this.battleLogs.push(creatureListAttackTeam[0].name + "(" + attackPlayerName + ") + buffs party. ");
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].name);
+        }
+        else if (creatureListAttackTeam[0].getLifeBuff() > 0 && creatureListAttackTeam[0].currentLifeBuffUsed == false) {
+            for (var i = 0; i < creatureListAttackTeam.length; i++) {
+                creatureListAttackTeam[i].currentLife += creatureListAttackTeam[0].getLifeBuff();
+            }
+            creatureListAttackTeam[0].currentLifeBuffUsed = true;
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].name);
         }
         else {
             this.battleLogs.push(creatureListAttackTeam[0].name + "(" + attackPlayerName + ") + attacks " + creatureListDefenderTeam[0].name + "(" + defendPlayerName + ")");
@@ -786,17 +797,19 @@ var CreatureType;
     CreatureType[CreatureType["Orc"] = 6] = "Orc";
     CreatureType[CreatureType["Paladin"] = 7] = "Paladin";
     CreatureType[CreatureType["Wizard"] = 8] = "Wizard";
-    CreatureType[CreatureType["Necromancer"] = 9] = "Necromancer";
-    CreatureType[CreatureType["Archer"] = 10] = "Archer";
-    CreatureType[CreatureType["Bard"] = 11] = "Bard";
-    CreatureType[CreatureType["DragonEgg"] = 12] = "DragonEgg";
-    CreatureType[CreatureType["DemonPortal"] = 13] = "DemonPortal";
-    CreatureType[CreatureType["Demon"] = 14] = "Demon";
-    CreatureType[CreatureType["Dragon"] = 15] = "Dragon";
-    CreatureType[CreatureType["Sorcerous"] = 16] = "Sorcerous";
+    CreatureType[CreatureType["TreeOfLife"] = 9] = "TreeOfLife";
+    CreatureType[CreatureType["Necromancer"] = 10] = "Necromancer";
+    CreatureType[CreatureType["Archer"] = 11] = "Archer";
+    CreatureType[CreatureType["Bard"] = 12] = "Bard";
+    CreatureType[CreatureType["DragonEgg"] = 13] = "DragonEgg";
+    CreatureType[CreatureType["DemonPortal"] = 14] = "DemonPortal";
+    CreatureType[CreatureType["Demon"] = 15] = "Demon";
+    CreatureType[CreatureType["Dragon"] = 16] = "Dragon";
+    CreatureType[CreatureType["Sorcerous"] = 17] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
 class Creature {
-    constructor(name, life, attack, dex, armor, image) {
+    constructor(creatureType, name, life, attack, dex, armor, image) {
+        this.createType = creatureType;
         this.name = name;
         this.life = life;
         this.attack = attack;
@@ -807,16 +820,20 @@ class Creature {
         this.currentArmor = armor;
         this.armorBuff = 0;
         this.currentArmorBuffUsed = false;
+        this.lifeBuff = 0;
+        this.currentLifeBuffUsed = false;
     }
     preCombat() {
         this.currentLife = this.life;
         this.currentArmor = this.armor;
         this.currentArmorBuffUsed = false;
+        this.currentLifeBuffUsed = false;
     }
     getCopy() {
         var value;
-        value = new Creature(this.name, this.life, this.attack, this.dex, this.armor, this.image);
+        value = new Creature(this.createType, this.name, this.life, this.attack, this.dex, this.armor, this.image);
         value.setArmorBuff(this.armorBuff);
+        value.setLifeBuff(this.lifeBuff);
         return value;
     }
     setArmorBuff(buff) {
@@ -824,6 +841,12 @@ class Creature {
     }
     getArmorBuff() {
         return this.armorBuff;
+    }
+    setLifeBuff(buff) {
+        this.lifeBuff = buff;
+    }
+    getLifeBuff() {
+        return this.lifeBuff;
     }
 }
 
@@ -852,7 +875,7 @@ class CreaturePool {
     }
     addCreatureToPool(count, creatureType) {
         var name, image;
-        var life, attack, dex, armor, armorBuff = 0;
+        var life, attack, dex, armor, armorBuff = 0, lifeBuff = 0;
         console.log('creatureType = ' + creatureType);
         switch (creatureType) {
             case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Archer:
@@ -976,6 +999,15 @@ class CreaturePool {
                 armor = 1;
                 image = 'wizard.png';
                 break;
+            case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].TreeOfLife:
+                name = 'Tree of Life';
+                life = 20;
+                attack = 1;
+                dex = 8;
+                armor = 1;
+                image = 'treeoflife.png';
+                lifeBuff = 5;
+                break;
             case _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Sorcerous:
                 name = 'Sorcerous';
                 life = 10;
@@ -997,10 +1029,9 @@ class CreaturePool {
         }
         for (var i = 0; i < count; i++) {
             console.log('Adding ' + name + ' to crature pool');
-            var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](name, life, attack, dex, armor, image);
-            console.log('setting armorBuff= ' + armorBuff);
+            var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](creatureType, name, life, attack, dex, armor, image);
             tempCreature.setArmorBuff(armorBuff);
-            console.log('getting armorBuff= ' + armorBuff);
+            tempCreature.setLifeBuff(lifeBuff);
             this.tier1.push(tempCreature);
         }
     }
@@ -1212,6 +1243,14 @@ let TavernAppComponent = class TavernAppComponent {
             this.refreshTavernBoard();
         }
     }
+    onSell(slot) {
+        if (this.localGameState.playerList[0].creatureList.length > slot) {
+            var tempCreature = this.localGameState.playerList[0].creatureList[slot].getCopy();
+            this.localGameState.playerList[0].creatureList.splice(slot, 1);
+            this.localGameState.creaturePool.addCreatureToPool(1, tempCreature.createType);
+            this.localGameState.playerList[0].gold += 50;
+        }
+    }
     onMoveRight(slot) {
         var rightSlot = slot + 1;
         console.log('slot = ' + slot + ', rightSlot = ' + rightSlot);
@@ -1228,7 +1267,7 @@ let TavernAppComponent = class TavernAppComponent {
         if (this.localGameState.playerList[0].creatureList.length > 0) {
             return this.localGameState.playerList[0].creatureList[index];
         }
-        return new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"]("Empty", 1, 2, 3, 4, "noPic");
+        return new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Archer, "Empty", 1, 2, 3, 4, "noPic");
     }
     refreshTavernBoard() {
         this.tavernCreatureList = [];
@@ -1262,8 +1301,10 @@ let TavernAppComponent = class TavernAppComponent {
     }
     onNext() {
         for (var i = 1; i < this.localGameState.playerList.length; i++) {
-            let slot = this.getRandomSlot(1);
-            this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+            if (this.localGameState.playerList[i].creatureList.length < 8) {
+                let slot = this.getRandomSlot(1);
+                this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+            }
         }
         this.localGameState.stage++;
     }
@@ -1280,7 +1321,7 @@ let TavernAppComponent = class TavernAppComponent {
         }
         else if (this.tavernCreatureList[slot].creature.name === 'Dragon Egg') {
             this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon);
-            this.localGameState.playerList[0].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"]('Dragon Protector', 1, 3, 3, 4, 'blank.jpg'));
+            this.localGameState.playerList[0].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon, 'Dragon Protector', 1, 3, 3, 4, 'blank.jpg'));
         }
         else if (this.tavernCreatureList[slot].creature.name === 'Bard') {
             this.localGameState.playerList[0].creatureList.push(this.tavernCreatureList[slot].creature);
