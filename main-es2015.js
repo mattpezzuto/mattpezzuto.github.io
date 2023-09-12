@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header gold'\r\n    'shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5'\r\n    'menu hand1 hand2 hand3 hand4 hand5';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.name}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.image}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).name}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).name}}</p>\r\n  </div>  \r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onSell(0)\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(1)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(2)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(3)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(4)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">Card1</div>  \r\n  <div class=\"itemHand2\">Card2</div>  \r\n  <div class=\"itemHand3\">Card33</div>  \r\n  <div class=\"itemHand4\">Card44</div>  \r\n  <div class=\"itemHand5\">Card55</div>\r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n<ul>\r\n  <li *ngFor=\"let creature of this.localGameState.playerList[0].creatureList\">\r\n    {{ creature.name}}\r\n  </li>\r\n</ul>\r\n\r\n</body>\r\n</html>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header gold'\r\n    'shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5'\r\n    'menu hand1 hand2 hand3 hand4 hand5';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>\r\n  </div>  \r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onSell(0)\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(1)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(2)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(3)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(4)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">Card1</div>  \r\n  <div class=\"itemHand2\">Card2</div>  \r\n  <div class=\"itemHand3\">Card33</div>  \r\n  <div class=\"itemHand4\">Card44</div>  \r\n  <div class=\"itemHand5\">Card55</div>\r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n</body>\r\n</html>\r\n");
 
 /***/ }),
 
@@ -358,6 +358,7 @@ class TavernCreature {
     constructor(id, creature, poolSlot) {
         this.id = id;
         this.creature = creature;
+        console.log('aaa = ' + this.creature.getName());
         this.sold = false;
         this.poolSlot = poolSlot;
         console.log(this.sold);
@@ -464,6 +465,7 @@ let AppComponent = class AppComponent {
     }
     createInitialCreaturePool() {
         let creatureList = [];
+        console.log('herea');
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Gnome);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Goblin);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Dwarf);
@@ -579,13 +581,15 @@ let BattleScreenComponent = class BattleScreenComponent {
     ngOnInit() {
         this.battleLogs = [];
         let playerIndexList = [];
-        for (var i = 0; i < 8; i++) {
+        for (var i = 1; i < 8; i++) {
             playerIndexList.push(i);
         }
         let randomPlayerList = this.shuffle(playerIndexList);
+        randomPlayerList.push(0);
         console.log('randomPlayerList: ' + randomPlayerList);
         // Perform Matches
         for (var matchIndex = 0; matchIndex < 4; matchIndex++) {
+            this.battleLogs = [];
             var creatureListTeam1 = [];
             var creatureListTeam2 = [];
             const slotTeam1 = randomPlayerList[0 + matchIndex * 2];
@@ -623,17 +627,17 @@ let BattleScreenComponent = class BattleScreenComponent {
                 }
                 isTurnTeam1 = !isTurnTeam1;
                 if (creatureListTeam1[0].currentLife < 1 && creatureListTeam2[0].currentLife < 1) {
-                    this.battleLogs.push("..." + creatureListTeam1[0].name + " & " + creatureListTeam2[0].name + " die");
+                    this.battleLogs.push("..." + creatureListTeam1[0].getName() + " & " + creatureListTeam2[0].getName() + " die");
                     creatureListTeam1.splice(0, 1);
                     creatureListTeam2.splice(0, 1);
                 }
                 else {
                     if (creatureListTeam1[0].currentLife < 1) {
-                        this.battleLogs.push("..." + creatureListTeam1[0].name + " (1) dies");
+                        this.battleLogs.push("..." + creatureListTeam1[0].getName() + " (1) dies");
                         creatureListTeam1.splice(0, 1);
                     }
                     if (creatureListTeam2[0].currentLife < 1) {
-                        this.battleLogs.push("..." + creatureListTeam2[0].name + " (2) dies");
+                        this.battleLogs.push("..." + creatureListTeam2[0].getName() + " (2) dies");
                         creatureListTeam2.splice(0, 1);
                     }
                 }
@@ -678,50 +682,49 @@ let BattleScreenComponent = class BattleScreenComponent {
     }
     performAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         // defensive layer 1
-        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].dex);
-        var dodgedAttackTeam = this.doesDefenderDodge(creatureListAttackTeam[0].dex);
-        console.log('armorBuff=' + creatureListAttackTeam[0].getArmorBuff());
+        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
+        var dodgedAttackTeam = this.doesDefenderDodge(creatureListAttackTeam[0].creatureStats.dex);
         if (creatureListAttackTeam[0].getArmorBuff() > 0 && creatureListAttackTeam[0].currentArmorBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
                 creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[0].getArmorBuff();
             }
             creatureListAttackTeam[0].currentArmorBuffUsed = true;
-            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].name);
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
         }
         else if (creatureListAttackTeam[0].getLifeBuff() > 0 && creatureListAttackTeam[0].currentLifeBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
                 creatureListAttackTeam[i].currentLife += creatureListAttackTeam[0].getLifeBuff();
             }
             creatureListAttackTeam[0].currentLifeBuffUsed = true;
-            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].name);
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
         }
         else {
-            this.battleLogs.push(creatureListAttackTeam[0].name + "(" + attackPlayerName + ") + attacks " + creatureListDefenderTeam[0].name + "(" + defendPlayerName + ")");
+            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") + attacks " + creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
             if (!dodgedAttackTeam) {
                 var dmg = this.getDamageAfterArmorCheck(creatureListDefenderTeam, creatureListAttackTeam);
                 creatureListAttackTeam[0].currentLife = creatureListAttackTeam[0].currentLife - dmg; // strong attack
-                this.battleLogs.push("... " + creatureListDefenderTeam[0].name + " deals " + dmg + " damage.");
+                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " deals " + dmg + " damage.");
             }
             else {
-                this.battleLogs.push("... " + creatureListAttackTeam[0].name + " dodges attack.");
+                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " dodges attack.");
             }
             if (!dodgedDefenderTeam) {
                 var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, creatureListDefenderTeam);
                 creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg; // counter attack
-                this.battleLogs.push("... " + creatureListAttackTeam[0].name + " deals " + dmg + " damage.");
+                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " deals " + dmg + " damage.");
             }
             else {
-                this.battleLogs.push("... " + creatureListDefenderTeam[0].name + " dodges attack.");
+                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " dodges attack.");
             }
         }
     }
     getDamageAfterArmorCheck(attackerTeam, defenderTeam) {
-        var dmg = attackerTeam[0].attack;
+        var dmg = attackerTeam[0].creatureStats.attack;
         if (defenderTeam[0].currentArmor > 0) {
             dmg = Math.max(dmg - defenderTeam[0].currentArmor, 0);
             defenderTeam[0].currentArmor--;
         }
-        console.log('Reduced ' + (attackerTeam[0].attack - dmg) + ' damage');
+        console.log('Reduced ' + (attackerTeam[0].creatureStats.attack - dmg) + ' damage');
         return dmg;
     }
     doesDefenderDodge(dex) {
@@ -745,13 +748,19 @@ let BattleScreenComponent = class BattleScreenComponent {
         }
         return isTurnTeam1;
     }
-    shuffle(list) {
-        return list.reduce((p, n) => {
-            const size = p.length;
-            const index = Math.trunc(Math.random() * (size - 1));
-            p.splice(index, 0, n);
-            return p;
-        }, []);
+    shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]
+            ];
+        }
+        return array;
     }
     ;
     onNext() {
@@ -785,68 +794,255 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatureType", function() { return CreatureType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Creature", function() { return Creature; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _creatureStats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./creatureStats */ "./src/app/creatureStats.ts");
+
 
 var CreatureType;
 (function (CreatureType) {
-    CreatureType[CreatureType["Gnome"] = 0] = "Gnome";
-    CreatureType[CreatureType["Goblin"] = 1] = "Goblin";
-    CreatureType[CreatureType["Genie"] = 2] = "Genie";
-    CreatureType[CreatureType["Dwarf"] = 3] = "Dwarf";
-    CreatureType[CreatureType["SkeletonWarrior"] = 4] = "SkeletonWarrior";
-    CreatureType[CreatureType["Elf"] = 5] = "Elf";
-    CreatureType[CreatureType["Orc"] = 6] = "Orc";
-    CreatureType[CreatureType["Paladin"] = 7] = "Paladin";
-    CreatureType[CreatureType["Wizard"] = 8] = "Wizard";
-    CreatureType[CreatureType["TreeOfLife"] = 9] = "TreeOfLife";
-    CreatureType[CreatureType["Necromancer"] = 10] = "Necromancer";
-    CreatureType[CreatureType["Archer"] = 11] = "Archer";
-    CreatureType[CreatureType["Bard"] = 12] = "Bard";
-    CreatureType[CreatureType["DragonEgg"] = 13] = "DragonEgg";
-    CreatureType[CreatureType["DemonPortal"] = 14] = "DemonPortal";
-    CreatureType[CreatureType["Demon"] = 15] = "Demon";
-    CreatureType[CreatureType["Dragon"] = 16] = "Dragon";
-    CreatureType[CreatureType["Sorcerous"] = 17] = "Sorcerous";
+    CreatureType[CreatureType["Empty"] = 0] = "Empty";
+    CreatureType[CreatureType["Gnome"] = 1] = "Gnome";
+    CreatureType[CreatureType["Goblin"] = 2] = "Goblin";
+    CreatureType[CreatureType["Genie"] = 3] = "Genie";
+    CreatureType[CreatureType["Dwarf"] = 4] = "Dwarf";
+    CreatureType[CreatureType["SkeletonWarrior"] = 5] = "SkeletonWarrior";
+    CreatureType[CreatureType["Elf"] = 6] = "Elf";
+    CreatureType[CreatureType["Orc"] = 7] = "Orc";
+    CreatureType[CreatureType["Paladin"] = 8] = "Paladin";
+    CreatureType[CreatureType["Wizard"] = 9] = "Wizard";
+    CreatureType[CreatureType["TreeOfLife"] = 10] = "TreeOfLife";
+    CreatureType[CreatureType["Necromancer"] = 11] = "Necromancer";
+    CreatureType[CreatureType["Archer"] = 12] = "Archer";
+    CreatureType[CreatureType["Bard"] = 13] = "Bard";
+    CreatureType[CreatureType["DragonEgg"] = 14] = "DragonEgg";
+    CreatureType[CreatureType["DemonPortal"] = 15] = "DemonPortal";
+    CreatureType[CreatureType["Demon"] = 16] = "Demon";
+    CreatureType[CreatureType["Dragon"] = 17] = "Dragon";
+    CreatureType[CreatureType["Sorcerous"] = 18] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
+;
 class Creature {
-    constructor(creatureType, name, life, attack, dex, armor, image) {
+    constructor(creatureType) {
         this.createType = creatureType;
-        this.name = name;
-        this.life = life;
-        this.attack = attack;
-        this.dex = dex;
-        this.armor = armor;
-        this.image = '../assets/img/' + image;
-        this.currentLife = life;
-        this.currentArmor = armor;
-        this.armorBuff = 0;
+        this.creatureStats = this.getCreatureStatsFor(creatureType);
+        this.currentArmor = this.creatureStats.armor;
+        this.currentLife = this.creatureStats.life;
         this.currentArmorBuffUsed = false;
-        this.lifeBuff = 0;
         this.currentLifeBuffUsed = false;
     }
+    getName() { return this.creatureStats.name; }
+    ;
+    getImage() { return this.creatureStats.image; }
+    ;
+    // constructor(creatureType, name, life, attack, dex, armor, image) {
+    //     this.createType = creatureType;
+    //     this.name = name;
+    //     this.life = life;
+    //     this.attack = attack;
+    //     this.dex = dex;
+    //     this.armor = armor;
+    //     this.image = '../assets/img/' + image;
+    //     this.currentLife = life;
+    //     this.currentArmor = armor;
+    //     this.armorBuff = 0;
+    //     this.currentArmorBuffUsed = false;
+    //     this.lifeBuff = 0;
+    //     this.currentLifeBuffUsed = false;
+    // }
     preCombat() {
-        this.currentLife = this.life;
-        this.currentArmor = this.armor;
+        this.currentLife = this.creatureStats.life;
+        this.currentArmor = this.creatureStats.armor;
         this.currentArmorBuffUsed = false;
         this.currentLifeBuffUsed = false;
     }
     getCopy() {
-        var value;
-        value = new Creature(this.createType, this.name, this.life, this.attack, this.dex, this.armor, this.image);
-        value.setArmorBuff(this.armorBuff);
-        value.setLifeBuff(this.lifeBuff);
+        var value = new Creature(this.createType);
+        // value.setArmorBuff(this.armorBuff);
+        // value.setLifeBuff(this.lifeBuff);
         return value;
     }
     setArmorBuff(buff) {
-        this.armorBuff = buff;
+        this.creatureStats.armorBuff = buff;
     }
     getArmorBuff() {
-        return this.armorBuff;
+        return this.creatureStats.armorBuff;
     }
     setLifeBuff(buff) {
-        this.lifeBuff = buff;
+        this.creatureStats.lifeBuff = buff;
     }
     getLifeBuff() {
-        return this.lifeBuff;
+        return this.creatureStats.lifeBuff;
+    }
+    getCreatureStatsFor(creatureType) {
+        var creatureStats = new _creatureStats__WEBPACK_IMPORTED_MODULE_1__["CreatureStats"]();
+        var name, image;
+        var life, attack, dex, armor, armorBuff = 0, lifeBuff = 0;
+        switch (creatureType) {
+            case CreatureType.Archer:
+                name = 'Archer';
+                life = 10;
+                attack = 10;
+                dex = 16;
+                armor = 1;
+                image = 'archer.png';
+                break;
+            case CreatureType.Bard:
+                name = 'Bard';
+                life = 10;
+                attack = 5;
+                dex = 12;
+                armor = 1;
+                image = 'femalebard.png';
+                break;
+            case CreatureType.Demon:
+                name = 'Demon';
+                life = 20;
+                attack = 6;
+                dex = 10;
+                armor = 3;
+                image = 'demon.png';
+                break;
+            case CreatureType.DemonPortal:
+                name = 'Demon Portal';
+                life = 1;
+                attack = 1;
+                dex = 6;
+                armor = 0;
+                image = 'black.jpg';
+                break;
+            case CreatureType.DragonEgg:
+                name = 'Dragon Egg';
+                life = 1;
+                attack = 1;
+                dex = 6;
+                armor = 0;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Dwarf:
+                name = 'Dwarf';
+                life = 20;
+                attack = 7;
+                dex = 6;
+                armor = 3;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Elf:
+                name = 'Elf';
+                life = 16;
+                attack = 5;
+                dex = 16;
+                armor = 1;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Gnome:
+                name = 'Gnome';
+                life = 10;
+                attack = 5;
+                dex = 12;
+                armor = 1;
+                image = 'gnome.png';
+                break;
+            case CreatureType.Goblin:
+                name = 'Goblin';
+                life = 10;
+                attack = 5;
+                dex = 14;
+                armor = 1;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Genie:
+                name = 'Genie';
+                life = 16;
+                attack = 6;
+                dex = 10;
+                armor = 2;
+                image = 'genie.gif';
+                break;
+            case CreatureType.Necromancer:
+                name = 'Necromancer';
+                life = 16;
+                attack = 5;
+                dex = 8;
+                armor = 5;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Orc:
+                name = 'Orc';
+                life = 18;
+                attack = 10;
+                dex = 8;
+                armor = 3;
+                image = 'orc.png';
+                break;
+            case CreatureType.Paladin:
+                name = 'Paladin';
+                life = 17;
+                attack = 8;
+                dex = 8;
+                armor = 3;
+                armorBuff = 2;
+                image = 'paladin.png';
+                break;
+            case CreatureType.SkeletonWarrior:
+                name = 'Skeleton Warrior';
+                life = 12;
+                attack = 5;
+                dex = 8;
+                armor = 2;
+                image = 'skeletonwarrior.png';
+                break;
+            case CreatureType.Wizard:
+                name = 'Wizard';
+                life = 10;
+                attack = 10;
+                dex = 8;
+                armor = 1;
+                image = 'wizard.png';
+                break;
+            case CreatureType.TreeOfLife:
+                name = 'Tree of Life';
+                life = 20;
+                attack = 1;
+                dex = 8;
+                armor = 1;
+                image = 'treeoflife.png';
+                lifeBuff = 5;
+                break;
+            case CreatureType.Sorcerous:
+                name = 'Sorcerous';
+                life = 10;
+                attack = 10;
+                dex = 8;
+                armor = 1;
+                image = 'sorcerous.png';
+                break;
+            case CreatureType.Dragon:
+                name = 'Dragon';
+                life = 20;
+                attack = 12;
+                dex = 10;
+                armor = 5;
+                image = 'black.jpg';
+                break;
+            case CreatureType.Empty:
+                name = '';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'blank.jpg';
+                break;
+            default:
+                console.log("Error, no creatureType found");
+        }
+        creatureStats.name = name;
+        creatureStats.life = life;
+        creatureStats.attack = attack;
+        creatureStats.dex = dex;
+        creatureStats.armor = armor;
+        creatureStats.image = '../assets/img/' + image;
+        creatureStats.lifeBuff = lifeBuff;
+        creatureStats.armorBuff = armorBuff;
+        return creatureStats;
     }
 }
 
@@ -1029,9 +1225,7 @@ class CreaturePool {
         }
         for (var i = 0; i < count; i++) {
             console.log('Adding ' + name + ' to crature pool');
-            var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](creatureType, name, life, attack, dex, armor, image);
-            tempCreature.setArmorBuff(armorBuff);
-            tempCreature.setLifeBuff(lifeBuff);
+            var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](creatureType);
             this.tier1.push(tempCreature);
         }
     }
@@ -1041,6 +1235,25 @@ class CreaturePool {
         console.log('after:' + this.tier1.length);
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/app/creatureStats.ts":
+/*!**********************************!*\
+  !*** ./src/app/creatureStats.ts ***!
+  \**********************************/
+/*! exports provided: CreatureStats */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatureStats", function() { return CreatureStats; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class CreatureStats {
+}
+;
 
 
 /***/ }),
@@ -1155,7 +1368,7 @@ let ScoreScreenComponent = class ScoreScreenComponent {
         console.log('players creature list length = ' + this.localGameState.playerList[0].creatureList.length);
         // Print Player List
         for (var i = 0; i < this.localGameState.playerList[0].creatureList.length; i++) {
-            console.log(this.localGameState.playerList[0].creatureList[i].name);
+            console.log(this.localGameState.playerList[0].creatureList[i].getName());
         }
     }
     onNext() {
@@ -1212,6 +1425,7 @@ let TavernAppComponent = class TavernAppComponent {
     constructor() {
         this.counter = 15;
         this.refreshCounter = 0;
+        console.log('in tavern consturctor');
         this.tavernCreatureList = [];
         // timer(1000,1000).pipe(
         //   takeWhile( () => this.counter > -1 ),
@@ -1233,6 +1447,7 @@ let TavernAppComponent = class TavernAppComponent {
     }
     ngOnInit() {
         // Grab 3 creatures from the pool that will be for sale
+        console.log('in ngOnInit');
         this.refreshCounter = this.localGameState.playerList[0].refreshCounter;
         this.refreshTavernBoard();
         this.localGameState.playerList[0].gold += 100;
@@ -1267,7 +1482,7 @@ let TavernAppComponent = class TavernAppComponent {
         if (this.localGameState.playerList[0].creatureList.length > 0) {
             return this.localGameState.playerList[0].creatureList[index];
         }
-        return new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Archer, "Empty", 1, 2, 3, 4, "noPic");
+        return new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Empty);
     }
     refreshTavernBoard() {
         this.tavernCreatureList = [];
@@ -1314,16 +1529,16 @@ let TavernAppComponent = class TavernAppComponent {
         console.log("tavern sold slot " + slot);
         console.log("pool  sold slot " + this.tavernCreatureList[slot].poolSlot);
         console.log(this.tavernCreatureList[slot].sold);
-        if (this.tavernCreatureList[slot].creature.name === 'Demon Portal') {
+        if (this.tavernCreatureList[slot].creature.getName() === 'Demon Portal') {
             console.log('adding 3 demons');
             this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Demon);
             // this.localGameState.playerList[0].creatureList.push(new Creature('Imp', 2, 2, 'blank.jpg'));
         }
-        else if (this.tavernCreatureList[slot].creature.name === 'Dragon Egg') {
+        else if (this.tavernCreatureList[slot].creature.getName() === 'Dragon Egg') {
             this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon);
-            this.localGameState.playerList[0].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon, 'Dragon Protector', 1, 3, 3, 4, 'blank.jpg'));
+            // this.localGameState.playerList[0].creatureList.push(new Creature(CreatureType.Dragon);
         }
-        else if (this.tavernCreatureList[slot].creature.name === 'Bard') {
+        else if (this.tavernCreatureList[slot].creature.getName() === 'Bard') {
             this.localGameState.playerList[0].creatureList.push(this.tavernCreatureList[slot].creature);
             this.localGameState.playerList[0].refreshCounter++;
         }
@@ -1332,7 +1547,7 @@ let TavernAppComponent = class TavernAppComponent {
         }
         // Print Player List
         for (var i = 0; i < this.localGameState.playerList[0].creatureList.length; i++) {
-            console.log(this.localGameState.playerList[0].creatureList[i].name);
+            console.log(this.localGameState.playerList[0].creatureList[i].getName());
         }
     }
     triggerFunction() {
