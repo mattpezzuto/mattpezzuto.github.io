@@ -4,6 +4,7 @@ export class CreatureStats {
     attack: number;
     dex: number;
     armor: number;
+    magicResist: number;
     image: string;
     armorBuff: number;
     lifeBuff: number;

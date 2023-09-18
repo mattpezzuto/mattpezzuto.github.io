@@ -13,6 +13,7 @@ export class BattleScreenComponent implements OnInit {
   @Input() localGameState: GameState;
 
   battleLogs: String[];
+  titleLog: String;
 
   constructor() { }
 
@@ -29,6 +30,7 @@ export class BattleScreenComponent implements OnInit {
 
     // Perform Matches
     for (var matchIndex = 0; matchIndex < 4; matchIndex++) {
+      this.titleLog = "";
       this.battleLogs = [];
       var creatureListTeam1: Creature[] = [];
       var creatureListTeam2: Creature[] = [];
@@ -45,10 +47,9 @@ export class BattleScreenComponent implements OnInit {
       
       var done: boolean = false;
 
-      this.battleLogs.push(
+      this.titleLog = 
         this.localGameState.playerList[slotTeam1].name + "(" + this.localGameState.playerList[slotTeam1].creatureList.length + ")  vs. " 
-        + this.localGameState.playerList[slotTeam2].name + "(" + this.localGameState.playerList[slotTeam2].creatureList.length + ")"
-      );
+        + this.localGameState.playerList[slotTeam2].name + "(" + this.localGameState.playerList[slotTeam2].creatureList.length + ")";
 
       for (var i1 = 0; i1< creatureListTeam1.length; i1++) {
         creatureListTeam1[i1].preCombat();

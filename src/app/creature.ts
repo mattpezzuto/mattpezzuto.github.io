@@ -92,10 +92,10 @@ export class Creature {
         return this.creatureStats.lifeBuff;
     }
 
-    getCreatureStatsFor(creatureType: CreatureType) {
+    getCreatureStatsFor(creatureType: CreatureType) : CreatureStats {
         var creatureStats: CreatureStats = new CreatureStats();
         var name, image: string;
-        var life, attack, dex, armor, armorBuff: number = 0, lifeBuff: number = 0;
+        var life, attack, dex, armor, magicResist: number = 0, magicResistBuff: number = 0, armorBuff: number = 0, lifeBuff: number = 0;
         switch( creatureType ) {
             case CreatureType.Archer:
                 name = 'Archer'; life = 10; attack = 10; dex = 16; armor = 1; image = 'archer.png'; break;
@@ -116,13 +116,13 @@ export class Creature {
             case CreatureType.Goblin:
                 name = 'Goblin'; life = 10; attack = 5; dex = 14; armor = 1; image = 'goblin.png'; break;
             case CreatureType.Genie:
-                name = 'Genie'; life = 16; attack = 6; dex = 10; armor = 2; image = 'genie.gif'; break;
+                name = 'Genie'; life = 16; attack = 6; dex = 10; armor = 2; magicResist = 25; image = 'genie.gif'; break;
             case CreatureType.Necromancer:
                 name = 'Necromancer'; life = 16; attack = 5; dex = 8; armor = 5; image = 'necromancer.png'; break;
             case CreatureType.Orc:
                 name = 'Orc'; life = 18; attack = 10; dex = 8; armor = 3; image = 'orc.png'; break;
             case CreatureType.Paladin:
-                name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; 
+                name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; magicResist = 25;
                 armorBuff = 2; image = 'paladin.png'; break;
             case CreatureType.SkeletonWarrior:
                 name = 'Skeleton Warrior'; life = 12; attack = 5; dex = 8; armor = 2; image = 'skeletonwarrior.png'; break;
@@ -135,7 +135,7 @@ export class Creature {
                 name = 'Sorcerous'; life = 10; attack = 10; dex = 8; armor = 1; image = 'sorcerous.png'; break;
 
             case CreatureType.Dragon:
-                name = 'Dragon'; life = 20; attack = 12; dex = 10; armor = 5; image = 'black.jpg'; break;
+                name = 'Dragon'; life = 20; attack = 12; dex = 10; armor = 5; magicResist = 75; image = 'black.jpg'; break;
 
             case CreatureType.Empty:
                 name = ''; life = 1; attack = 1; dex = 1; armor = 0; image = 'blank.jpg'; break;
@@ -148,6 +148,7 @@ export class Creature {
         creatureStats.attack = attack;
         creatureStats.dex = dex;
         creatureStats.armor = armor;
+        creatureStats.magicResist = magicResist;
         creatureStats.image = '../assets/img/' + image;
         creatureStats.lifeBuff = lifeBuff;
         creatureStats.armorBuff = armorBuff;
