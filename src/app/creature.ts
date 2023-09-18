@@ -108,17 +108,17 @@ export class Creature {
             case CreatureType.DragonEgg:
                 name = 'Dragon Egg'; life = 1; attack = 1; dex = 6; armor = 0; image = 'black.jpg'; break;
             case CreatureType.Dwarf:
-                name = 'Dwarf'; life = 20; attack = 7; dex = 6; armor = 3; image = 'black.jpg'; break;
+                name = 'Dwarf'; life = 20; attack = 7; dex = 6; armor = 3; image = 'dwarfwarrior.png'; break;
             case CreatureType.Elf:
-                name = 'Elf'; life = 16; attack = 5; dex = 16; armor = 1; image = 'black.jpg'; break;
+                name = 'Elaron'; life = 16; attack = 5; dex = 16; armor = 1; image = 'elaron.png'; break;
             case CreatureType.Gnome:
                 name = 'Gnome'; life = 10; attack = 5; dex = 12; armor = 1; image = 'gnome.png'; break;
             case CreatureType.Goblin:
-                name = 'Goblin'; life = 10; attack = 5; dex = 14; armor = 1; image = 'black.jpg'; break;
+                name = 'Goblin'; life = 10; attack = 5; dex = 14; armor = 1; image = 'goblin.png'; break;
             case CreatureType.Genie:
                 name = 'Genie'; life = 16; attack = 6; dex = 10; armor = 2; image = 'genie.gif'; break;
             case CreatureType.Necromancer:
-                name = 'Necromancer'; life = 16; attack = 5; dex = 8; armor = 5; image = 'black.jpg'; break;
+                name = 'Necromancer'; life = 16; attack = 5; dex = 8; armor = 5; image = 'necromancer.png'; break;
             case CreatureType.Orc:
                 name = 'Orc'; life = 18; attack = 10; dex = 8; armor = 3; image = 'orc.png'; break;
             case CreatureType.Paladin:
