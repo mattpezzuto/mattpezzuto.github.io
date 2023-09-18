@@ -470,7 +470,7 @@ let AppComponent = class AppComponent {
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Goblin);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Dwarf);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].SkeletonWarrior);
-        this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Elf);
+        this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Elaron);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Orc);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Paladin);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].TreeOfLife);
@@ -615,31 +615,57 @@ let BattleScreenComponent = class BattleScreenComponent {
             }
             var isTurnTeam1 = this.doesTeamOneGoFirst(creatureListTeam1, creatureListTeam2);
             var loopTimeOutCounter = 0;
+            var attackPosTeam1 = 0, attackPosTeam2 = 0;
             while (!done) {
                 loopTimeOutCounter++;
                 if (loopTimeOutCounter > 1000) {
                     done = true;
                 }
                 console.log('in loop' + matchIndex + ', isTurnTeam1 = ' + isTurnTeam1);
+                console.log('attackPosTeam1 = ' + attackPosTeam1 + ', team1.size = ' + creatureListTeam1.length + ', team2.size = ' + creatureListTeam2.length);
                 if (isTurnTeam1) {
-                    this.performAttack(creatureListTeam1, creatureListTeam2, this.localGameState.playerList[slotTeam1].name, this.localGameState.playerList[slotTeam2].name);
+                    this.performAttack(creatureListTeam1, attackPosTeam1, creatureListTeam2, this.localGameState.playerList[slotTeam1].name, this.localGameState.playerList[slotTeam2].name);
+                    attackPosTeam1++;
+                    if (attackPosTeam1 > creatureListTeam1.length - 1) {
+                        attackPosTeam1 = 0;
+                    }
                 }
                 else {
-                    this.performAttack(creatureListTeam2, creatureListTeam1, this.localGameState.playerList[slotTeam2].name, this.localGameState.playerList[slotTeam1].name);
+                    this.performAttack(creatureListTeam2, attackPosTeam2, creatureListTeam1, this.localGameState.playerList[slotTeam2].name, this.localGameState.playerList[slotTeam1].name);
+                    attackPosTeam2++;
+                    if (attackPosTeam2 > creatureListTeam2.length - 1) {
+                        attackPosTeam2 = 0;
+                    }
                 }
                 isTurnTeam1 = !isTurnTeam1;
                 if (creatureListTeam1[0].currentLife < 1 && creatureListTeam2[0].currentLife < 1) {
                     this.battleLogs.push("..." + creatureListTeam1[0].getName() + " & " + creatureListTeam2[0].getName() + " die");
+                    var slotThatDied1 = 0;
+                    if (slotThatDied1 < attackPosTeam1) {
+                        attackPosTeam1--;
+                    }
+                    var slotThatDied2 = 0;
+                    if (slotThatDied2 < attackPosTeam2) {
+                        attackPosTeam2--;
+                    }
                     creatureListTeam1.splice(0, 1);
                     creatureListTeam2.splice(0, 1);
                 }
                 else {
                     if (creatureListTeam1[0].currentLife < 1) {
                         this.battleLogs.push("..." + creatureListTeam1[0].getName() + " (1) dies");
+                        var slotThatDied1 = 0;
+                        if (slotThatDied1 < attackPosTeam1) {
+                            attackPosTeam1--;
+                        }
                         creatureListTeam1.splice(0, 1);
                     }
                     if (creatureListTeam2[0].currentLife < 1) {
                         this.battleLogs.push("..." + creatureListTeam2[0].getName() + " (2) dies");
+                        var slotThatDied2 = 0;
+                        if (slotThatDied2 < attackPosTeam2) {
+                            attackPosTeam2--;
+                        }
                         creatureListTeam2.splice(0, 1);
                     }
                 }
@@ -682,61 +708,61 @@ let BattleScreenComponent = class BattleScreenComponent {
     logBuffAction(playerName, creatureName) {
         this.battleLogs.push(creatureName + "(" + playerName + ") buffs the party. ");
     }
-    performAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        if (creatureListAttackTeam[0].getArmorBuff() > 0 && creatureListAttackTeam[0].currentArmorBuffUsed == false) {
+    performAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
+        if (creatureListAttackTeam[attackTeamPos].getArmorBuff() > 0 && creatureListAttackTeam[attackTeamPos].currentArmorBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
-                creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[0].getArmorBuff();
+                creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[attackTeamPos].getArmorBuff();
             }
-            creatureListAttackTeam[0].currentArmorBuffUsed = true;
-            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
+            creatureListAttackTeam[attackTeamPos].currentArmorBuffUsed = true;
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[attackTeamPos].getName());
         }
-        else if (creatureListAttackTeam[0].getLifeBuff() > 0 && creatureListAttackTeam[0].currentLifeBuffUsed == false) {
+        else if (creatureListAttackTeam[attackTeamPos].getLifeBuff() > 0 && creatureListAttackTeam[attackTeamPos].currentLifeBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
-                creatureListAttackTeam[i].currentLife += creatureListAttackTeam[0].getLifeBuff();
+                creatureListAttackTeam[i].currentLife += creatureListAttackTeam[attackTeamPos].getLifeBuff();
             }
-            creatureListAttackTeam[0].currentLifeBuffUsed = true;
-            this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
+            creatureListAttackTeam[attackTeamPos].currentLifeBuffUsed = true;
+            this.logBuffAction(attackPlayerName, creatureListAttackTeam[attackTeamPos].getName());
         }
         else {
-            if (creatureListAttackTeam[0].creatureStats.attack > 0) {
-                this.performPhysicalAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
+            if (creatureListAttackTeam[attackTeamPos].creatureStats.attack > 0) {
+                this.performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
             }
-            if (creatureListAttackTeam[0].creatureStats.magicAttack > 0) {
-                this.performMagicAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
+            if (creatureListAttackTeam[attackTeamPos].creatureStats.magicAttack > 0) {
+                this.performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
             }
         }
     }
-    performPhysicalAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
+    performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
         if (!dodgedDefenderTeam) {
-            var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, creatureListDefenderTeam);
+            var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
             creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg;
-            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") deals " + dmg + " physical damage to " +
+            this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmg + " physical damage to " +
                 creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
         }
         else {
-            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") attacks " +
+            this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") attacks " +
                 creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ").  Dodged");
         }
     }
-    performMagicAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        var dmg = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, creatureListDefenderTeam);
+    performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
+        var dmg = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
         creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg;
-        this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") deals " + dmg + " magic damage to" +
+        this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmg + " magic damage to " +
             creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
     }
-    getDamageAfterArmorCheck(attackerTeam, defenderTeam) {
-        var dmg = attackerTeam[0].creatureStats.attack;
+    getDamageAfterArmorCheck(attackerTeam, attackTeamPos, defenderTeam) {
+        var dmg = attackerTeam[attackTeamPos].creatureStats.attack;
         if (defenderTeam[0].currentArmor > 0) {
             dmg = Math.max(dmg - defenderTeam[0].currentArmor, 0);
             defenderTeam[0].currentArmor--;
         }
-        console.log('Reduced ' + (attackerTeam[0].creatureStats.attack - dmg) + ' damage');
+        console.log('Reduced ' + (attackerTeam[attackTeamPos].creatureStats.attack - dmg) + ' damage');
         return dmg;
     }
-    getDamageAfterMagicResistCheck(attackerTeam, defenderTeam) {
-        var reducedDmg = attackerTeam[0].creatureStats.magicAttack * defenderTeam[0].creatureStats.magicResist / 100;
-        var dmg = attackerTeam[0].creatureStats.magicAttack - reducedDmg;
+    getDamageAfterMagicResistCheck(attackerTeam, attackTeamPos, defenderTeam) {
+        var reducedDmg = attackerTeam[attackTeamPos].creatureStats.magicAttack * defenderTeam[0].creatureStats.magicResist / 100;
+        var dmg = attackerTeam[attackTeamPos].creatureStats.magicAttack - reducedDmg;
         console.log('Reduced ' + reducedDmg + ' damage');
         return dmg;
     }
@@ -749,17 +775,18 @@ let BattleScreenComponent = class BattleScreenComponent {
     }
     doesTeamOneGoFirst(creatureListTeam1, creatureListTeam2) {
         var isTurnTeam1 = true;
-        if (creatureListTeam1.length == creatureListTeam2.length) {
-            var flip = Math.floor((Math.random() * 2));
-            console.log('flip = ' + flip);
-            if (flip == 0) {
-                isTurnTeam1 = false;
-            }
-        }
-        else if (creatureListTeam2.length > creatureListTeam1.length) {
+        var dexTeam1 = this.getTotalDexForTeam(creatureListTeam1);
+        var dexTeam2 = this.getTotalDexForTeam(creatureListTeam2);
+        if (dexTeam2 > dexTeam1) {
             isTurnTeam1 = false;
         }
         return isTurnTeam1;
+    }
+    getTotalDexForTeam(creatureList) {
+        var total = 0;
+        for (var i = 0; i < creatureList.length; i++) {
+            total += creatureList[i].creatureStats.dex;
+        }
     }
     shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -818,7 +845,7 @@ var CreatureType;
     CreatureType[CreatureType["Genie"] = 3] = "Genie";
     CreatureType[CreatureType["Dwarf"] = 4] = "Dwarf";
     CreatureType[CreatureType["SkeletonWarrior"] = 5] = "SkeletonWarrior";
-    CreatureType[CreatureType["Elf"] = 6] = "Elf";
+    CreatureType[CreatureType["Elaron"] = 6] = "Elaron";
     CreatureType[CreatureType["Orc"] = 7] = "Orc";
     CreatureType[CreatureType["Paladin"] = 8] = "Paladin";
     CreatureType[CreatureType["Wizard"] = 9] = "Wizard";
@@ -938,7 +965,7 @@ class Creature {
                 armor = 3;
                 image = 'dwarfwarrior.png';
                 break;
-            case CreatureType.Elf:
+            case CreatureType.Elaron:
                 name = 'Elaron';
                 life = 16;
                 attack = 8;
@@ -996,7 +1023,7 @@ class Creature {
                 attack = 8;
                 dex = 8;
                 armor = 3;
-                magicResist = 25;
+                magicResist = 40;
                 armorBuff = 2;
                 image = 'paladin.png';
                 break;
