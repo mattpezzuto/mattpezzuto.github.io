@@ -683,9 +683,6 @@ let BattleScreenComponent = class BattleScreenComponent {
         this.battleLogs.push(creatureName + "(" + playerName + ") buffs the party. ");
     }
     performAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        // defensive layer 1
-        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
-        var dodgedAttackTeam = this.doesDefenderDodge(creatureListAttackTeam[0].creatureStats.dex);
         if (creatureListAttackTeam[0].getArmorBuff() > 0 && creatureListAttackTeam[0].currentArmorBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
                 creatureListAttackTeam[i].currentArmor += creatureListAttackTeam[0].getArmorBuff();
@@ -701,24 +698,32 @@ let BattleScreenComponent = class BattleScreenComponent {
             this.logBuffAction(attackPlayerName, creatureListAttackTeam[0].getName());
         }
         else {
-            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") + attacks " + creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
-            if (!dodgedAttackTeam) {
-                var dmg = this.getDamageAfterArmorCheck(creatureListDefenderTeam, creatureListAttackTeam);
-                creatureListAttackTeam[0].currentLife = creatureListAttackTeam[0].currentLife - dmg; // strong attack
-                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " deals " + dmg + " damage.");
+            if (creatureListAttackTeam[0].creatureStats.attack > 0) {
+                this.performPhysicalAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
             }
-            else {
-                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " dodges attack.");
-            }
-            if (!dodgedDefenderTeam) {
-                var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, creatureListDefenderTeam);
-                creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg; // counter attack
-                this.battleLogs.push("... " + creatureListAttackTeam[0].getName() + " deals " + dmg + " damage.");
-            }
-            else {
-                this.battleLogs.push("... " + creatureListDefenderTeam[0].getName() + " dodges attack.");
+            if (creatureListAttackTeam[0].creatureStats.magicAttack > 0) {
+                this.performMagicAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
             }
         }
+    }
+    performPhysicalAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
+        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
+        if (!dodgedDefenderTeam) {
+            var dmg = this.getDamageAfterArmorCheck(creatureListAttackTeam, creatureListDefenderTeam);
+            creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg;
+            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") deals " + dmg + " physical damage to " +
+                creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
+        }
+        else {
+            this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") attacks " +
+                creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ").  Dodged");
+        }
+    }
+    performMagicAttack(creatureListAttackTeam, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
+        var dmg = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, creatureListDefenderTeam);
+        creatureListDefenderTeam[0].currentLife = creatureListDefenderTeam[0].currentLife - dmg;
+        this.battleLogs.push(creatureListAttackTeam[0].getName() + "(" + attackPlayerName + ") deals " + dmg + " magic damage to" +
+            creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
     }
     getDamageAfterArmorCheck(attackerTeam, defenderTeam) {
         var dmg = attackerTeam[0].creatureStats.attack;
@@ -727,6 +732,12 @@ let BattleScreenComponent = class BattleScreenComponent {
             defenderTeam[0].currentArmor--;
         }
         console.log('Reduced ' + (attackerTeam[0].creatureStats.attack - dmg) + ' damage');
+        return dmg;
+    }
+    getDamageAfterMagicResistCheck(attackerTeam, defenderTeam) {
+        var reducedDmg = attackerTeam[0].creatureStats.magicAttack * defenderTeam[0].creatureStats.magicResist / 100;
+        var dmg = attackerTeam[0].creatureStats.magicAttack - reducedDmg;
+        console.log('Reduced ' + reducedDmg + ' damage');
         return dmg;
     }
     doesDefenderDodge(dex) {
@@ -877,7 +888,7 @@ class Creature {
     getCreatureStatsFor(creatureType) {
         var creatureStats = new _creatureStats__WEBPACK_IMPORTED_MODULE_1__["CreatureStats"]();
         var name, image;
-        var life, attack, dex, armor, magicResist = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0;
+        var life, dex, armor, attack = 0, magicAttack = 0, magicResist = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0, magicBuff = 0;
         switch (creatureType) {
             case CreatureType.Archer:
                 name = 'Archer';
@@ -930,10 +941,13 @@ class Creature {
             case CreatureType.Elf:
                 name = 'Elaron';
                 life = 16;
-                attack = 5;
+                attack = 8;
+                magicAttack = 8;
                 dex = 16;
                 armor = 1;
                 image = 'elaron.png';
+                magicResist = 50;
+                magicResistBuff = 10;
                 break;
             case CreatureType.Gnome:
                 name = 'Gnome';
@@ -997,7 +1011,7 @@ class Creature {
             case CreatureType.Wizard:
                 name = 'Wizard';
                 life = 10;
-                attack = 10;
+                magicAttack = 15;
                 dex = 8;
                 armor = 1;
                 image = 'wizard.png';
@@ -1014,7 +1028,7 @@ class Creature {
             case CreatureType.Sorcerous:
                 name = 'Sorcerous';
                 life = 10;
-                attack = 10;
+                magicAttack = 25;
                 dex = 8;
                 armor = 1;
                 image = 'sorcerous.png';
@@ -1022,7 +1036,7 @@ class Creature {
             case CreatureType.Dragon:
                 name = 'Dragon';
                 life = 20;
-                attack = 12;
+                magicAttack = 15;
                 dex = 10;
                 armor = 5;
                 magicResist = 75;
@@ -1042,12 +1056,14 @@ class Creature {
         creatureStats.name = name;
         creatureStats.life = life;
         creatureStats.attack = attack;
+        creatureStats.magicAttack = magicAttack;
         creatureStats.dex = dex;
         creatureStats.armor = armor;
         creatureStats.magicResist = magicResist;
         creatureStats.image = '../assets/img/' + image;
         creatureStats.lifeBuff = lifeBuff;
         creatureStats.armorBuff = armorBuff;
+        creatureStats.magicBuff = magicBuff;
         return creatureStats;
     }
 }
