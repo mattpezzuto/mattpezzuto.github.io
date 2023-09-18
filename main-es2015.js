@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n<ul>\r\n    <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n        {{battleLog}}\r\n    </li>\r\n</ul>\r\n\r\n\r\n<button class=\"button\" (click)=\"onNext()\">Next</button>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n");
 
 /***/ }),
 
@@ -558,7 +558,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JhdHRsZS1zY3JlZW4vYmF0dGxlLXNjcmVlbi5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".button {\r\n    border:  none;\r\n    position: relative;\r\n    display: inline-block;\r\n    background: blue;\r\n    color: #fff;\r\n    padding: 0.4em 0.6em;\r\n    font-size: 0.8em;\r\n    border-radius: 1em;\r\n  }\r\n\r\n  button:disabled {\r\n    background: #dddddd;\r\n  }\r\n\r\n  p {\r\n    margin: 0px;\r\n    padding: 0px;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmF0dGxlLXNjcmVlbi9iYXR0bGUtc2NyZWVuLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLG9CQUFvQjtJQUNwQixnQkFBZ0I7SUFDaEIsa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsbUJBQW1CO0VBQ3JCOztFQUVBO0lBQ0UsV0FBVztJQUNYLFlBQVk7RUFDZCIsImZpbGUiOiJzcmMvYXBwL2JhdHRsZS1zY3JlZW4vYmF0dGxlLXNjcmVlbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJ1dHRvbiB7XHJcbiAgICBib3JkZXI6ICBub25lO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgYmFja2dyb3VuZDogYmx1ZTtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgcGFkZGluZzogMC40ZW0gMC42ZW07XHJcbiAgICBmb250LXNpemU6IDAuOGVtO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMWVtO1xyXG4gIH1cclxuXHJcbiAgYnV0dG9uOmRpc2FibGVkIHtcclxuICAgIGJhY2tncm91bmQ6ICNkZGRkZGQ7XHJcbiAgfSBcclxuICBcclxuICBwIHtcclxuICAgIG1hcmdpbjogMHB4O1xyXG4gICAgcGFkZGluZzogMHB4O1xyXG4gIH0iXX0= */");
 
 /***/ }),
 
@@ -589,6 +589,7 @@ let BattleScreenComponent = class BattleScreenComponent {
         console.log('randomPlayerList: ' + randomPlayerList);
         // Perform Matches
         for (var matchIndex = 0; matchIndex < 4; matchIndex++) {
+            this.titleLog = "";
             this.battleLogs = [];
             var creatureListTeam1 = [];
             var creatureListTeam2 = [];
@@ -600,8 +601,9 @@ let BattleScreenComponent = class BattleScreenComponent {
             this.localGameState.playerList[slotTeam1].creatureList.forEach(val => creatureListTeam1.push(val.getCopy()));
             this.localGameState.playerList[slotTeam2].creatureList.forEach(val => creatureListTeam2.push(val.getCopy()));
             var done = false;
-            this.battleLogs.push(this.localGameState.playerList[slotTeam1].name + "(" + this.localGameState.playerList[slotTeam1].creatureList.length + ")  vs. "
-                + this.localGameState.playerList[slotTeam2].name + "(" + this.localGameState.playerList[slotTeam2].creatureList.length + ")");
+            this.titleLog =
+                this.localGameState.playerList[slotTeam1].name + "(" + this.localGameState.playerList[slotTeam1].creatureList.length + ")  vs. "
+                    + this.localGameState.playerList[slotTeam2].name + "(" + this.localGameState.playerList[slotTeam2].creatureList.length + ")";
             for (var i1 = 0; i1 < creatureListTeam1.length; i1++) {
                 creatureListTeam1[i1].preCombat();
             }
@@ -875,7 +877,7 @@ class Creature {
     getCreatureStatsFor(creatureType) {
         var creatureStats = new _creatureStats__WEBPACK_IMPORTED_MODULE_1__["CreatureStats"]();
         var name, image;
-        var life, attack, dex, armor, armorBuff = 0, lifeBuff = 0;
+        var life, attack, dex, armor, magicResist = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0;
         switch (creatureType) {
             case CreatureType.Archer:
                 name = 'Archer';
@@ -955,6 +957,7 @@ class Creature {
                 attack = 6;
                 dex = 10;
                 armor = 2;
+                magicResist = 25;
                 image = 'genie.gif';
                 break;
             case CreatureType.Necromancer:
@@ -979,6 +982,7 @@ class Creature {
                 attack = 8;
                 dex = 8;
                 armor = 3;
+                magicResist = 25;
                 armorBuff = 2;
                 image = 'paladin.png';
                 break;
@@ -1021,6 +1025,7 @@ class Creature {
                 attack = 12;
                 dex = 10;
                 armor = 5;
+                magicResist = 75;
                 image = 'black.jpg';
                 break;
             case CreatureType.Empty:
@@ -1039,6 +1044,7 @@ class Creature {
         creatureStats.attack = attack;
         creatureStats.dex = dex;
         creatureStats.armor = armor;
+        creatureStats.magicResist = magicResist;
         creatureStats.image = '../assets/img/' + image;
         creatureStats.lifeBuff = lifeBuff;
         creatureStats.armorBuff = armorBuff;
