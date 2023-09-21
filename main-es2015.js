@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemSelectHeader { grid-area: selectHeader}\r\n.itemQuestOppHeader { grid-area: questOppHeader}\r\n.itemQuestOppUnitsHeader { grid-area: questOppUnitsHeader}\r\n.itemQuestRewardsHeader { grid-area: questRewardsHeader}\r\n.itemSelect1 { grid-area: select1; }\r\n.itemSelect2 { grid-area: select2; }\r\n.itemSelect3 { grid-area: select3; }\r\n.itemSelect4 { grid-area: select4; }\r\n.itemSelect5 { grid-area: select5; }\r\n.itemQuestOpp1 { grid-area: questOpp1; }\r\n.itemQuestOpp2 { grid-area: questOpp2; }\r\n.itemQuestOpp3 { grid-area: questOpp3; }\r\n.itemQuestOpp4 { grid-area: questOpp4; }\r\n.itemQuestOpp5 { grid-area: questOpp5; }\r\n.itemQuestOppUnits1 { grid-area: questOppUnits1; }\r\n.itemQuestOppUnits2 { grid-area: questOppUnits2; }\r\n.itemQuestOppUnits3 { grid-area: questOppUnits3; }\r\n.itemQuestOppUnits4 { grid-area: questOppUnits4; }\r\n.itemQuestOppUnits5 { grid-area: questOppUnits5; }\r\n\r\n.itemQuestRewards1 { grid-area: questRewards1; }\r\n.itemQuestRewards2 { grid-area: questRewards2; }\r\n.itemQuestRewards3 { grid-area: questRewards3; }\r\n.itemQuestRewards4 { grid-area: questRewards4; }\r\n.itemQuestRewards5 { grid-area: questRewards5; }\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'selectHeader questOppHeader questOppUnitsHeader questRewardsHeader questRewardsHeader'\r\n    'select1 questOpp1 questOppUnits1 questRewards1 questRewards1'\r\n    'select2 questOpp2 questOppUnits2 questRewards2 questRewards2'\r\n    'select3 questOpp3 questOppUnits3 questRewards3 questRewards3'\r\n    'select4 questOpp4 questOppUnits4 questRewards4 questRewards4'\r\n    'select5 questOpp5 questOppUnits5 questRewards5 questRewards5';\r\n\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\nul {\r\n    list-style-type: none; /* Remove default list styles */\r\n    padding: 0;\r\n  }\r\n  li {\r\n    display: inline; /* or display: inline-block; */\r\n    margin-right: 10px; /* Optional spacing between items */\r\n  }\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Select Quest</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemSelectHeader\"></div>\r\n  <div class=\"itemQuestOppHeader\"><b>Opponent</b></div>\r\n  <div class=\"itemQuestOppUnitsHeader\"><b>Units</b></div>\r\n  <div class=\"itemQuestRewardsHeader\"><b>Quest Rewards</b></div>\r\n\r\n  <div class=\"itemQuest1\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(1)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp1\">\r\n    <img src=\"{{questCreature[0].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits1\">{{questUnits[0]}}</div>\r\n  <div class=\"itemQuestRewards1\">{{questRewards[0]}}</div>\r\n\r\n  <div class=\"itemQuest2\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(2)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp2\">\r\n    <img src=\"{{questCreature[1].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits2\">{{questUnits[1]}}</div>\r\n  <div class=\"itemQuestRewards2\">{{questRewards[1]}}</div>\r\n\r\n  <div class=\"itemQuest3\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(3)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp3\">\r\n    <img src=\"{{questCreature[2].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits3\">{{questUnits[2]}}</div>\r\n  <div class=\"itemQuestRewards3\">{{questRewards[2]}}</div>\r\n\r\n  <div class=\"itemQuest4\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(4)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp4\">\r\n    <img src=\"{{questCreature[3].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits4\">{{questUnits[3]}}</div>\r\n  <div class=\"itemQuestRewards4\">{{questRewards[3]}}</div>\r\n\r\n  <div class=\"itemQuest5\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(5)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp5\">\r\n    <img src=\"{{questCreature[4].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits5\">{{questUnits[4]}}</div>\r\n  <div class=\"itemQuestRewards5\">{{questRewards[4]}}</div>\r\n\r\n  <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemSelectHeader { grid-area: selectHeader}\r\n.itemQuestOppHeader { grid-area: questOppHeader}\r\n.itemQuestOppUnitsHeader { grid-area: questOppUnitsHeader}\r\n.itemQuestRewardsHeader { grid-area: questRewardsHeader}\r\n.itemSelect1 { grid-area: select1; }\r\n.itemSelect2 { grid-area: select2; }\r\n.itemSelect3 { grid-area: select3; }\r\n.itemSelect4 { grid-area: select4; }\r\n.itemSelect5 { grid-area: select5; }\r\n.itemQuestOpp1 { grid-area: questOpp1; }\r\n.itemQuestOpp2 { grid-area: questOpp2; }\r\n.itemQuestOpp3 { grid-area: questOpp3; }\r\n.itemQuestOpp4 { grid-area: questOpp4; }\r\n.itemQuestOpp5 { grid-area: questOpp5; }\r\n.itemQuestOppUnits1 { grid-area: questOppUnits1; }\r\n.itemQuestOppUnits2 { grid-area: questOppUnits2; }\r\n.itemQuestOppUnits3 { grid-area: questOppUnits3; }\r\n.itemQuestOppUnits4 { grid-area: questOppUnits4; }\r\n.itemQuestOppUnits5 { grid-area: questOppUnits5; }\r\n\r\n.itemQuestRewards1 { grid-area: questRewards1; }\r\n.itemQuestRewards2 { grid-area: questRewards2; }\r\n.itemQuestRewards3 { grid-area: questRewards3; }\r\n.itemQuestRewards4 { grid-area: questRewards4; }\r\n.itemQuestRewards5 { grid-area: questRewards5; }\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'selectHeader questOppHeader questOppUnitsHeader questRewardsHeader questRewardsHeader'\r\n    'select1 questOpp1 questOppUnits1 questRewards1 questRewards1'\r\n    'select2 questOpp2 questOppUnits2 questRewards2 questRewards2'\r\n    'select3 questOpp3 questOppUnits3 questRewards3 questRewards3'\r\n    'select4 questOpp4 questOppUnits4 questRewards4 questRewards4'\r\n    'select5 questOpp5 questOppUnits5 questRewards5 questRewards5';\r\n\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\nul {\r\n    list-style-type: none; /* Remove default list styles */\r\n    padding: 0;\r\n  }\r\n  li {\r\n    display: inline; /* or display: inline-block; */\r\n    margin-right: 10px; /* Optional spacing between items */\r\n  }\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Select Quest</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemSelectHeader\"></div>\r\n  <div class=\"itemQuestOppHeader\"><b>Opponent</b></div>\r\n  <div class=\"itemQuestOppUnitsHeader\"><b>Units</b></div>\r\n  <div class=\"itemQuestRewardsHeader\"><b>Quest Rewards</b></div>\r\n\r\n  <div class=\"itemQuest1\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(1)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp1\">\r\n    <img src=\"{{questCreature[0].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits1\">{{questUnits[0]}}</div>\r\n  <div class=\"itemQuestRewards1\">\r\n    <ul>\r\n      <li *ngFor=\"let reward of questRewardImages1;\">\r\n        <img src=\"{{reward.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemQuest2\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(2)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp2\">\r\n    <img src=\"{{questCreature[1].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits2\">{{questUnits[1]}}</div>\r\n  <div class=\"itemQuestRewards2\">\r\n    <ul>\r\n      <li *ngFor=\"let reward of questRewardImages2;\">\r\n        <img src=\"{{reward.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemQuest3\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(3)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp3\">\r\n    <img src=\"{{questCreature[2].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits3\">{{questUnits[2]}}</div>\r\n  <div class=\"itemQuestRewards3\">\r\n    <ul>\r\n      <li *ngFor=\"let reward of questRewardImages3;\">\r\n        <img src=\"{{reward.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemQuest4\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(4)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp4\">\r\n    <img src=\"{{questCreature[3].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits4\">{{questUnits[3]}}</div>\r\n  <div class=\"itemQuestRewards4\">\r\n    <ul>\r\n      <li *ngFor=\"let reward of questRewardImages4;\">\r\n        <img src=\"{{reward.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>  \r\n  </div>\r\n  \r\n  <div class=\"itemQuest5\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(5)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp5\">\r\n    <img src=\"{{questCreature[4].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits5\">{{questUnits[4]}}</div>\r\n  <div class=\"itemQuestRewards5\">\r\n    <ul>\r\n      <li *ngFor=\"let reward of questRewardImages5;\">\r\n        <img src=\"{{reward.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n    \r\n  </div>\r\n\r\n  <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n");
 
 /***/ }),
 
@@ -1270,7 +1270,11 @@ var CreatureType;
     CreatureType[CreatureType["Dragon"] = 20] = "Dragon";
     CreatureType[CreatureType["FrostGiant"] = 21] = "FrostGiant";
     CreatureType[CreatureType["InfestedRat"] = 22] = "InfestedRat";
-    CreatureType[CreatureType["Sorcerous"] = 23] = "Sorcerous";
+    CreatureType[CreatureType["PurpleWand"] = 23] = "PurpleWand";
+    CreatureType[CreatureType["GoldPile"] = 24] = "GoldPile";
+    CreatureType[CreatureType["Recruitment"] = 25] = "Recruitment";
+    CreatureType[CreatureType["Refresh"] = 26] = "Refresh";
+    CreatureType[CreatureType["Sorcerous"] = 27] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
 ;
 class Creature {
@@ -1517,6 +1521,22 @@ class Creature {
                 magicResist = 75;
                 image = 'dragon.png';
                 break;
+            case CreatureType.PurpleWand:
+                name = 'Purple Wand';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'purplewand.png';
+                break;
+            case CreatureType.GoldPile:
+                name = 'Gold Pile';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'goldpile.png';
+                break;
             case CreatureType.Empty:
                 name = 'Open Slot';
                 life = 1;
@@ -1524,6 +1544,22 @@ class Creature {
                 dex = 1;
                 armor = 0;
                 image = 'blank.jpg';
+                break;
+            case CreatureType.Recruitment:
+                name = 'Open Slot';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'recruitment.jpg';
+                break;
+            case CreatureType.Refresh:
+                name = 'Open Slot';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'refresh.jpg';
                 break;
             case CreatureType.Locked:
                 name = 'Locked';
@@ -1714,6 +1750,7 @@ var QuestRewardType;
     QuestRewardType[QuestRewardType["Gold - 100g"] = 5] = "Gold - 100g";
     QuestRewardType[QuestRewardType["Extra Refresh"] = 6] = "Extra Refresh";
     QuestRewardType[QuestRewardType["Recruit Unit"] = 7] = "Recruit Unit";
+    QuestRewardType[QuestRewardType["Purple Wand"] = 8] = "Purple Wand";
 })(QuestRewardType || (QuestRewardType = {}));
 
 
@@ -1822,6 +1859,11 @@ let SelectQuestComponent = class SelectQuestComponent {
         this.questCreature = [];
         this.questUnits = [];
         this.questRewards = [];
+        this.questRewardImages1 = [];
+        this.questRewardImages2 = [];
+        this.questRewardImages3 = [];
+        this.questRewardImages4 = [];
+        this.questRewardImages5 = [];
     }
     getLowest(range, times) {
         var result = range;
@@ -1838,6 +1880,47 @@ let SelectQuestComponent = class SelectQuestComponent {
         console.log('inRandom, start, end, rnd = ' + start + end + result);
         return result;
     }
+    getQuestRewardList(questNum) {
+        var creatureList = [];
+        switch (questNum) {
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 10g']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 25g']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 50g']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Remove Infested Rat']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].InfestedRat));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 75g']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 100g']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Extra Refresh']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Refresh));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Recruit Unit']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Recruitment));
+                break;
+            case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Purple Wand']:
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].PurpleWand));
+                break;
+            default:
+                console.log('error');
+        }
+        return creatureList;
+    }
     ngOnInit() {
         this.battleLogs = [];
         var rollsPerSlot = [5, 3, 2, 1, 1];
@@ -1846,31 +1929,24 @@ let SelectQuestComponent = class SelectQuestComponent {
             console.log('rndCreature=' + rndCreature);
             switch (rndCreature) {
                 case 1:
-                    console.log('case1');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].InfestedRat));
                     break;
                 case 2:
-                    console.log('case2');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Goblin));
                     break;
                 case 3:
-                    console.log('case3');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Kobold));
                     break;
                 case 4:
-                    console.log('case4');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
                     break;
                 case 5:
-                    console.log('case5');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].FrostGiant));
                     break;
                 case 6:
-                    console.log('case6');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
                     break;
                 case 7:
-                    console.log('case7');
                     this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon));
                     break;
                 default:
@@ -1878,10 +1954,27 @@ let SelectQuestComponent = class SelectQuestComponent {
             }
             // this.questCreature.push(new Creature(CreatureType.InfestedRat));
             this.questUnits.push(this.getRandom(1 + i, 5 + i));
-            var questNum = this.getRandom(i, 3 + i);
+            var questNum = Math.min(this.getRandom(i, (1 + i) * 2), (Object.keys(_quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]).length / 2 - 1));
             console.log('questNum=' + questNum);
             this.questRewards.push(_quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"][questNum]);
-            // console.log('keys=' + Object.keys(QuestRewards).length/2);
+            switch (i) {
+                case 0:
+                    this.questRewardImages1 = this.getQuestRewardList(questNum);
+                    break;
+                case 1:
+                    this.questRewardImages2 = this.getQuestRewardList(questNum);
+                    break;
+                case 2:
+                    this.questRewardImages3 = this.getQuestRewardList(questNum);
+                    break;
+                case 3:
+                    this.questRewardImages4 = this.getQuestRewardList(questNum);
+                    break;
+                case 4:
+                    this.questRewardImages5 = this.getQuestRewardList(questNum);
+                    break;
+            }
+            console.log('keys=' + Object.keys(_quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]).length / 2);
         }
     }
     onSelectQuest(slot) {
