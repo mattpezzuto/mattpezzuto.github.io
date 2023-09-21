@@ -1243,7 +1243,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.titleLog = "";
             this.battleLogs = [];
             var boss = new _player_model__WEBPACK_IMPORTED_MODULE_3__["Player"]("Boss", true);
-            boss.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_4__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_4__["CreatureType"].CarrierCrawler));
+            boss.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_4__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_4__["CreatureType"].CarrionCrawler));
             console.log('slotTeam1=' + playerIndex + ' playerList[playerIndex].name=' + this.localGameState.playerList[playerIndex].name); // console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
 
             var battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[playerIndex], boss);
@@ -2080,7 +2080,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       CreatureType[CreatureType["Empty"] = 0] = "Empty";
       CreatureType[CreatureType["Locked"] = 1] = "Locked";
       CreatureType[CreatureType["Gnome"] = 2] = "Gnome";
-      CreatureType[CreatureType["CarrierCrawler"] = 3] = "CarrierCrawler";
+      CreatureType[CreatureType["CarrionCrawler"] = 3] = "CarrionCrawler";
       CreatureType[CreatureType["Goblin"] = 4] = "Goblin";
       CreatureType[CreatureType["Genie"] = 5] = "Genie";
       CreatureType[CreatureType["Dwarf"] = 6] = "Dwarf";
@@ -2213,8 +2213,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               image = 'femalebard.png';
               break;
 
-            case CreatureType.CarrierCrawler:
-              name = 'Carrier Crawler';
+            case CreatureType.CarrionCrawler:
+              name = 'Carrion Crawler';
               life = 100;
               attack = 10;
               dex = 12;
