@@ -51,7 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div *ngIf=\"this.gameState.stage === 1\">\r\n  <app-title-screen-app [localGameState]=gameState></app-title-screen-app>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 2\">\r\n  <app-tavern-app [localGameState]=gameState></app-tavern-app>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 3\">\r\n  <app-battle-screen [localGameState]=gameState></app-battle-screen>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 4\">\r\n  <app-battle-screen-boss [localGameState]=gameState></app-battle-screen-boss>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 5\">\r\n  <app-score-screen [localGameState]=gameState></app-score-screen>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "\r\n<div *ngIf=\"this.gameState.stage === 1\">\r\n  <app-title-screen-app [localGameState]=gameState></app-title-screen-app>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 2\">\r\n  <app-tavern-app [localGameState]=gameState></app-tavern-app>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 3\">\r\n  <app-battle-screen [localGameState]=gameState></app-battle-screen>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 4\">\r\n  <app-battle-screen-boss [localGameState]=gameState></app-battle-screen-boss>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 5\">\r\n  <app-select-quest [localGameState]=gameState></app-select-quest>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 6\">\r\n  <app-battle-screen-quest [localGameState]=gameState></app-battle-screen-quest>\r\n</div>\r\n\r\n<div *ngIf=\"this.gameState.stage === 7\">\r\n  <app-score-screen [localGameState]=gameState></app-score-screen>\r\n</div>\r\n";
     /***/
   },
 
@@ -71,7 +71,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen - Defeating the boss will give you an extra 100g</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/battle-screen-quest/battle-screen-quest.component.html":
+  /*!**************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/battle-screen-quest/battle-screen-quest.component.html ***!
+    \**************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppBattleScreenQuestBattleScreenQuestComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Quest - Defeating the encounter will give you the quest reward</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -112,6 +132,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemLifeHeader { grid-area: lifeHeader}\r\n.itemRecordHeader { grid-area: recordHeader}\r\n.itemBossDmgHeader { grid-area: bossDmgHeader}\r\n.itemUnitsHeader { grid-area: unitsHeader}\r\n.itemPlayer1 { grid-area: player1; }\r\n.itemPlayer2 { grid-area: player2; }\r\n.itemPlayer3 { grid-area: player3; }\r\n.itemPlayer4 { grid-area: player4; }\r\n.itemPlayer5 { grid-area: player5; }\r\n.itemPlayer6 { grid-area: player6; }\r\n.itemPlayer7 { grid-area: player7; }\r\n.itemPlayer8 { grid-area: player8; }\r\n.itemLifePlayer1 { grid-area: lifePlayer1; }\r\n.itemLifePlayer2 { grid-area: lifePlayer2; }\r\n.itemPLifelayer3 { grid-area: lifePlayer3; }\r\n.itemLifePlayer4 { grid-area: lifePlayer4; }\r\n.itemLifePlayer5 { grid-area: lifePlayer5; }\r\n.itemLifePlayer6 { grid-area: lifePlayer6; }\r\n.itemLifePlayer7 { grid-area: lifePlayer7; }\r\n.itemLifePlayer8 { grid-area: lifePlayer8; }\r\n.itemRecordPlayer1 { grid-area: recordPlayer1; }\r\n.itemRecordPlayer2 { grid-area: recordPlayer2; }\r\n.itemPRecordlayer3 { grid-area: recordPlayer3; }\r\n.itemRecordPlayer4 { grid-area: recordPlayer4; }\r\n.itemRecordPlayer5 { grid-area: recordPlayer5; }\r\n.itemRecordPlayer6 { grid-area: recordPlayer6; }\r\n.itemRecordPlayer7 { grid-area: recordPlayer7; }\r\n.itemRecordPlayer8 { grid-area: recordPlayer8; }\r\n.itemBossDmg1 { grid-area: bossDmg1; }\r\n.itemBossDmg2 { grid-area: bossDmg2; }\r\n.itemBossDmg3 { grid-area: bossDmg3; }\r\n.itemBossDmg4 { grid-area: bossDmg4; }\r\n.itemBossDmg5 { grid-area: bossDmg5; }\r\n.itemBossDmg6 { grid-area: bossDmg6; }\r\n.itemBossDmg7 { grid-area: bossDmg7; }\r\n.itemBossDmg8 { grid-area: bossDmg8; }\r\n.itemUnits1 { grid-area: units1; }\r\n.itemUnits2 { grid-area: units2; }\r\n.itemUnits3 { grid-area: units3; }\r\n.itemUnits4 { grid-area: units4; }\r\n.itemUnits5 { grid-area: units5; }\r\n.itemUnits6 { grid-area: units6; }\r\n.itemUnits7 { grid-area: units7; }\r\n.itemUnits8 { grid-area: units8; }\r\n.itemNextBtn { grid-area: nextBtn; }\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader lifeHeader recordHeader bossDmgHeader unitsHeader'\r\n    'player1 lifePlayer1 recordPlayer1 bossDmg1 units1'\r\n    'player2 lifePlayer2 recordPlayer2 bossDmg2 units2'\r\n\t  'player3 lifePlayer3 recordPlayer3 bossDmg3 units3'\r\n\t  'player4 lifePlayer4 recordPlayer4 bossDmg4 units4'\r\n    'player5 lifePlayer5 recordPlayer5 bossDmg5 units5'\r\n    'player6 lifePlayer6 recordPlayer6 bossDmg6 units6'\r\n    'player7 lifePlayer7 recordPlayer7 bossDmg7 units7'\r\n    'player8 lifePlayer8 recordPlayer8 bossDmg8 units8';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\nul {\r\n    list-style-type: none; /* Remove default list styles */\r\n    padding: 0;\r\n  }\r\n  li {\r\n    display: inline; /* or display: inline-block; */\r\n    margin-right: 10px; /* Optional spacing between items */\r\n  }\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Score Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>Player</b></div>\r\n  <div class=\"itemLifePlayerHeader\"><b>Life</b></div>\r\n  <div class=\"itemRecordPlayerHeader\"><b>Record</b></div>\r\n  <div class=\"itemBossDmgHeader\"><b>Boss Damage</b></div>\r\n  <div class=\"itemUnitsHeader\"><b>Units</b></div>\r\n\r\n  <div class=\"itemPlayer1\">{{sortedPlayerList[0].name}}</div>\r\n  <div class=\"itemLifePlayer1\">{{sortedPlayerList[0].life}}</div>\r\n  <div class=\"recordPlayer1\">{{sortedPlayerList[0].getRecord()}}</div>\r\n  <div class=\"itemBossDmg1\">{{sortedPlayerList[0].getBossDmg()}}</div>\r\n  <div class=\"units1\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[0].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n  \r\n  <div class=\"itemPlayer2\">{{sortedPlayerList[1].name}}</div>\r\n  <div class=\"itemLifePlayer2\">{{sortedPlayerList[1].life}}</div>\r\n  <div class=\"recordPlayer2\">{{sortedPlayerList[1].getRecord()}}</div>\r\n  <div class=\"itemBossDmg2\">{{sortedPlayerList[1].getBossDmg()}}</div>\r\n  <div class=\"units2\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[1].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer3\">{{sortedPlayerList[2].name}}</div>\r\n  <div class=\"itemLifePlayer3\">{{sortedPlayerList[2].life}}</div>\r\n  <div class=\"recordPlayer3\">{{sortedPlayerList[2].getRecord()}}</div>\r\n  <div class=\"itemBossDmg3\">{{sortedPlayerList[2].getBossDmg()}}</div>\r\n  <div class=\"units3\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[2].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer4\">{{sortedPlayerList[3].name}}</div>\r\n  <div class=\"itemLifePlayer4\">{{sortedPlayerList[3].life}}</div>\r\n  <div class=\"recordPlayer4\">{{sortedPlayerList[3].getRecord()}}</div>\r\n  <div class=\"itemBossDmg4\">{{sortedPlayerList[3].getBossDmg()}}</div>\r\n  <div class=\"units4\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[3].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer5\">{{sortedPlayerList[4].name}}</div>\r\n  <div class=\"itemLifePlayer5\">{{sortedPlayerList[4].life}}</div>\r\n  <div class=\"recordPlayer5\">{{sortedPlayerList[4].getRecord()}}</div>\r\n  <div class=\"itemBossDmg5\">{{sortedPlayerList[4].getBossDmg()}}</div>\r\n  <div class=\"units5\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[4].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer6\">{{sortedPlayerList[5].name}}</div>\r\n  <div class=\"itemLifePlayer6\">{{sortedPlayerList[5].life}}</div>\r\n  <div class=\"recordPlayer6\">{{sortedPlayerList[5].getRecord()}}</div>\r\n  <div class=\"itemBossDmg6\">{{sortedPlayerList[5].getBossDmg()}}</div>\r\n  <div class=\"units6\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[5].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer7\">{{sortedPlayerList[6].name}}</div>\r\n  <div class=\"itemLifePlayer7\">{{sortedPlayerList[6].life}}</div>\r\n  <div class=\"recordPlayer7\">{{sortedPlayerList[6].getRecord()}}</div>\r\n  <div class=\"itemBossDmg7\">{{sortedPlayerList[6].getBossDmg()}}</div>\r\n  <div class=\"units7\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[6].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemPlayer8\">{{sortedPlayerList[7].name}}</div>\r\n  <div class=\"itemLifePlayer8\">{{sortedPlayerList[7].life}}</div>\r\n  <div class=\"recordPlayer8\">{{sortedPlayerList[7].getRecord()}}</div>\r\n  <div class=\"itemBossDmg8\">{{sortedPlayerList[7].getBossDmg()}}</div>\r\n  <div class=\"units8\">\r\n    <ul>\r\n      <li *ngFor=\"let creature of sortedPlayerList[7].creatureList;\">\r\n        <img src=\"{{creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n        <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n    </div>\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/select-quest/select-quest.component.html":
+  /*!************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/select-quest/select-quest.component.html ***!
+    \************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppSelectQuestSelectQuestComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemSelectHeader { grid-area: selectHeader}\r\n.itemQuestOppHeader { grid-area: questOppHeader}\r\n.itemQuestOppUnitsHeader { grid-area: questOppUnitsHeader}\r\n.itemQuestRewardsHeader { grid-area: questRewardsHeader}\r\n.itemSelect1 { grid-area: select1; }\r\n.itemSelect2 { grid-area: select2; }\r\n.itemSelect3 { grid-area: select3; }\r\n.itemSelect4 { grid-area: select4; }\r\n.itemSelect5 { grid-area: select5; }\r\n.itemQuestOpp1 { grid-area: questOpp1; }\r\n.itemQuestOpp2 { grid-area: questOpp2; }\r\n.itemQuestOpp3 { grid-area: questOpp3; }\r\n.itemQuestOpp4 { grid-area: questOpp4; }\r\n.itemQuestOpp5 { grid-area: questOpp5; }\r\n.itemQuestOppUnits1 { grid-area: questOppUnits1; }\r\n.itemQuestOppUnits2 { grid-area: questOppUnits2; }\r\n.itemQuestOppUnits3 { grid-area: questOppUnits3; }\r\n.itemQuestOppUnits4 { grid-area: questOppUnits4; }\r\n.itemQuestOppUnits5 { grid-area: questOppUnits5; }\r\n\r\n.itemQuestRewards1 { grid-area: questRewards1; }\r\n.itemQuestRewards2 { grid-area: questRewards2; }\r\n.itemQuestRewards3 { grid-area: questRewards3; }\r\n.itemQuestRewards4 { grid-area: questRewards4; }\r\n.itemQuestRewards5 { grid-area: questRewards5; }\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'selectHeader questOppHeader questOppUnitsHeader questRewardsHeader questRewardsHeader'\r\n    'select1 questOpp1 questOppUnits1 questRewards1 questRewards1'\r\n    'select2 questOpp2 questOppUnits2 questRewards2 questRewards2'\r\n    'select3 questOpp3 questOppUnits3 questRewards3 questRewards3'\r\n    'select4 questOpp4 questOppUnits4 questRewards4 questRewards4'\r\n    'select5 questOpp5 questOppUnits5 questRewards5 questRewards5';\r\n\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\nul {\r\n    list-style-type: none; /* Remove default list styles */\r\n    padding: 0;\r\n  }\r\n  li {\r\n    display: inline; /* or display: inline-block; */\r\n    margin-right: 10px; /* Optional spacing between items */\r\n  }\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Select Quest</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemSelectHeader\"></div>\r\n  <div class=\"itemQuestOppHeader\"><b>Opponent</b></div>\r\n  <div class=\"itemQuestOppUnitsHeader\"><b>Units</b></div>\r\n  <div class=\"itemQuestRewardsHeader\"><b>Quest Rewards</b></div>\r\n\r\n  <div class=\"itemQuest1\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(1)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp1\">\r\n    <img src=\"{{questCreature[0].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits1\">{{questUnits[0]}}</div>\r\n  <div class=\"itemQuestRewards1\">{{questRewards[0]}}</div>\r\n\r\n  <div class=\"itemQuest2\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(2)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp2\">\r\n    <img src=\"{{questCreature[1].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits2\">{{questUnits[1]}}</div>\r\n  <div class=\"itemQuestRewards2\">{{questRewards[1]}}</div>\r\n\r\n  <div class=\"itemQuest3\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(3)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp3\">\r\n    <img src=\"{{questCreature[2].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits3\">{{questUnits[2]}}</div>\r\n  <div class=\"itemQuestRewards3\">{{questRewards[2]}}</div>\r\n\r\n  <div class=\"itemQuest4\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(4)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp4\">\r\n    <img src=\"{{questCreature[3].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits4\">{{questUnits[3]}}</div>\r\n  <div class=\"itemQuestRewards4\">{{questRewards[3]}}</div>\r\n\r\n  <div class=\"itemQuest5\">\r\n    <button class=\"button\" (click)=\"onSelectQuest(5)\">Select</button>\r\n  </div>\r\n  <div class=\"itemQuestOpp5\">\r\n    <img src=\"{{questCreature[4].getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>\r\n  <div class=\"itemQuestOppUnits5\">{{questUnits[4]}}</div>\r\n  <div class=\"itemQuestRewards5\">{{questRewards[4]}}</div>\r\n\r\n  <p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -977,7 +1017,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Dwarf);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].SkeletonWarrior);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Orc);
-          this.gameState.creaturePool.addCreatureToPool(5, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].InfestedRat);
+          this.gameState.creaturePool.addCreatureToPool(8, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].InfestedRat);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].FrostGiant);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].TreeOfLife);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Wizard);
@@ -1081,16 +1121,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _score_screen_score_screen_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _battle_screen_quest_battle_screen_quest_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./battle-screen-quest/battle-screen-quest.component */
+    "./src/app/battle-screen-quest/battle-screen-quest.component.ts");
+    /* harmony import */
+
+
+    var _score_screen_score_screen_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./score-screen/score-screen.component */
     "./src/app/score-screen/score-screen.component.ts");
+    /* harmony import */
+
+
+    var _select_quest_select_quest_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ./select-quest/select-quest.component */
+    "./src/app/select-quest/select-quest.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _tavern_app_tavern_app_component__WEBPACK_IMPORTED_MODULE_5__["TavernAppComponent"], _title_screen_app_title_screen_app_component__WEBPACK_IMPORTED_MODULE_6__["TitleScreenAppComponent"], _battle_screen_battle_screen_component__WEBPACK_IMPORTED_MODULE_7__["BattleScreenComponent"], _battle_screen_boss_battle_screen_boss_component__WEBPACK_IMPORTED_MODULE_8__["BattleScreenBossComponent"], _score_screen_score_screen_component__WEBPACK_IMPORTED_MODULE_9__["ScoreScreenComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _tavern_app_tavern_app_component__WEBPACK_IMPORTED_MODULE_5__["TavernAppComponent"], _title_screen_app_title_screen_app_component__WEBPACK_IMPORTED_MODULE_6__["TitleScreenAppComponent"], _battle_screen_battle_screen_component__WEBPACK_IMPORTED_MODULE_7__["BattleScreenComponent"], _battle_screen_boss_battle_screen_boss_component__WEBPACK_IMPORTED_MODULE_8__["BattleScreenBossComponent"], _battle_screen_quest_battle_screen_quest_component__WEBPACK_IMPORTED_MODULE_9__["BattleScreenQuestComponent"], _select_quest_select_quest_component__WEBPACK_IMPORTED_MODULE_11__["SelectQuestComponent"], _score_screen_score_screen_component__WEBPACK_IMPORTED_MODULE_10__["ScoreScreenComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]],
       providers: [],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -1201,7 +1253,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var dmgDone1 = battle.getDamageDone(0);
             var dmgDone2 = battle.getDamageDone(1);
             console.log('dmgDones = ' + dmgDone1 + ', ' + dmgDone2);
-            this.localGameState.playerList[playerIndex].incrementDmgDone(dmgDone1); // var slotLoser:number;
+            this.localGameState.playerList[playerIndex].incrementDmgDone(dmgDone1);
+
+            if (winner === 0) {
+              this.localGameState.playerList[playerIndex].gold += 100;
+            } // var slotLoser:number;
             // var slotWinner:number
             // if (winner === 0 ) {
             //   slotLoser = slotTeam2;
@@ -1228,6 +1284,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //     this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + "."
             //   );
             // }
+
           }
         }
       }, {
@@ -1268,6 +1325,238 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./battle-screen-boss.component.css */
       "./src/app/battle-screen-boss/battle-screen-boss.component.css"))["default"]]
     })], BattleScreenBossComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/battle-screen-quest/battle-screen-quest.component.css":
+  /*!***********************************************************************!*\
+    !*** ./src/app/battle-screen-quest/battle-screen-quest.component.css ***!
+    \***********************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppBattleScreenQuestBattleScreenQuestComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".button {\r\n    border:  none;\r\n    position: relative;\r\n    display: inline-block;\r\n    background: blue;\r\n    color: #fff;\r\n    padding: 0.4em 0.6em;\r\n    font-size: 0.8em;\r\n    border-radius: 1em;\r\n  }\r\n\r\n  button:disabled {\r\n    background: #dddddd;\r\n  }\r\n\r\n  p {\r\n    margin: 0px;\r\n    padding: 0px;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmF0dGxlLXNjcmVlbi1xdWVzdC9iYXR0bGUtc2NyZWVuLXF1ZXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLG9CQUFvQjtJQUNwQixnQkFBZ0I7SUFDaEIsa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsbUJBQW1CO0VBQ3JCOztFQUVBO0lBQ0UsV0FBVztJQUNYLFlBQVk7RUFDZCIsImZpbGUiOiJzcmMvYXBwL2JhdHRsZS1zY3JlZW4tcXVlc3QvYmF0dGxlLXNjcmVlbi1xdWVzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJ1dHRvbiB7XHJcbiAgICBib3JkZXI6ICBub25lO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgYmFja2dyb3VuZDogYmx1ZTtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgcGFkZGluZzogMC40ZW0gMC42ZW07XHJcbiAgICBmb250LXNpemU6IDAuOGVtO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMWVtO1xyXG4gIH1cclxuXHJcbiAgYnV0dG9uOmRpc2FibGVkIHtcclxuICAgIGJhY2tncm91bmQ6ICNkZGRkZGQ7XHJcbiAgfSBcclxuICBcclxuICBwIHtcclxuICAgIG1hcmdpbjogMHB4O1xyXG4gICAgcGFkZGluZzogMHB4O1xyXG4gIH0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/battle-screen-quest/battle-screen-quest.component.ts":
+  /*!**********************************************************************!*\
+    !*** ./src/app/battle-screen-quest/battle-screen-quest.component.ts ***!
+    \**********************************************************************/
+
+  /*! exports provided: BattleScreenQuestComponent */
+
+  /***/
+  function srcAppBattleScreenQuestBattleScreenQuestComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "BattleScreenQuestComponent", function () {
+      return BattleScreenQuestComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _quest_rewards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./../quest-rewards */
+    "./src/app/quest-rewards.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _battle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../battle */
+    "./src/app/battle.ts");
+    /* harmony import */
+
+
+    var _player_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../player.model */
+    "./src/app/player.model.ts");
+    /* harmony import */
+
+
+    var _creature__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../creature */
+    "./src/app/creature.ts");
+    /* harmony import */
+
+
+    var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../utils */
+    "./src/app/utils.ts");
+
+    var BattleScreenQuestComponent = /*#__PURE__*/function () {
+      function BattleScreenQuestComponent() {
+        _classCallCheck(this, BattleScreenQuestComponent);
+      }
+
+      _createClass(BattleScreenQuestComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.battleLogs = [];
+          var playerIndexList = [];
+
+          for (var i = 1; i < 8; i++) {
+            playerIndexList.push(i);
+          }
+
+          var randomPlayerList = this.shuffle(playerIndexList);
+          randomPlayerList.push(0);
+          console.log('randomPlayerList: ' + randomPlayerList);
+          var questPlayer = new _player_model__WEBPACK_IMPORTED_MODULE_4__["Player"]("Quest", true);
+
+          for (var i = 0; i < this.localGameState.playerList[0].questUnits; i++) {
+            questPlayer.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_5__["Creature"](this.localGameState.playerList[0].questCreature.creatureType));
+          }
+
+          var battle = new _battle__WEBPACK_IMPORTED_MODULE_3__["Battle"](this.localGameState.playerList[0], questPlayer);
+          battle.performBattle();
+          var winner = battle.getWinner();
+          this.battleLogs = battle.getBattleLogs();
+          var dmgDone1 = battle.getDamageDone(0);
+          var dmgDone2 = battle.getDamageDone(1);
+          console.log('dmgDones = ' + dmgDone1 + ', ' + dmgDone2);
+
+          if (winner === 0) {
+            switch (this.localGameState.playerList[0].questReward) {
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Gold - 10g']:
+                this.localGameState.playerList[0].gold += 10;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Gold - 25g']:
+                this.localGameState.playerList[0].gold += 25;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Gold - 50g']:
+                this.localGameState.playerList[0].gold += 50;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Gold - 75g']:
+                this.localGameState.playerList[0].gold += 75;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Gold - 100g']:
+                this.localGameState.playerList[0].gold += 100;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Extra Refresh']:
+                this.localGameState.playerList[0].refreshCounter += 1;
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Recruit Unit']:
+                this.localGameState.creaturePool.addCreatureToPool(1, _utils__WEBPACK_IMPORTED_MODULE_6__["default"].upgradeRecruitment());
+                break;
+
+              case _quest_rewards__WEBPACK_IMPORTED_MODULE_1__["QuestRewardType"]['Remove Infested Rat']:
+                console.log('tier1 len = ' + this.localGameState.creaturePool.tier1.length);
+
+                var slot = _utils__WEBPACK_IMPORTED_MODULE_6__["default"].findFirstRatSlot(this.localGameState.creaturePool.tier1);
+
+                console.log('slot = ' + slot);
+
+                if (slot > 0 && slot < this.localGameState.creaturePool.tier1.length) {
+                  console.log('tier1 len = ' + this.localGameState.creaturePool.tier1.length);
+                  this.localGameState.creaturePool.removeCreatureFromPool(slot);
+                  console.log('tier1 len = ' + this.localGameState.creaturePool.tier1.length);
+                }
+
+                break;
+
+              default:
+                console.log('error:  should never get here');
+            } // var slotLoser:number;
+            // var slotWinner:number
+            // if (winner === 0 ) {
+            //   slotLoser = slotTeam2;
+            //   slotWinner = slotTeam1;
+            //   this.localGameState.playerList[slotWinner].incrementWins();
+            //   this.localGameState.playerList[slotLoser].incrementLoses();
+            //   this.battleLogs.push(
+            //     this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + "."
+            //   );
+            // --this.localGameState.playerList[slotLoser].life;
+            // } else if (winner === 1) {
+            //     slotLoser = slotTeam1;
+            //     slotWinner = slotTeam2;
+            //     this.localGameState.playerList[slotWinner].incrementWins();
+            //     this.localGameState.playerList[slotLoser].incrementLoses();
+            //     this.battleLogs.push(
+            //       this.localGameState.playerList[slotWinner].name + " (2)" +  " beats " + this.localGameState.playerList[slotLoser].name + "."
+            //     );
+            //   --this.localGameState.playerList[slotLoser].life;
+            // } else {
+            //   this.localGameState.playerList[slotTeam1].incrementTies();
+            //   this.localGameState.playerList[slotTeam2].incrementTies();
+            //   this.battleLogs.push(
+            //     this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + "."
+            //   );
+            // }
+
+          }
+        }
+      }, {
+        key: "shuffle",
+        value: function shuffle(array) {
+          var currentIndex = array.length,
+              randomIndex; // While there remain elements to shuffle.
+
+          while (currentIndex != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--; // And swap it with the current element.
+
+            var _ref2 = [array[randomIndex], array[currentIndex]];
+            array[currentIndex] = _ref2[0];
+            array[randomIndex] = _ref2[1];
+          }
+
+          return array;
+        }
+      }, {
+        key: "onNext",
+        value: function onNext() {
+          ++this.localGameState.stage;
+        }
+      }]);
+
+      return BattleScreenQuestComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()], BattleScreenQuestComponent.prototype, "localGameState", void 0);
+    BattleScreenQuestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+      selector: 'app-battle-screen-quest',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./battle-screen-quest.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/battle-screen-quest/battle-screen-quest.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./battle-screen-quest.component.css */
+      "./src/app/battle-screen-quest/battle-screen-quest.component.css"))["default"]]
+    })], BattleScreenQuestComponent);
     /***/
   },
 
@@ -1398,9 +1687,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--; // And swap it with the current element.
 
-            var _ref2 = [array[randomIndex], array[currentIndex]];
-            array[currentIndex] = _ref2[0];
-            array[randomIndex] = _ref2[1];
+            var _ref3 = [array[randomIndex], array[currentIndex]];
+            array[currentIndex] = _ref3[0];
+            array[randomIndex] = _ref3[1];
           }
 
           return array;
@@ -1820,7 +2109,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function Creature(creatureType) {
         _classCallCheck(this, Creature);
 
-        this.createType = creatureType;
+        this.creatureType = creatureType;
         this.creatureStats = this.getCreatureStatsFor(creatureType);
         this.currentArmor = this.creatureStats.armor;
         this.currentLife = this.creatureStats.life;
@@ -1864,7 +2153,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getCopy",
         value: function getCopy() {
-          var value = new Creature(this.createType); // value.setArmorBuff(this.armorBuff);
+          var value = new Creature(this.creatureType); // value.setArmorBuff(this.armorBuff);
           // value.setLifeBuff(this.lifeBuff);
 
           return value;
@@ -1925,8 +2214,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               break;
 
             case CreatureType.CarrierCrawler:
-              name = 'Bard';
-              life = 1000;
+              name = 'Carrier Crawler';
+              life = 100;
               attack = 10;
               dex = 12;
               armor = 1;
@@ -2202,58 +2491,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CreaturePool, [{
         key: "addCreatureToPool",
         value: function addCreatureToPool(count, creatureType) {
-          var name, image;
-          var life,
-              attack,
-              dex,
-              armor,
-              armorBuff = 0,
-              lifeBuff = 0;
-          console.log('creatureType = ' + creatureType); // switch( creatureType ) {
-          //     case CreatureType.Archer:
-          //         name = 'Archer'; life = 10; attack = 10; dex = 16; armor = 1; image = 'archer.png'; break;
-          //     case CreatureType.Bard:
-          //         name = 'Bard'; life = 10; attack = 5; dex = 12; armor = 1; image = 'femalebard.png'; break;
-          //     case CreatureType.Demon: 
-          //         name = 'Demon'; life = 20; attack = 6; dex = 10; armor = 3; image = 'demon.png'; break;
-          //     case CreatureType.DemonPortal:
-          //         name = 'Demon Portal'; life = 1; attack = 1; dex = 6; armor = 0; image = 'black.jpg'; break;
-          //     case CreatureType.DragonEgg:
-          //         name = 'Dragon Egg'; life = 1; attack = 1; dex = 6; armor = 0; image = 'black.jpg'; break;
-          //     case CreatureType.Dwarf:
-          //         name = 'Dwarf'; life = 20; attack = 7; dex = 6; armor = 3; image = 'black.jpg'; break;
-          //     case CreatureType.Elf:
-          //         name = 'Elf'; life = 16; attack = 5; dex = 16; armor = 1; image = 'black.jpg'; break;
-          //     case CreatureType.Gnome:
-          //         name = 'Gnome'; life = 10; attack = 5; dex = 12; armor = 1; image = 'gnome.png'; break;
-          //     case CreatureType.Goblin:
-          //         name = 'Goblin'; life = 10; attack = 5; dex = 14; armor = 1; image = 'black.jpg'; break;
-          //     case CreatureType.Genie:
-          //         name = 'Genie'; life = 16; attack = 6; dex = 10; armor = 2; image = 'genie.gif'; break;
-          //     case CreatureType.Necromancer:
-          //         name = 'Necromancer'; life = 16; attack = 5; dex = 8; armor = 5; image = 'black.jpg'; break;
-          //     case CreatureType.Orc:
-          //         name = 'Orc'; life = 18; attack = 10; dex = 8; armor = 3; image = 'orc.png'; break;
-          //     case CreatureType.Paladin:
-          //         name = 'Paladin'; life = 17; attack = 8; dex = 8; armor = 3; 
-          //         armorBuff = 2; image = 'paladin.png'; break;
-          //     case CreatureType.SkeletonWarrior:
-          //         name = 'Skeleton Warrior'; life = 12; attack = 5; dex = 8; armor = 2; image = 'skeletonwarrior.png'; break;
-          //     case CreatureType.Wizard:
-          //         name = 'Wizard'; life = 10; attack = 10; dex = 8; armor = 1; image = 'wizard.png'; break;
-          //     case CreatureType.TreeOfLife:
-          //             name = 'Tree of Life'; life = 20; attack = 1; dex = 8; armor = 1; image = 'treeoflife.png'; 
-          //             lifeBuff = 5; break;
-          //     case CreatureType.Sorcerous: 
-          //         name = 'Sorcerous'; life = 10; attack = 10; dex = 8; armor = 1; image = 'sorcerous.png'; break;
-          //     case CreatureType.Dragon:
-          //         name = 'Dragon'; life = 20; attack = 12; dex = 10; armor = 5; image = 'black.jpg'; break;
-          //     default:
-          //         console.log("Error, no creatureType found");
-          // }
+          console.log('creatureType = ' + creatureType);
 
           for (var i = 0; i < count; i++) {
-            console.log('Adding ' + name + ' to crature pool');
             var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](creatureType);
             this.tier1.push(tempCreature);
           }
@@ -2440,6 +2680,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/quest-rewards.ts":
+  /*!**********************************!*\
+    !*** ./src/app/quest-rewards.ts ***!
+    \**********************************/
+
+  /*! exports provided: QuestRewardType */
+
+  /***/
+  function srcAppQuestRewardsTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "QuestRewardType", function () {
+      return QuestRewardType;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var QuestRewardType;
+
+    (function (QuestRewardType) {
+      QuestRewardType[QuestRewardType["Gold - 10g"] = 0] = "Gold - 10g";
+      QuestRewardType[QuestRewardType["Gold - 25g"] = 1] = "Gold - 25g";
+      QuestRewardType[QuestRewardType["Gold - 50g"] = 2] = "Gold - 50g";
+      QuestRewardType[QuestRewardType["Remove Infested Rat"] = 3] = "Remove Infested Rat";
+      QuestRewardType[QuestRewardType["Gold - 75g"] = 4] = "Gold - 75g";
+      QuestRewardType[QuestRewardType["Gold - 100g"] = 5] = "Gold - 100g";
+      QuestRewardType[QuestRewardType["Extra Refresh"] = 6] = "Extra Refresh";
+      QuestRewardType[QuestRewardType["Recruit Unit"] = 7] = "Recruit Unit";
+    })(QuestRewardType || (QuestRewardType = {}));
+    /***/
+
+  },
+
+  /***/
   "./src/app/score-screen/score-screen.component.css":
   /*!*********************************************************!*\
     !*** ./src/app/score-screen/score-screen.component.css ***!
@@ -2544,6 +2826,189 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/select-quest/select-quest.component.css":
+  /*!*********************************************************!*\
+    !*** ./src/app/select-quest/select-quest.component.css ***!
+    \*********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppSelectQuestSelectQuestComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".button {\r\n    border:  none;\r\n    position: relative;\r\n    display: inline-block;\r\n    background: blue;\r\n    color: #fff;\r\n    padding: 0.4em 0.6em;\r\n    font-size: 0.8em;\r\n    border-radius: 1em;\r\n  }\r\n\r\n  button:disabled {\r\n    background: #dddddd;\r\n  }\r\n\r\n  p {\r\n    margin: 0px;\r\n    padding: 0px;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2VsZWN0LXF1ZXN0L3NlbGVjdC1xdWVzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixxQkFBcUI7SUFDckIsZ0JBQWdCO0lBQ2hCLFdBQVc7SUFDWCxvQkFBb0I7SUFDcEIsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLFdBQVc7SUFDWCxZQUFZO0VBQ2QiLCJmaWxlIjoic3JjL2FwcC9zZWxlY3QtcXVlc3Qvc2VsZWN0LXF1ZXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uIHtcclxuICAgIGJvcmRlcjogIG5vbmU7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBiYWNrZ3JvdW5kOiBibHVlO1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBwYWRkaW5nOiAwLjRlbSAwLjZlbTtcclxuICAgIGZvbnQtc2l6ZTogMC44ZW07XHJcbiAgICBib3JkZXItcmFkaXVzOiAxZW07XHJcbiAgfVxyXG5cclxuICBidXR0b246ZGlzYWJsZWQge1xyXG4gICAgYmFja2dyb3VuZDogI2RkZGRkZDtcclxuICB9IFxyXG4gIFxyXG4gIHAge1xyXG4gICAgbWFyZ2luOiAwcHg7XHJcbiAgICBwYWRkaW5nOiAwcHg7XHJcbiAgfSJdfQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/select-quest/select-quest.component.ts":
+  /*!********************************************************!*\
+    !*** ./src/app/select-quest/select-quest.component.ts ***!
+    \********************************************************/
+
+  /*! exports provided: SelectQuestComponent */
+
+  /***/
+  function srcAppSelectQuestSelectQuestComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SelectQuestComponent", function () {
+      return SelectQuestComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _creature__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../creature */
+    "./src/app/creature.ts");
+    /* harmony import */
+
+
+    var _quest_rewards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../quest-rewards */
+    "./src/app/quest-rewards.ts");
+
+    var SelectQuestComponent = /*#__PURE__*/function () {
+      function SelectQuestComponent() {
+        _classCallCheck(this, SelectQuestComponent);
+
+        this.questCreature = [];
+        this.questUnits = [];
+        this.questRewards = [];
+      }
+
+      _createClass(SelectQuestComponent, [{
+        key: "getLowest",
+        value: function getLowest(range, times) {
+          var result = range;
+
+          for (var i = 0; i < times; i++) {
+            var roll = Math.floor(Math.random() * range);
+
+            if (roll < result) {
+              result = roll;
+            }
+          }
+
+          return result;
+        }
+      }, {
+        key: "getRandom",
+        value: function getRandom(start, end) {
+          var result = Math.floor(Math.random() * (end - start + 1) + start);
+          console.log('inRandom, start, end, rnd = ' + start + end + result);
+          return result;
+        }
+      }, {
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.battleLogs = [];
+          var rollsPerSlot = [5, 3, 2, 1, 1];
+
+          for (var i = 0; i < 5; i++) {
+            var rndCreature = this.getRandom(1 + i, 3 + i);
+            console.log('rndCreature=' + rndCreature);
+
+            switch (rndCreature) {
+              case 1:
+                console.log('case1');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].InfestedRat));
+                break;
+
+              case 2:
+                console.log('case2');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Goblin));
+                break;
+
+              case 3:
+                console.log('case3');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Kobold));
+                break;
+
+              case 4:
+                console.log('case4');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
+                break;
+
+              case 5:
+                console.log('case5');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].FrostGiant));
+                break;
+
+              case 6:
+                console.log('case6');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
+                break;
+
+              case 7:
+                console.log('case7');
+                this.questCreature.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Dragon));
+                break;
+
+              default:
+                console.log('error');
+            } // this.questCreature.push(new Creature(CreatureType.InfestedRat));
+
+
+            this.questUnits.push(this.getRandom(1 + i, 5 + i));
+            var questNum = this.getRandom(i, 3 + i);
+            console.log('questNum=' + questNum);
+            this.questRewards.push(_quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"][questNum]); // console.log('keys=' + Object.keys(QuestRewards).length/2);
+          }
+        }
+      }, {
+        key: "onSelectQuest",
+        value: function onSelectQuest(slot) {
+          var listSlot = slot - 1;
+          this.localGameState.playerList[0].questCreature = this.questCreature[listSlot];
+          this.localGameState.playerList[0].questUnits = this.questUnits[listSlot];
+          this.localGameState.playerList[0].questReward = _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"][this.questRewards[listSlot]];
+          this.localGameState.stage++;
+        }
+      }, {
+        key: "onNext",
+        value: function onNext() {// this.localGameState.stage++;
+        }
+      }]);
+
+      return SelectQuestComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], SelectQuestComponent.prototype, "localGameState", void 0);
+    SelectQuestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-select-quest',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./select-quest.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/select-quest/select-quest.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./select-quest.component.css */
+      "./src/app/select-quest/select-quest.component.css"))["default"]]
+    })], SelectQuestComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/tavern-app/tavern-app.component.css":
   /*!*****************************************************!*\
     !*** ./src/app/tavern-app/tavern-app.component.css ***!
@@ -2606,6 +3071,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _TavernCreature__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../TavernCreature */
     "./src/app/TavernCreature.ts");
+    /* harmony import */
+
+
+    var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../utils */
+    "./src/app/utils.ts");
 
     var TavernAppComponent = /*#__PURE__*/function () {
       function TavernAppComponent() {
@@ -2656,7 +3127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.localGameState.playerList[0].creatureList.length > slot) {
             var tempCreature = this.localGameState.playerList[0].creatureList[slot].getCopy();
             this.localGameState.playerList[0].creatureList.splice(slot, 1);
-            this.localGameState.creaturePool.addCreatureToPool(1, tempCreature.createType);
+            this.localGameState.creaturePool.addCreatureToPool(1, tempCreature.creatureType);
             this.localGameState.playerList[0].gold += 50;
           }
         }
@@ -2707,27 +3178,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "onUpgradeRecruitment",
         value: function onUpgradeRecruitment() {
           if (this.localGameState.playerList[0].gold >= 100) {
-            var pickOne = Math.floor(Math.random() * 4 + 0);
-            console.log('pickOne = ' + pickOne);
-
-            switch (pickOne) {
-              case 0:
-                this.localGameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Elaron);
-                break;
-
-              case 1:
-                this.localGameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Paladin);
-                break;
-
-              case 2:
-                this.localGameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].DragonEgg);
-                break;
-
-              case 3:
-                this.localGameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].DemonPortal);
-                break;
-            }
-
+            this.localGameState.creaturePool.addCreatureToPool(1, _utils__WEBPACK_IMPORTED_MODULE_4__["default"].upgradeRecruitment());
             this.localGameState.playerList[0].gold -= 100;
           }
         }
@@ -2947,6 +3398,94 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       "./src/app/title-screen-app/title-screen-app.component.css"))["default"]]
     })], TitleScreenAppComponent);
     /***/
+  },
+
+  /***/
+  "./src/app/utils.ts":
+  /*!**************************!*\
+    !*** ./src/app/utils.ts ***!
+    \**************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppUtilsTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "default", function () {
+      return Utils;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _creature__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./creature */
+    "./src/app/creature.ts");
+
+    var Utils = /*#__PURE__*/function () {
+      function Utils() {
+        _classCallCheck(this, Utils);
+      }
+
+      _createClass(Utils, null, [{
+        key: "upgradeRecruitment",
+        value: function upgradeRecruitment() {
+          var result;
+          var pickOne = Math.floor(Math.random() * 4 + 0);
+          console.log('pickOne = ' + pickOne);
+
+          switch (pickOne) {
+            case 0:
+              result = _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Elaron;
+              break;
+
+            case 1:
+              result = _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Paladin;
+              break;
+
+            case 2:
+              result = _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].DragonEgg;
+              break;
+
+            case 3:
+              result = _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].DemonPortal;
+              break;
+          }
+
+          return result;
+        }
+      }, {
+        key: "findFirstRatSlot",
+        value: function findFirstRatSlot(creatureList) {
+          var slot = -1;
+          console.log('find first slot:  len = ' + creatureList.length);
+
+          for (var i = 0; i < creatureList.length; i++) {
+            console.log('creatureType = ' + creatureList[i].creatureType + ', ratCreatureType = ' + _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].InfestedRat);
+
+            if (creatureList[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].InfestedRat && slot == -1) {
+              slot = i;
+            }
+          }
+
+          return slot;
+        }
+      }]);
+
+      return Utils;
+    }();
+    /***/
+
   },
 
   /***/
