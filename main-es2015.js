@@ -1274,7 +1274,8 @@ var CreatureType;
     CreatureType[CreatureType["GoldPile"] = 24] = "GoldPile";
     CreatureType[CreatureType["Recruitment"] = 25] = "Recruitment";
     CreatureType[CreatureType["Refresh"] = 26] = "Refresh";
-    CreatureType[CreatureType["Sorcerous"] = 27] = "Sorcerous";
+    CreatureType[CreatureType["NoRats"] = 27] = "NoRats";
+    CreatureType[CreatureType["Sorcerous"] = 28] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
 ;
 class Creature {
@@ -1559,7 +1560,15 @@ class Creature {
                 attack = 1;
                 dex = 1;
                 armor = 0;
-                image = 'refresh.jpg';
+                image = 'refresh.png';
+                break;
+            case CreatureType.NoRats:
+                name = 'Open Slot';
+                life = 1;
+                attack = 1;
+                dex = 1;
+                armor = 0;
+                image = 'norats.png';
                 break;
             case CreatureType.Locked:
                 name = 'Locked';
@@ -1894,7 +1903,7 @@ let SelectQuestComponent = class SelectQuestComponent {
                 creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
                 break;
             case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Remove Infested Rat']:
-                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].InfestedRat));
+                creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].NoRats));
                 break;
             case _quest_rewards__WEBPACK_IMPORTED_MODULE_3__["QuestRewardType"]['Gold - 75g']:
                 creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].GoldPile));
