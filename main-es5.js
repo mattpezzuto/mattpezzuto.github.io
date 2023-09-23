@@ -2849,6 +2849,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             return b.life - a.life;
           });
+          currentPlayerList = [];
+
+          for (var i = 0; i < this.localGameState.playerList.length; i++) {
+            currentPlayerList.push(this.localGameState.playerList[i]);
+          }
+
           this.sortedBossDmgList = currentPlayerList.sort(function (a, b) {
             if (b.bossDmg === a.bossDmg) {
               return 0;
@@ -2860,20 +2866,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           for (var i = 0; i < this.localGameState.playerList[0].creatureList.length; i++) {
             console.log(this.localGameState.playerList[0].creatureList[i].getName());
-          }
-
-          for (var i = 0; i < this.sortedBossDmgList.length; i++) {
-            if (i >= 4) {
-              this.bottomHalfList.push(this.sortedBossDmgList[i].name);
-            }
-          }
-
-          for (var playerIndex = 0; playerIndex < this.localGameState.playerList.length; playerIndex++) {
-            for (var i = 0; i < this.bottomHalfList.length; i++) {
-              if (this.localGameState.playerList[playerIndex].name === this.bottomHalfList[i]) {
-                this.localGameState.playerList[playerIndex].life--;
-              }
-            }
           }
         }
       }, {
