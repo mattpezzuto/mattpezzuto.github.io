@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLogBtn { grid-area: battleLogBtn}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'battleLogBtn playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n  \r\n  <div class=\"itemBattleLogBtn\">\r\n    <button class=\"button\" (click)=\"onToggleBattleLog()\">Toggle Battle Log</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n\r\n\r\n  \r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -1621,12 +1621,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var BattleScreenComponent = /*#__PURE__*/function () {
       function BattleScreenComponent() {
         _classCallCheck(this, BattleScreenComponent);
+
+        this.battleLogs = [];
+        this.battleLogsDetail = [];
+        this.battleLogsResult = [];
       }
 
       _createClass(BattleScreenComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.battleLogs = [];
+          this.battleLogsResult = [];
+          this.logsToggle = true;
           var playerIndexList = [];
 
           for (var i = 1; i < 8; i++) {
@@ -1644,37 +1650,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var slotTeam2 = randomPlayerList[1 + matchIndex * 2];
             console.log('slotTeam1=' + slotTeam1 + ' playerList[slotTeam1].name=' + this.localGameState.playerList[slotTeam1].name);
             console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
-            var battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[slotTeam1], this.localGameState.playerList[slotTeam2]);
-            battle.performBattle();
-            var winner = battle.getWinner();
-            this.battleLogs = battle.getBattleLogs();
-            var dmgDone1 = battle.getDamageDone(0);
-            var dmgDone2 = battle.getDamageDone(1);
+            this.battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[slotTeam1], this.localGameState.playerList[slotTeam2]);
+            this.battle.performBattle();
+            var winner = this.battle.getWinner();
+            this.battleLogsDetail = this.battle.getBattleLogs();
+            var dmgDone1 = this.battle.getDamageDone(0);
+            var dmgDone2 = this.battle.getDamageDone(1);
             console.log('dmgDones = ' + dmgDone1 + ', ' + dmgDone2); // this.localGameState.playerList[slotTeam1].
 
             var slotLoser;
             var slotWinner;
+            this.battleLogsResult.splice(0, this.battleLogsResult.length); // clear
 
             if (winner === 0) {
               slotLoser = slotTeam2;
               slotWinner = slotTeam1;
               this.localGameState.playerList[slotWinner].incrementWins();
               this.localGameState.playerList[slotLoser].incrementLoses();
-              this.battleLogs.push(this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
+              this.battleLogsResult.push(this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
               --this.localGameState.playerList[slotLoser].life;
             } else if (winner === 1) {
               slotLoser = slotTeam1;
               slotWinner = slotTeam2;
               this.localGameState.playerList[slotWinner].incrementWins();
               this.localGameState.playerList[slotLoser].incrementLoses();
-              this.battleLogs.push(this.localGameState.playerList[slotWinner].name + " (2)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
+              this.battleLogsResult.push(this.localGameState.playerList[slotWinner].name + " (2)" + " beats " + this.localGameState.playerList[slotLoser].name + ".");
               --this.localGameState.playerList[slotLoser].life;
             } else {
               this.localGameState.playerList[slotTeam1].incrementTies();
               this.localGameState.playerList[slotTeam2].incrementTies();
-              this.battleLogs.push(this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + ".");
+              this.battleLogsResult.push(this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + ".");
             }
           }
+
+          this.battleLogs = this.battleLogsResult;
         }
       }, {
         key: "shuffle",
@@ -1693,6 +1702,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return array;
+        }
+      }, {
+        key: "onToggleBattleLog",
+        value: function onToggleBattleLog() {
+          console.log('in battleLogs, len = ' + this.battleLogs.length);
+          console.log('battle = ' + this.battle.getWinner());
+
+          if (this.logsToggle) {
+            this.battleLogs = this.battleLogsDetail;
+            this.logsToggle = !this.logsToggle;
+          } else {
+            this.battleLogs = this.battleLogsResult;
+            this.logsToggle = !this.logsToggle;
+          }
         }
       }, {
         key: "onNext",
@@ -1922,6 +1945,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getBattleLogs",
         value: function getBattleLogs() {
+          console.log('bl.len = ' + this.battleLogs.length);
           return this.battleLogs;
         }
       }, {
