@@ -1706,16 +1706,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onToggleBattleLog",
         value: function onToggleBattleLog() {
-          console.log('in battleLogs, len = ' + this.battleLogs.length);
-          console.log('battle = ' + this.battle.getWinner());
-
           if (this.logsToggle) {
             this.battleLogs = this.battleLogsDetail;
-            this.logsToggle = !this.logsToggle;
           } else {
             this.battleLogs = this.battleLogsResult;
-            this.logsToggle = !this.logsToggle;
           }
+
+          this.logsToggle = !this.logsToggle;
         }
       }, {
         key: "onNext",

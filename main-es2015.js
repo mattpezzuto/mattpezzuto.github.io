@@ -985,16 +985,13 @@ let BattleScreenComponent = class BattleScreenComponent {
     }
     ;
     onToggleBattleLog() {
-        console.log('in battleLogs, len = ' + this.battleLogs.length);
-        console.log('battle = ' + this.battle.getWinner());
         if (this.logsToggle) {
             this.battleLogs = this.battleLogsDetail;
-            this.logsToggle = !this.logsToggle;
         }
         else {
             this.battleLogs = this.battleLogsResult;
-            this.logsToggle = !this.logsToggle;
         }
+        this.logsToggle = !this.logsToggle;
     }
     onNext() {
         ++this.localGameState.stage;
