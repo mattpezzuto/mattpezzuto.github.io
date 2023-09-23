@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen - Defeating the boss will give you an extra 100g</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n    <p>- Defeating the boss will give you an extra 100g</p>\r\n    <p>- Finishing in the bottom 4 in boss damage will result in a loss of 1 life</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n");
 
 /***/ }),
 
@@ -1795,6 +1795,8 @@ __webpack_require__.r(__webpack_exports__);
 let ScoreScreenComponent = class ScoreScreenComponent {
     constructor() {
         this.sortedPlayerList = [];
+        this.sortedBossDmgList = [];
+        this.bottomHalfList = [];
     }
     ngOnInit() {
         let currentPlayerList = [];
@@ -1807,10 +1809,28 @@ let ScoreScreenComponent = class ScoreScreenComponent {
             }
             return b.life - a.life;
         });
+        this.sortedBossDmgList = currentPlayerList.sort((a, b) => {
+            if (b.bossDmg === a.bossDmg) {
+                return 0;
+            }
+            return b.bossDmg - a.bossDmg;
+        });
         console.log('players creature list length = ' + this.localGameState.playerList[0].creatureList.length);
         // Print Player List
         for (var i = 0; i < this.localGameState.playerList[0].creatureList.length; i++) {
             console.log(this.localGameState.playerList[0].creatureList[i].getName());
+        }
+        for (var i = 0; i < this.sortedBossDmgList.length; i++) {
+            if (i >= 4) {
+                this.bottomHalfList.push(this.sortedBossDmgList[i].name);
+            }
+        }
+        for (var playerIndex = 0; playerIndex < this.localGameState.playerList.length; playerIndex++) {
+            for (var i = 0; i < this.bottomHalfList.length; i++) {
+                if (this.localGameState.playerList[playerIndex].name === this.bottomHalfList[i]) {
+                    this.localGameState.playerList[playerIndex].life--;
+                }
+            }
         }
     }
     onNext() {
