@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n    <p>- Defeating the boss will give you an extra 100g</p>\r\n    <p>- Finishing in the bottom 4 in boss damage will result in a loss of 1 life</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n.itemBattleLogBtn { grid-area: battleLogBtn}\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'battleLogBtn playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Screen</p>\r\n    <p>- Defeating the boss will give you an extra 100g</p>\r\n    <p>- Finishing in the bottom 4 in boss damage will result in a loss of 1 life</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemBattleLogBtn\">\r\n    <button class=\"button\" (click)=\"onToggleBattleLog()\">Toggle Battle Log</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -91,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'playerHeader playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Quest - Defeating the encounter will give you the quest reward</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemNextBtn { grid-area: nextBtn}\r\n.itemPlayerHeader { grid-area: playerHeader}\r\n.itemBattleLog { grid-area: battleLog}\r\n.itemBattleLogBtn { grid-area: battleLogBtn}\r\n\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header nextBtn'\r\n    'battleLogBtn playerHeader playerHeader playerHeader playerHeader'\r\n    'battleLog battleLog battleLog battleLog battleLog';\r\n\r\n  gap: 8px;\r\n  background-color: #2196F3;\r\n  padding: 8px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Battle Quest - Defeating the encounter will give you the quest reward</p>\r\n  </div>\r\n\r\n  <div class=\"itemNextBtn\">\r\n    <button class=\"button\" (click)=\"onNext()\">Next</button>\r\n  </div>\r\n\r\n  <div class=\"itemBattleLogBtn\">\r\n    <button class=\"button\" (click)=\"onToggleBattleLog()\">Toggle Battle Log</button>\r\n  </div>  \r\n\r\n  <div class=\"itemPlayerHeader\"><b>{{titleLog}}</b></div>\r\n  <div class=\"itemBattleLog\">\r\n    <ul>\r\n        <li *ngFor=\"let battleLog of battleLogs; let indeOfElement=index;\">\r\n            {{battleLog}}\r\n        </li>\r\n    </ul>\r\n  </div>\r\n  \r\n\r\n\r\n\r\n</div>\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n\r\n</body>\r\n</html>\r\n\r\n\r\n";
     /***/
   },
 
@@ -1223,12 +1223,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var BattleScreenBossComponent = /*#__PURE__*/function () {
       function BattleScreenBossComponent() {
         _classCallCheck(this, BattleScreenBossComponent);
+
+        this.battleLogs = [];
+        this.battleLogsDetail = [];
+        this.battleLogsResult = [];
+        this.logsToggle = true;
       }
 
       _createClass(BattleScreenBossComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.battleLogs = [];
+          this.battleLogsResult = [];
+          this.battleLogsDetail = [];
           var playerIndexList = [];
 
           for (var i = 1; i < 8; i++) {
@@ -1243,21 +1250,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.titleLog = "";
             this.battleLogs = [];
             var boss = new _player_model__WEBPACK_IMPORTED_MODULE_3__["Player"]("Boss", true);
-            boss.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_4__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_4__["CreatureType"].CarrionCrawler));
-            console.log('slotTeam1=' + playerIndex + ' playerList[playerIndex].name=' + this.localGameState.playerList[playerIndex].name); // console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
+            boss.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_4__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_4__["CreatureType"].CarrionCrawler)); // console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
 
             var battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[playerIndex], boss);
             battle.performBattle();
             var winner = battle.getWinner();
-            this.battleLogs = battle.getBattleLogs();
+            this.battleLogsDetail = battle.getBattleLogs();
             var dmgDone1 = battle.getDamageDone(0);
             var dmgDone2 = battle.getDamageDone(1);
             console.log('dmgDones = ' + dmgDone1 + ', ' + dmgDone2);
             this.localGameState.playerList[playerIndex].incrementDmgDone(dmgDone1);
+            this.battleLogsResult.splice(0, this.battleLogsResult.length); // clear
 
             if (winner === 0) {
+              this.battleLogsResult.push(this.localGameState.playerList[playerIndex].name + " (1)" + " beats " + boss.name + ".");
               this.localGameState.playerList[playerIndex].gold += 100;
-            } // var slotLoser:number;
+            } else if (winner === 1) {
+              this.battleLogsResult.push(boss.name + " (2)" + " beats " + this.localGameState.playerList[playerIndex].name + ".");
+            } else {
+              this.battleLogsResult.push(this.localGameState.playerList[playerIndex].name + " ties with " + boss.name + ".");
+            }
+
+            this.battleLogs = this.battleLogsResult; // var slotLoser:number;
             // var slotWinner:number
             // if (winner === 0 ) {
             //   slotLoser = slotTeam2;
@@ -1284,7 +1298,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //     this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + "."
             //   );
             // }
-
           }
         }
       }, {
@@ -1304,6 +1317,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return array;
+        }
+      }, {
+        key: "onToggleBattleLog",
+        value: function onToggleBattleLog() {
+          if (this.logsToggle) {
+            this.battleLogs = this.battleLogsDetail;
+          } else {
+            this.battleLogs = this.battleLogsResult;
+          }
+
+          this.logsToggle = !this.logsToggle;
         }
       }, {
         key: "onNext",
@@ -1413,12 +1437,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var BattleScreenQuestComponent = /*#__PURE__*/function () {
       function BattleScreenQuestComponent() {
         _classCallCheck(this, BattleScreenQuestComponent);
+
+        this.battleLogs = [];
+        this.battleLogsDetail = [];
+        this.battleLogsResult = [];
       }
 
       _createClass(BattleScreenQuestComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.battleLogs = [];
+          this.battleLogsResult = [];
+          this.battleLogsDetail = [];
+          this.logsToggle = true;
           var playerIndexList = [];
 
           for (var i = 1; i < 8; i++) {
@@ -1437,7 +1468,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var battle = new _battle__WEBPACK_IMPORTED_MODULE_3__["Battle"](this.localGameState.playerList[0], questPlayer);
           battle.performBattle();
           var winner = battle.getWinner();
-          this.battleLogs = battle.getBattleLogs();
+          this.battleLogsDetail = battle.getBattleLogs();
           var dmgDone1 = battle.getDamageDone(0);
           var dmgDone2 = battle.getDamageDone(1);
           console.log('dmgDones = ' + dmgDone1 + ', ' + dmgDone2);
@@ -1489,35 +1520,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               default:
                 console.log('error:  should never get here');
-            } // var slotLoser:number;
-            // var slotWinner:number
-            // if (winner === 0 ) {
-            //   slotLoser = slotTeam2;
-            //   slotWinner = slotTeam1;
-            //   this.localGameState.playerList[slotWinner].incrementWins();
-            //   this.localGameState.playerList[slotLoser].incrementLoses();
-            //   this.battleLogs.push(
-            //     this.localGameState.playerList[slotWinner].name + " (1)" + " beats " + this.localGameState.playerList[slotLoser].name + "."
-            //   );
-            // --this.localGameState.playerList[slotLoser].life;
-            // } else if (winner === 1) {
-            //     slotLoser = slotTeam1;
-            //     slotWinner = slotTeam2;
-            //     this.localGameState.playerList[slotWinner].incrementWins();
-            //     this.localGameState.playerList[slotLoser].incrementLoses();
-            //     this.battleLogs.push(
-            //       this.localGameState.playerList[slotWinner].name + " (2)" +  " beats " + this.localGameState.playerList[slotLoser].name + "."
-            //     );
-            //   --this.localGameState.playerList[slotLoser].life;
-            // } else {
-            //   this.localGameState.playerList[slotTeam1].incrementTies();
-            //   this.localGameState.playerList[slotTeam2].incrementTies();
-            //   this.battleLogs.push(
-            //     this.localGameState.playerList[slotTeam1].name + " ties with " + this.localGameState.playerList[slotTeam2].name + "."
-            //   );
-            // }
+            }
 
+            this.battleLogsResult.push(this.localGameState.playerList[0].name + " completes the quest.");
+          } else {
+            this.battleLogsResult.push(this.localGameState.playerList[0].name + " fails the quest.");
           }
+
+          this.battleLogs = this.battleLogsResult;
         }
       }, {
         key: "shuffle",
@@ -1536,6 +1546,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return array;
+        }
+      }, {
+        key: "onToggleBattleLog",
+        value: function onToggleBattleLog() {
+          if (this.logsToggle) {
+            this.battleLogs = this.battleLogsDetail;
+          } else {
+            this.battleLogs = this.battleLogsResult;
+          }
+
+          this.logsToggle = !this.logsToggle;
         }
       }, {
         key: "onNext",
