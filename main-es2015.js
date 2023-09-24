@@ -1069,13 +1069,13 @@ class Battle {
         var necrosOnTeam1 = this.getNumberOf(this.creatureListTeam1, _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Necromancer);
         var necrosOnTeam2 = this.getNumberOf(this.creatureListTeam2, _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Necromancer);
         for (var i = 0; i < necrosOnTeam1; i++) {
-            if (this.creatureListTeam1[i].currentStats.revivals > 0) {
-                this.creatureListTeam1[i].currentStats.revivals += necrosOnTeam1;
+            if (this.creatureListTeam1[i].getCurrentStats().revivals > 0) {
+                this.creatureListTeam1[i].getCurrentStats().revivals += necrosOnTeam1;
             }
         }
         for (var i = 0; i < necrosOnTeam2; i++) {
-            if (this.creatureListTeam2[i].currentStats.revivals > 0) {
-                this.creatureListTeam2[i].currentStats.revivals += necrosOnTeam2;
+            if (this.creatureListTeam2[i].getCurrentStats().revivals > 0) {
+                this.creatureListTeam2[i].getCurrentStats().revivals += necrosOnTeam2;
             }
         }
     }
@@ -1175,11 +1175,11 @@ class Battle {
     getBattleLogs() { console.log('bl.len = ' + this.battleLogs.length); return this.battleLogs; }
     processRevivals(team, playersName) {
         for (var i = 0; i < team.length; i++) {
-            console.log('revivals = ' + team[i].currentStats.revivals);
-            if (team[i].currentStats.life < 1 && team[i].currentStats.revivals > 0) {
-                team[i].currentStats.revivals--;
-                team[i].currentStats.life = team[i].creatureStats.life / 2;
-                console.log('new life total = ' + team[i].currentStats.life + ', ' + team[i].creatureStats.life);
+            console.log('revivals = ' + team[i].getCurrentStats().revivals);
+            if (team[i].getCurrentStats().life < 1 && team[i].getCurrentStats().revivals > 0) {
+                team[i].getCurrentStats().revivals--;
+                team[i].getCurrentStats().life = team[i].getCreatureStats().life / 2;
+                console.log('new life total = ' + team[i].getCurrentStats().life + ', ' + team[i].getCreatureStats().life);
                 this.battleLogs.push("..." + team[i].getName() + "(" + playersName + ") dies, but revives at half health.");
             }
         }
@@ -1188,7 +1188,7 @@ class Battle {
     getDeathsOnTeam(team) {
         var deaths = [];
         for (var i = 0; i < team.length; i++) {
-            if (team[i].currentStats.life < 1) {
+            if (team[i].getCurrentStats().life < 1) {
                 deaths.push(i);
             }
         }
@@ -1197,20 +1197,20 @@ class Battle {
     performAttack(isTurnTeam1, creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         if (creatureListAttackTeam[attackTeamPos].getArmorBuff() > 0 && creatureListAttackTeam[attackTeamPos].currentArmorBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
-                creatureListAttackTeam[i].currentStats.armor += creatureListAttackTeam[attackTeamPos].getArmorBuff();
+                creatureListAttackTeam[i].getCurrentStats().armor += creatureListAttackTeam[attackTeamPos].getArmorBuff();
             }
             creatureListAttackTeam[attackTeamPos].currentArmorBuffUsed = true;
             this.logBuffAction(attackPlayerName, creatureListAttackTeam[attackTeamPos].getName());
         }
         else if (creatureListAttackTeam[attackTeamPos].getLifeBuff() > 0 && creatureListAttackTeam[attackTeamPos].currentLifeBuffUsed == false) {
             for (var i = 0; i < creatureListAttackTeam.length; i++) {
-                creatureListAttackTeam[i].currentStats.life += creatureListAttackTeam[attackTeamPos].getLifeBuff();
+                creatureListAttackTeam[i].getCurrentStats().life += creatureListAttackTeam[attackTeamPos].getLifeBuff();
             }
             creatureListAttackTeam[attackTeamPos].currentLifeBuffUsed = true;
             this.logBuffAction(attackPlayerName, creatureListAttackTeam[attackTeamPos].getName());
         }
         else {
-            if (creatureListAttackTeam[attackTeamPos].creatureStats.attack > 0) {
+            if (creatureListAttackTeam[attackTeamPos].getCurrentStats().attack > 0) {
                 var dmgDone = this.performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
                 if (isTurnTeam1) {
                     this.pDamageDoneTeam1 += dmgDone;
@@ -1219,7 +1219,7 @@ class Battle {
                     this.pDamageDoneTeam2 += dmgDone;
                 }
             }
-            if (creatureListAttackTeam[attackTeamPos].creatureStats.magicAttack > 0) {
+            if (creatureListAttackTeam[attackTeamPos].getCurrentStats().magicAttack > 0) {
                 var dmgDone = this.performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
                 if (isTurnTeam1) {
                     this.mDamageDoneTeam1 += dmgDone;
@@ -1239,11 +1239,11 @@ class Battle {
         }
     }
     performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].creatureStats.dex);
+        var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[0].getCurrentStats().dex);
         var dmgDone = 0;
         if (!dodgedDefenderTeam) {
             dmgDone = this.getDamageAfterArmorCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
-            creatureListDefenderTeam[0].currentStats.life = creatureListDefenderTeam[0].currentStats.life - dmgDone;
+            creatureListDefenderTeam[0].getCurrentStats().life = creatureListDefenderTeam[0].getCurrentStats().life - dmgDone;
             this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmgDone + " physical damage to " +
                 creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
         }
@@ -1255,23 +1255,23 @@ class Battle {
     }
     performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         var dmg = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
-        creatureListDefenderTeam[0].currentStats.life = creatureListDefenderTeam[0].currentStats.life - dmg;
+        creatureListDefenderTeam[0].getCurrentStats().life = creatureListDefenderTeam[0].getCurrentStats().life - dmg;
         this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmg + " magic damage to " +
             creatureListDefenderTeam[0].getName() + "(" + defendPlayerName + ")");
         return dmg;
     }
     getDamageAfterArmorCheck(attackerTeam, attackTeamPos, defenderTeam) {
-        var dmg = attackerTeam[attackTeamPos].creatureStats.attack;
-        if (defenderTeam[0].currentStats.armor > 0) {
-            dmg = Math.max(dmg - defenderTeam[0].currentStats.armor, 0);
-            defenderTeam[0].currentStats.armor--;
+        var dmg = attackerTeam[attackTeamPos].getCurrentStats().attack;
+        if (defenderTeam[0].getCurrentStats().armor > 0) {
+            dmg = Math.max(dmg - defenderTeam[0].getCurrentStats().armor, 0);
+            defenderTeam[0].getCurrentStats().armor--;
         }
-        console.log('Reduced ' + (attackerTeam[attackTeamPos].creatureStats.attack - dmg) + ' damage');
+        console.log('Reduced ' + (attackerTeam[attackTeamPos].getCreatureStats().attack - dmg) + ' damage');
         return dmg;
     }
     getDamageAfterMagicResistCheck(attackerTeam, attackTeamPos, defenderTeam) {
-        var reducedDmg = attackerTeam[attackTeamPos].creatureStats.magicAttack * defenderTeam[0].creatureStats.magicResist / 100;
-        var dmg = attackerTeam[attackTeamPos].creatureStats.magicAttack - reducedDmg;
+        var reducedDmg = attackerTeam[attackTeamPos].getCreatureStats().magicAttack * defenderTeam[0].getCreatureStats().magicResist / 100;
+        var dmg = attackerTeam[attackTeamPos].getCreatureStats().magicAttack - reducedDmg;
         console.log('Reduced ' + reducedDmg + ' damage');
         return dmg;
     }
@@ -1294,7 +1294,7 @@ class Battle {
     getTotalDexForTeam(creatureList) {
         var total = 0;
         for (var i = 0; i < creatureList.length; i++) {
-            total += creatureList[i].creatureStats.dex;
+            total += creatureList[i].getCreatureStats().dex;
         }
     }
     logBuffAction(playerName, creatureName) {
@@ -1361,6 +1361,10 @@ class Creature {
         this.currentArmorBuffUsed = false;
         this.currentLifeBuffUsed = false;
     }
+    getCreatureStats() { return this.creatureStats; }
+    ;
+    getCurrentStats() { return this.creatureStats; }
+    ;
     getName() { return this.creatureStats.name; }
     ;
     getImage() { return this.creatureStats.image; }
