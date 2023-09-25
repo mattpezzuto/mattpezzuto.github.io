@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header header gold'\r\n    'menu shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'menu btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5 board6'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5 boardBtn6'\r\n    'menu hand1 hand2 hand3 hand4 hand5 hand6';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onUpgradeRecruitment()\">Upgrade Recruitment (100g)</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold && !isPartyFull()\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold && !isPartyFull()\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold && !isPartyFull()\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(3)\" (click)=\"onUnlock(3)\">Unlock (100g)</button>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(4) && !getIsSlotLocked(3)\" (click)=\"onUnlock(4)\">Unlock (100g)</button>\r\n  </div>  \r\n  <div class=\"itemBoard6\">\r\n    <p *ngIf=getPlayersBoard(5)> {{getPlayersBoard(5).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(5) && !getIsSlotLocked(4)\" (click)=\"onUnlock(5)\">Unlock (100g)</button>\r\n  </div>  \r\n\r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onSell(0)\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(1)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(2)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(3)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(4)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn6\">\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(5)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(5)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">Card1</div>  \r\n  <div class=\"itemHand2\">Card2</div>  \r\n  <div class=\"itemHand3\">Card33</div>  \r\n  <div class=\"itemHand4\">Card44</div>  \r\n  <div class=\"itemHand5\">Card55</div>\r\n  <div class=\"itemHand6\">Card66</div>\r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n<p>Turn = {{this.localGameState.turn}}</p>\r\n\r\n</body>\r\n</html>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<style>\r\n.itemHeader { grid-area: header; }\r\n.itemGold { grid-area: gold; }\r\n.itemMenu { grid-area: menu; }\r\n.itemBoard { grid-area: board; }\r\n.itemShop1 { grid-area: shop1; }\r\n.itemShop2 { grid-area: shop2; }\r\n.itemShop3 { grid-area: shop3; }\r\n.itemShopBtn1 { grid-area: btnShop1; }\r\n.itemShopBtn2 { grid-area: btnShop2; }\r\n.itemShopBtn3 { grid-area: btnShop3; }\r\n.itemBoard1 { grid-area: board1; }\r\n.itemBoard2 { grid-area: board2; }\r\n.itemBoard3 { grid-area: board3; }\r\n.itemBoard4 { grid-area: board4; }\r\n.itemBoard5 { grid-area: board5; }\r\n.itemBoardBtn1 { grid-area: boardBtn1; }\r\n.itemBoardBtn2 { grid-area: boardBtn2; }\r\n.itemBoardBtn3 { grid-area: boardBtn3; }\r\n.itemBoardBtn4 { grid-area: boardBtn4; }\r\n.itemBoardBtn5 { grid-area: boardBtn5; }\r\n.itemHand1 { grid-area: hand1; }\r\n.itemHand2 { grid-area: hand2; }\r\n.itemHand3 { grid-area: hand3; }\r\n.itemHand4 { grid-area: hand4; }\r\n.itemHand5 { grid-area: hand5; }\r\n\r\n.grid-container {\r\n  display: grid;\r\n  grid-template-areas:\r\n    'header header header header header header gold'\r\n    'menu shop1 shop1 shop2 shop2 shop3 shop3'\r\n    'menu btnShop1 btnShop1 btnShop2 btnShop2 btnShop3 btnShop3'\r\n\t  'menu board board board board board board'\r\n\t  'menu board1 board2 board3 board4 board5 board6'\r\n    'menu boardBtn1 boardBtn2 boardBtn3 boardBtn4 boardBtn5 boardBtn6'\r\n    'menu hand1 hand2 hand3 hand4 hand5 hand6';\r\n\r\n  gap: 10px;\r\n  background-color: #2196F3;\r\n  padding: 10px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: rgba(255, 255, 255, 0.8);\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n</style>\r\n</head>\r\n<body>\r\n\r\n<div class=\"grid-container\">\r\n  <div class=\"itemHeader\">\r\n    <p>Guilds of Greystone</p>\r\n    <p>Shop</p>\r\n  </div>\r\n  <div class=\"itemGold\">\r\n    <button class=\"button\" (click)=\"onNext()\">Proceed to Battle</button>\r\n    <p>Gold = {{this.localGameState.playerList[0].gold}} </p>\r\n    <!-- <p>Time Left:  {{this.counter}}</p> -->\r\n    <button class=\"button\" (click)=\"onUpgradeRecruitment()\">Upgrade Recruitment (100g)</button>\r\n    <button class=\"button\" (click)=\"onRefresh()\">Refresh ({{refreshCounter}})</button>\r\n    </div>\r\n\r\n  <div class=\"itemMenu\">\r\n    <p>Menu</p>\r\n  </div>\r\n \r\n\r\n  <div class=\"itemShop1\">\r\n    <p *ngIf=getTavernCreature(0)> {{getTavernCreature(0).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(0).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop2\">\r\n    <p *ngIf=getTavernCreature(1)> {{getTavernCreature(1).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(1).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShop3\">\r\n    <p *ngIf=getTavernCreature(2)> {{getTavernCreature(2).creature.getName()}}</p>\r\n    <img src=\"{{getTavernCreature(2).creature.getImage()}}\" style=\"width:120;height:150px;\">\r\n  </div>  \r\n  <div class=\"itemShopBtn1\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(0).sold && !isPartyFull()\" (click)=\"onBuy(0)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(0).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(0)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn2\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(1).sold && !isPartyFull()\" (click)=\"onBuy(1)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(1).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(1)\">Buy</button>\r\n  </div>\r\n  <div class=\"itemShopBtn3\">\r\n    <button class=\"button\" *ngIf=\"!getTavernCreature(2).sold && !isPartyFull()\" (click)=\"onBuy(2)\">Buy</button>\r\n    <button class=\"button\" *ngIf=\"getTavernCreature(2).sold || isPartyFull()\" [disabled] = \"true\" (click)=\"onBuy(2)\">Buy</button>\r\n  </div>\r\n\r\n  <div class=\"itemBoard\">Board</div>  \r\n  <div class=\"itemBoard1\">\r\n    <p *ngIf=getPlayersBoard(0)> {{getPlayersBoard(0).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard2\">\r\n    <p *ngIf=getPlayersBoard(1)> {{getPlayersBoard(1).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard3\">\r\n    <p *ngIf=getPlayersBoard(2)> {{getPlayersBoard(2).getName()}}</p>\r\n  </div>  \r\n  <div class=\"itemBoard4\">\r\n    <p *ngIf=getPlayersBoard(3)> {{getPlayersBoard(3).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(3)\" (click)=\"onUnlock(3)\">Unlock (100g)</button>\r\n  </div>  \r\n  <div class=\"itemBoard5\">\r\n    <p *ngIf=getPlayersBoard(4)> {{getPlayersBoard(4).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(4) && !getIsSlotLocked(3)\" (click)=\"onUnlock(4)\">Unlock (100g)</button>\r\n  </div>  \r\n  <div class=\"itemBoard6\">\r\n    <p *ngIf=getPlayersBoard(5)> {{getPlayersBoard(5).getName()}}</p>\r\n    <button class=\"button\" *ngIf=\"getIsSlotLocked(5) && !getIsSlotLocked(4)\" (click)=\"onUnlock(5)\">Unlock (100g)</button>\r\n  </div>  \r\n\r\n  \r\n  <div class=\"itemBoardBtn1\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\">>>></button>\r\n    <button class=\"button\" (click)=\"onSell(0)\">Sell</button>\r\n  </div>\r\n  <div class=\"itemBoardBtn2\">\r\n    <button class=\"button\" (click)=\"onMoveRight(0)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(1)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn3\">\r\n    <button class=\"button\" (click)=\"onMoveRight(1)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(2)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn4\">\r\n    <button class=\"button\" (click)=\"onMoveRight(2)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(3)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn5\">\r\n    <button class=\"button\" (click)=\"onMoveRight(3)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(4)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\">>>></button>\r\n  </div>\r\n  <div class=\"itemBoardBtn6\">\r\n    <button class=\"button\" (click)=\"onMoveRight(4)\"><<<</button>\r\n    <button class=\"button\" (click)=\"onSell(5)\">Sell</button>\r\n    <button class=\"button\" (click)=\"onMoveRight(5)\">>>></button>\r\n  </div>\r\n  <div class=\"itemHand1\">\r\n    <button *ngIf=\"isCreatureInSlot(0)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>  \r\n  <div class=\"itemHand2\">\r\n    <button *ngIf=\"isCreatureInSlot(1)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>\r\n  <div class=\"itemHand3\">\r\n    <button *ngIf=\"isCreatureInSlot(2)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>  \r\n  <div class=\"itemHand4\">\r\n    <button *ngIf=\"isCreatureInSlot(3)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>  \r\n  <div class=\"itemHand5\">\r\n    <button *ngIf=\"isCreatureInSlot(4)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>  \r\n  <div class=\"itemHand6\">\r\n    <button *ngIf=\"isCreatureInSlot(5)\" class=\"button\" (click)=\"toggleSelection()\">{{getCurrentSelection()}}</button>\r\n  </div>  \r\n\r\n</div>\r\n\r\n<p>Creature in Current Pool:  {{this.localGameState.creaturePool.tier1.length}}</p>\r\n<p>Turn = {{this.localGameState.turn}}</p>\r\n\r\n</body>\r\n</html>\r\n");
 
 /***/ }),
 
@@ -1065,6 +1065,24 @@ class Battle {
         }
         return total;
     }
+    getCharismaCount(team) {
+        var count = 0;
+        for (var i = 0; i < team.length; i++) {
+            if (team[i].getCreatureStats().charisma >= 16) {
+                count++;
+            }
+        }
+        console.log('returning char count = ' + count);
+        return count;
+    }
+    getRevivalCount(team) {
+        var count = 0;
+        for (var i = 0; i < team.length; i++) {
+            count += team[i].getCurrentStats().revivals;
+        }
+        console.log('returning char count = ' + count);
+        return count;
+    }
     preCombatBuffs() {
         var necrosOnTeam1 = this.getNumberOf(this.creatureListTeam1, _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Necromancer);
         var necrosOnTeam2 = this.getNumberOf(this.creatureListTeam2, _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Necromancer);
@@ -1076,6 +1094,28 @@ class Battle {
         for (var i = 0; i < necrosOnTeam2; i++) {
             if (this.creatureListTeam2[i].getCurrentStats().revivals > 0) {
                 this.creatureListTeam2[i].getCurrentStats().revivals += necrosOnTeam2;
+            }
+        }
+        var highCharismaCountTeam1 = this.getCharismaCount(this.creatureListTeam1);
+        var highCharismaCountTeam2 = this.getCharismaCount(this.creatureListTeam2);
+        var rivialCountTeam1 = this.getRevivalCount(this.creatureListTeam1);
+        var rivialCountTeam2 = this.getRevivalCount(this.creatureListTeam2);
+        for (var i = 0; i < this.creatureListTeam1.length; i++) {
+            if (this.creatureListTeam1[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Elaron) {
+                this.creatureListTeam1[i].getCurrentStats().magicAttack = 5 * highCharismaCountTeam1;
+            }
+            if (this.creatureListTeam1[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Mortiserion) {
+                this.creatureListTeam1[i].getCurrentStats().attack = 5 * rivialCountTeam1;
+                this.creatureListTeam1[1].getCurrentStats().magicAttack = rivialCountTeam1;
+            }
+        }
+        for (var i = 0; i < this.creatureListTeam2.length; i++) {
+            if (this.creatureListTeam2[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Elaron) {
+                this.creatureListTeam2[i].getCurrentStats().magicAttack = 5 * highCharismaCountTeam2;
+            }
+            if (this.creatureListTeam2[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Mortiserion) {
+                this.creatureListTeam2[i].getCurrentStats().attack = 5 * rivialCountTeam2;
+                this.creatureListTeam2[1].getCurrentStats().magicAttack = rivialCountTeam2;
             }
         }
     }
@@ -1270,8 +1310,8 @@ class Battle {
         return dmg;
     }
     getDamageAfterMagicResistCheck(attackerTeam, attackTeamPos, defenderTeam) {
-        var reducedDmg = attackerTeam[attackTeamPos].getCreatureStats().magicAttack * defenderTeam[0].getCreatureStats().magicResist / 100;
-        var dmg = attackerTeam[attackTeamPos].getCreatureStats().magicAttack - reducedDmg;
+        var reducedDmg = attackerTeam[attackTeamPos].getCurrentStats().magicAttack * defenderTeam[0].getCurrentStats().magicResist / 100;
+        var dmg = attackerTeam[attackTeamPos].getCurrentStats().magicAttack - reducedDmg;
         console.log('Reduced ' + reducedDmg + ' damage');
         return dmg;
     }
@@ -1337,20 +1377,21 @@ var CreatureType;
     CreatureType[CreatureType["Wizard"] = 12] = "Wizard";
     CreatureType[CreatureType["TreeOfLife"] = 13] = "TreeOfLife";
     CreatureType[CreatureType["Necromancer"] = 14] = "Necromancer";
-    CreatureType[CreatureType["Archer"] = 15] = "Archer";
-    CreatureType[CreatureType["Bard"] = 16] = "Bard";
-    CreatureType[CreatureType["DragonEgg"] = 17] = "DragonEgg";
-    CreatureType[CreatureType["DemonPortal"] = 18] = "DemonPortal";
-    CreatureType[CreatureType["Demon"] = 19] = "Demon";
-    CreatureType[CreatureType["Dragon"] = 20] = "Dragon";
-    CreatureType[CreatureType["FrostGiant"] = 21] = "FrostGiant";
-    CreatureType[CreatureType["InfestedRat"] = 22] = "InfestedRat";
-    CreatureType[CreatureType["PurpleWand"] = 23] = "PurpleWand";
-    CreatureType[CreatureType["GoldPile"] = 24] = "GoldPile";
-    CreatureType[CreatureType["Recruitment"] = 25] = "Recruitment";
-    CreatureType[CreatureType["Refresh"] = 26] = "Refresh";
-    CreatureType[CreatureType["NoRats"] = 27] = "NoRats";
-    CreatureType[CreatureType["Sorcerous"] = 28] = "Sorcerous";
+    CreatureType[CreatureType["Mortiserion"] = 15] = "Mortiserion";
+    CreatureType[CreatureType["Archer"] = 16] = "Archer";
+    CreatureType[CreatureType["Bard"] = 17] = "Bard";
+    CreatureType[CreatureType["DragonEgg"] = 18] = "DragonEgg";
+    CreatureType[CreatureType["DemonPortal"] = 19] = "DemonPortal";
+    CreatureType[CreatureType["Demon"] = 20] = "Demon";
+    CreatureType[CreatureType["Dragon"] = 21] = "Dragon";
+    CreatureType[CreatureType["FrostGiant"] = 22] = "FrostGiant";
+    CreatureType[CreatureType["InfestedRat"] = 23] = "InfestedRat";
+    CreatureType[CreatureType["PurpleWand"] = 24] = "PurpleWand";
+    CreatureType[CreatureType["GoldPile"] = 25] = "GoldPile";
+    CreatureType[CreatureType["Recruitment"] = 26] = "Recruitment";
+    CreatureType[CreatureType["Refresh"] = 27] = "Refresh";
+    CreatureType[CreatureType["NoRats"] = 28] = "NoRats";
+    CreatureType[CreatureType["Sorcerous"] = 29] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
 ;
 class Creature {
@@ -1363,7 +1404,7 @@ class Creature {
     }
     getCreatureStats() { return this.creatureStats; }
     ;
-    getCurrentStats() { return this.creatureStats; }
+    getCurrentStats() { return this.currentStats; }
     ;
     getName() { return this.creatureStats.name; }
     ;
@@ -1395,7 +1436,7 @@ class Creature {
     getCreatureStatsFor(creatureType) {
         var creatureStats = new _creatureStats__WEBPACK_IMPORTED_MODULE_1__["CreatureStats"]();
         var name, image;
-        var life, dex, armor, attack = 0, magicAttack = 0, magicResist = 0, revivals = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0, magicBuff = 0;
+        var life, dex, armor, charisma = 10, attack = 0, magicAttack = 0, magicResist = 0, revivals = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0, magicBuff = 0;
         switch (creatureType) {
             case CreatureType.Archer:
                 name = 'Archer';
@@ -1403,6 +1444,7 @@ class Creature {
                 attack = 12;
                 dex = 16;
                 armor = 1;
+                charisma = 12;
                 image = 'archer.png';
                 break;
             case CreatureType.Bard:
@@ -1411,6 +1453,8 @@ class Creature {
                 attack = 8;
                 dex = 12;
                 armor = 1;
+                charisma = 18;
+                lifeBuff = 5;
                 image = 'femalebard.png';
                 break;
             case CreatureType.CarrionCrawler:
@@ -1427,6 +1471,7 @@ class Creature {
                 attack = 12;
                 dex = 10;
                 armor = 4;
+                charisma = 4;
                 image = 'demon.png';
                 break;
             case CreatureType.DemonPortal:
@@ -1455,10 +1500,11 @@ class Creature {
                 break;
             case CreatureType.Elaron:
                 name = 'Elaron';
-                life = 16;
-                attack = 8;
-                magicAttack = 8;
+                life = 12;
+                attack = 5;
+                magicAttack = 5;
                 dex = 16;
+                charisma = 14;
                 armor = 2;
                 image = 'elaron.png';
                 magicResist = 50;
@@ -1524,6 +1570,15 @@ class Creature {
                 revivals = 1;
                 image = 'necromancer.png';
                 break;
+            case CreatureType.Mortiserion:
+                name = 'Mortiserion';
+                life = 16;
+                attack = 5;
+                dex = 8;
+                armor = 5;
+                revivals = 1;
+                image = 'mortiserion.png';
+                break;
             case CreatureType.Orc:
                 name = 'Orc';
                 life = 18;
@@ -1559,6 +1614,7 @@ class Creature {
                 dex = 8;
                 armor = 1;
                 magicResist = 10;
+                charisma = 16;
                 image = 'wizard.png';
                 break;
             case CreatureType.TreeOfLife:
@@ -1659,6 +1715,7 @@ class Creature {
         creatureStats.armorBuff = armorBuff;
         creatureStats.magicBuff = magicBuff;
         creatureStats.revivals = revivals;
+        creatureStats.charisma = charisma;
         return creatureStats;
     }
 }
@@ -2129,6 +2186,8 @@ let TavernAppComponent = class TavernAppComponent {
     constructor() {
         this.counter = 15;
         this.refreshCounter = 0;
+        this.selections = ["Balanced Gear", "Taunt Gear", "Attack Gear"];
+        this.currentSelection = 0;
         console.log('in tavern consturctor');
         this.tavernCreatureList = [];
         // timer(1000,1000).pipe(
@@ -2181,6 +2240,14 @@ let TavernAppComponent = class TavernAppComponent {
     }
     getTavernCreature(index) {
         return this.tavernCreatureList[index];
+    }
+    isCreatureInSlot(index) {
+        var result = false;
+        if (this.localGameState.playerList[0].creatureList.length - 1 >= index) {
+            result = true;
+        }
+        console.log('return ' + result);
+        return result;
     }
     getPlayersBoard(index) {
         if (this.localGameState.playerList[0].creatureList.length - 1 >= index) {
@@ -2260,35 +2327,45 @@ let TavernAppComponent = class TavernAppComponent {
         switch (this.localGameState.turn) {
             case 1:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 2:
+                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                break;
             case 3:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 4:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 5:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
-                break;
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
             case 6:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
-                break;
-            case 7:
-                this.localGameState.playerList[1].creatureList.splice(0, 1);
-                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife));
+                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             default:
-                this.localGameState.playerList[1].creatureList.splice(0, 6);
+                this.localGameState.playerList[1].creatureList.splice(0, this.localGameState.playerList[1].creatureList.length);
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife));
-                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife));
+                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Mortiserion));
+                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
-                this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
+                this.localGameState.playerList[2].creatureList.splice(0, this.localGameState.playerList[2].creatureList.length);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Bard));
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Bard));
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Elaron));
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
                 break;
         }
-        for (var i = 2; i < this.localGameState.playerList.length; i++) {
+        for (var i = 3; i < this.localGameState.playerList.length; i++) {
             if (this.localGameState.playerList[i].creatureList.length < 8) {
                 let slot = this.getRandomSlot(1);
                 this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
@@ -2305,6 +2382,7 @@ let TavernAppComponent = class TavernAppComponent {
         if (this.tavernCreatureList[slot].creature.getName() === 'Demon Portal') {
             console.log('adding 3 demons');
             this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Demon);
+            this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Mortiserion);
             // this.localGameState.playerList[0].creatureList.push(new Creature('Imp', 2, 2, 'blank.jpg'));
         }
         else if (this.tavernCreatureList[slot].creature.getName() === 'Dragon Egg') {
@@ -2332,6 +2410,16 @@ let TavernAppComponent = class TavernAppComponent {
             size = this.localGameState.creaturePool.tier1.length;
         }
         return Math.floor((Math.random() * size) + 0);
+    }
+    // getRandomCreature(tier: number) : Creature {
+    //   var creature: Creature = this.localGameState.creaturePool.tier1[slot];
+    //   return creature;
+    // }
+    getCurrentSelection() {
+        return this.selections[this.currentSelection];
+    }
+    toggleSelection() {
+        this.currentSelection = (this.currentSelection + 1) % this.selections.length;
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
