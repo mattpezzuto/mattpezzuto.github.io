@@ -1023,6 +1023,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Necromancer);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Archer);
           this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Bard);
+          this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].TrojanHorse);
           this.gameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Genie);
           this.gameState.creaturePool.addCreatureToPool(1, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Sorcerous);
           return creatureList;
@@ -1251,7 +1252,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var boss = new _player_model__WEBPACK_IMPORTED_MODULE_3__["Player"]("Boss", true);
             boss.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_4__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_4__["CreatureType"].CarrionCrawler)); // console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
 
-            var battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[playerIndex], boss);
+            var battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[playerIndex], boss, this.localGameState.creaturePool.getCreaturePool());
             battle.performBattle();
             var winner = battle.getWinner();
             this.battleLogsDetail = battle.getBattleLogs();
@@ -1464,7 +1465,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             questPlayer.creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_5__["Creature"](this.localGameState.playerList[0].questCreature.creatureType));
           }
 
-          var battle = new _battle__WEBPACK_IMPORTED_MODULE_3__["Battle"](this.localGameState.playerList[0], questPlayer);
+          var battle = new _battle__WEBPACK_IMPORTED_MODULE_3__["Battle"](this.localGameState.playerList[0], questPlayer, this.localGameState.creaturePool.getCreaturePool());
           battle.performBattle();
           var winner = battle.getWinner();
           this.battleLogsDetail = battle.getBattleLogs();
@@ -1670,7 +1671,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var slotTeam2 = randomPlayerList[1 + matchIndex * 2];
             console.log('slotTeam1=' + slotTeam1 + ' playerList[slotTeam1].name=' + this.localGameState.playerList[slotTeam1].name);
             console.log('slotTeam2=' + slotTeam2 + ' playerList[slotTeam2].name=' + this.localGameState.playerList[slotTeam2].name);
-            this.battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[slotTeam1], this.localGameState.playerList[slotTeam2]);
+            this.battle = new _battle__WEBPACK_IMPORTED_MODULE_2__["Battle"](this.localGameState.playerList[slotTeam1], this.localGameState.playerList[slotTeam2], this.localGameState.creaturePool.getCreaturePool());
             this.battle.performBattle();
             var winner = this.battle.getWinner();
             this.battleLogsDetail = this.battle.getBattleLogs();
@@ -1796,7 +1797,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./src/app/gear.ts");
 
     var Battle = /*#__PURE__*/function () {
-      function Battle(player1, player2) {
+      function Battle(player1, player2, creaturePool) {
         _classCallCheck(this, Battle);
 
         this.battleLogs = [];
@@ -1806,8 +1807,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.mDamageDoneTeam1 = 0;
         this.pDamageDoneTeam2 = 0;
         this.mDamageDoneTeam2 = 0;
+        this.creaturePool = [];
         this.player1 = player1;
         this.player2 = player2;
+        this.creaturePool = creaturePool;
       }
 
       _createClass(Battle, [{
@@ -1893,17 +1896,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
-        key: "performBattle",
-        value: function performBattle() {
+        key: "getNumberOfRats",
+        value: function getNumberOfRats() {
+          var numberOfRats = 0;
+
+          for (var i = 0; i < this.creaturePool.length; i++) {
+            if (this.creaturePool[i].creatureType === _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].InfestedRat) {
+              numberOfRats++;
+            }
+          }
+
+          return numberOfRats;
+        }
+      }, {
+        key: "getTeam",
+        value: function getTeam(team) {
           var _this = this;
 
+          var newTeam = [];
+          team.forEach(function (val) {
+            if (val.creatureType !== _creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].TrojanHorse) {
+              newTeam.push(val);
+            } else {
+              var trojanHorsePool = [];
+              var numberOfRatsInCreaturePool = _this.getNumberOfRats() + 3;
+
+              for (var i = 0; i < numberOfRatsInCreaturePool; i++) {
+                trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].InfestedRat));
+              }
+
+              trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Kobold));
+              trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Gnome));
+              trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Orc));
+              trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Goblin));
+
+              if (_this.creaturePool.length > 40) {
+                trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Archer));
+              }
+
+              if (_this.creaturePool.length > 45) {
+                trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Archer));
+              }
+
+              if (_this.creaturePool.length > 50) {
+                trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Dragon));
+              }
+
+              if (_this.creaturePool.length > 55) {
+                trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Dragon));
+              }
+
+              for (var i = 0; i < 3; i++) {
+                var slot = Math.floor(Math.random() * trojanHorsePool.length);
+                newTeam.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](trojanHorsePool[slot].creatureType));
+
+                _this.battleLogs.push(trojanHorsePool[slot].getName() + " pops of out the Trojan Horse.");
+              }
+            }
+          });
+          console.log('returning new team len = ' + newTeam.length);
+          return newTeam;
+        }
+      }, {
+        key: "performBattle",
+        value: function performBattle() {
           // For some reason val=>Object.get creates a copy, but doesn't copy the methods that go along with the class
-          this.player1.creatureList.forEach(function (val) {
-            return _this.creatureListTeam1.push(val);
-          });
-          this.player2.creatureList.forEach(function (val) {
-            return _this.creatureListTeam2.push(val);
-          });
+          this.creatureListTeam1 = this.getTeam(this.player1.creatureList);
+          this.creatureListTeam2 = this.getTeam(this.player2.creatureList);
           var done = false;
           this.titleLog = this.player1.name + "(" + this.player1.creatureList.length + ")  vs. " + this.player2.name + "(" + this.player2.creatureList.length + ")";
 
@@ -2276,7 +2335,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       CreatureType[CreatureType["Recruitment"] = 26] = "Recruitment";
       CreatureType[CreatureType["Refresh"] = 27] = "Refresh";
       CreatureType[CreatureType["NoRats"] = 28] = "NoRats";
-      CreatureType[CreatureType["Sorcerous"] = 29] = "Sorcerous";
+      CreatureType[CreatureType["TrojanHorse"] = 29] = "TrojanHorse";
+      CreatureType[CreatureType["Sorcerous"] = 30] = "Sorcerous";
     })(CreatureType || (CreatureType = {}));
 
     ;
@@ -2526,6 +2586,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               image = 'mortiserion.png';
               break;
 
+            case CreatureType.TrojanHorse:
+              name = 'Trojan Horse';
+              life = 1;
+              attack = 1;
+              dex = 1;
+              armor = 1;
+              image = 'trojanhorse.png';
+              break;
+
             case CreatureType.Orc:
               name = 'Orc';
               life = 18;
@@ -2745,6 +2814,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log('before:' + this.tier1.length);
           this.tier1.splice(index, 1);
           console.log('after:' + this.tier1.length);
+        }
+      }, {
+        key: "getCreaturePool",
+        value: function getCreaturePool() {
+          return this.tier1;
         }
       }]);
 
@@ -2978,7 +3052,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.name = name;
         this.life = 40;
         this.gold = 0;
-        this.refreshCounter = 3;
+        this.refreshCounter = 33;
         this.computerControlled = computerControlled;
         this.creatureList = [];
         this.wins = 0;
