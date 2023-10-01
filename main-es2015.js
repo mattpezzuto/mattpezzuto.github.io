@@ -1158,11 +1158,13 @@ class Battle {
                 if (this.creaturePool.length > 55) {
                     trojanHorsePool.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_1__["CreatureType"].Dragon));
                 }
+                var unitList = [];
                 for (var i = 0; i < 3; i++) {
                     var slot = Math.floor(Math.random() * trojanHorsePool.length);
                     newTeam.push(new _creature__WEBPACK_IMPORTED_MODULE_1__["Creature"](trojanHorsePool[slot].creatureType));
-                    this.battleLogs.push(trojanHorsePool[slot].getName() + " pops of out the Trojan Horse.");
+                    unitList.push(newTeam[i].getName());
                 }
+                this.battleLogs.push("The following creatures jump out of the trojan horse:  " + unitList[0] + ", " + unitList[1] + ", & " + unitList[2]);
             }
         });
         console.log('returning new team len = ' + newTeam.length);
@@ -1892,7 +1894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var GearType;
 (function (GearType) {
-    GearType["Balanced"] = "Balacned";
+    GearType["Balanced"] = "Balanced";
     GearType["Attack"] = "Attack";
     GearType["Taunt"] = "Taunt";
 })(GearType || (GearType = {}));
@@ -1964,7 +1966,7 @@ class Player {
         this.name = name;
         this.life = 40;
         this.gold = 0;
-        this.refreshCounter = 33;
+        this.refreshCounter = 3;
         this.computerControlled = computerControlled;
         this.creatureList = [];
         this.wins = 0;
