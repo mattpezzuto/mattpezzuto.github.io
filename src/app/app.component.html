@@ -12,5 +12,17 @@
 </div>
 
 <div *ngIf="this.gameState.stage === 4">
+  <app-battle-screen-boss [localGameState]=gameState></app-battle-screen-boss>
+</div>
+
+<div *ngIf="this.gameState.stage === 5">
+  <app-select-quest [localGameState]=gameState></app-select-quest>
+</div>
+
+<div *ngIf="this.gameState.stage === 6">
+  <app-battle-screen-quest [localGameState]=gameState></app-battle-screen-quest>
+</div>
+
+<div *ngIf="this.gameState.stage === 7">
   <app-score-screen [localGameState]=gameState></app-score-screen>
 </div>

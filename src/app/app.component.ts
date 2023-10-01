@@ -34,7 +34,7 @@ export class AppComponent {
     this.gameState = new GameState(0, 1, playerList, emptyCreaturePool);
     this.createInitialCreaturePool();
     this.gameState.playerList = playerList;
-    this.gameState.turn = 0;
+    this.gameState.turn = 1;
     this.gameState.stage = 1;
   }
 
@@ -46,27 +46,27 @@ export class AppComponent {
     this.log += `Checkbox ${element.value} was ${element.checked ? '' : 'un'}checked\n`;
   }
 
- 
+
   createInitialCreaturePool(): Creature[] {
     let creatureList: Creature[] = [];
-    console.log('herea');
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Gnome);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Goblin);
+    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Kobold);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Dwarf);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.SkeletonWarrior);
-    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Elf);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Orc);
-    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Paladin);
+    this.gameState.creaturePool.addCreatureToPool(8, CreatureType.InfestedRat);
+    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.FrostGiant);
+
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.TreeOfLife);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Wizard);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Necromancer);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Archer);
     this.gameState.creaturePool.addCreatureToPool(3, CreatureType.Bard);
+    this.gameState.creaturePool.addCreatureToPool(3, CreatureType.TrojanHorse);
 
     this.gameState.creaturePool.addCreatureToPool(1, CreatureType.Genie);
     this.gameState.creaturePool.addCreatureToPool(1, CreatureType.Sorcerous);
-    this.gameState.creaturePool.addCreatureToPool(1, CreatureType.DragonEgg);
-    this.gameState.creaturePool.addCreatureToPool(1, CreatureType.DemonPortal);
 
     return creatureList;
   }

@@ -1,5 +1,6 @@
-import { Player } from './Player.model';
+
 import { CreaturePool } from './creaturePool.model';
+import { Player } from './player.model';
 
 export class GameState {
     stage: number;

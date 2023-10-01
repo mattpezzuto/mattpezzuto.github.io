@@ -7,7 +7,10 @@ import { TavernAppComponent } from './tavern-app/tavern-app.component';
 import { TitleScreenAppComponent } from './title-screen-app/title-screen-app.component';
 
 import { BattleScreenComponent } from './battle-screen/battle-screen.component';
+import { BattleScreenBossComponent } from './battle-screen-boss/battle-screen-boss.component';
+import { BattleScreenQuestComponent } from './battle-screen-quest/battle-screen-quest.component';
 import { ScoreScreenComponent } from './score-screen/score-screen.component';
+import { SelectQuestComponent } from './select-quest/select-quest.component';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import { ScoreScreenComponent } from './score-screen/score-screen.component';
     TavernAppComponent,
     TitleScreenAppComponent,
     BattleScreenComponent,
+    BattleScreenBossComponent,
+    BattleScreenQuestComponent,
+    SelectQuestComponent,
     ScoreScreenComponent
   ],
   imports: [
