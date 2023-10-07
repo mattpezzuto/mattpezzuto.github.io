@@ -2332,6 +2332,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _creature__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../creature */ "./src/app/creature.ts");
 /* harmony import */ var _TavernCreature__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../TavernCreature */ "./src/app/TavernCreature.ts");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./src/app/utils.ts");
+/* harmony import */ var _gear__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../gear */ "./src/app/gear.ts");
+
 
 
 
@@ -2519,9 +2521,27 @@ let TavernAppComponent = class TavernAppComponent {
                 this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
                 this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
                 this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Wizard));
+                this.localGameState.playerList[3].creatureList.splice(0, this.localGameState.playerList[3].creatureList.length);
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Bard));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Bard));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TrojanHorse));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TrojanHorse));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TrojanHorse));
+                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                this.localGameState.playerList[3].creatureList.push(tempCreature);
+                this.localGameState.playerList[4].creatureList.splice(0, this.localGameState.playerList[3].creatureList.length);
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Paladin));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                this.localGameState.playerList[4].creatureList.push(tempCreature);
+                this.localGameState.playerList[4].creatureList.push(tempCreature);
                 break;
         }
-        for (var i = 3; i < this.localGameState.playerList.length; i++) {
+        for (var i = 5; i < this.localGameState.playerList.length; i++) {
             if (this.localGameState.playerList[i].creatureList.length < 8) {
                 let slot = this.getRandomSlot(1);
                 this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
