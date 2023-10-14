@@ -1346,10 +1346,15 @@ class Battle {
         var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[targetIndex].getCurrentStats().dex);
         var dmgDone = 0;
         if (!dodgedDefenderTeam) {
-            dmgDone = this.getDamageAfterArmorCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
+            dmgDone = this.getDamageAfterArmorCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex);
+            dmgDone = dmgDone * (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100));
+            console.log('equation = ' + (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100)));
             creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - dmgDone;
             this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmgDone + " physical damage to " +
                 creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
+            if (creatureListAttackTeam[attackTeamPos].getCreatureStats().woundAttack > 0) {
+                creatureListDefenderTeam[targetIndex].setWoundedDebuff(creatureListDefenderTeam[targetIndex].getWoundedDebuff() + creatureListAttackTeam[attackTeamPos].getCreatureStats().woundAttack);
+            }
         }
         else {
             this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") attacks " +
@@ -1359,23 +1364,24 @@ class Battle {
     }
     performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
         var targetIndex = this.getTargetIndex(creatureListDefenderTeam);
-        var dmg = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam);
-        creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - dmg;
-        this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmg + " magic damage to " +
+        var dmgDone = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex);
+        dmgDone = dmgDone * (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100));
+        creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - dmgDone;
+        this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmgDone + " magic damage to " +
             creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
-        return dmg;
+        return dmgDone;
     }
-    getDamageAfterArmorCheck(attackerTeam, attackTeamPos, defenderTeam) {
+    getDamageAfterArmorCheck(attackerTeam, attackTeamPos, defenderTeam, targetIndex) {
         var dmg = attackerTeam[attackTeamPos].getCurrentStats().attack;
-        if (defenderTeam[0].getCurrentStats().armor > 0) {
-            dmg = Math.max(dmg - defenderTeam[0].getCurrentStats().armor, 0);
-            defenderTeam[0].getCurrentStats().armor--;
+        if (defenderTeam[targetIndex].getCurrentStats().armor > 0) {
+            dmg = Math.max(dmg - defenderTeam[targetIndex].getCurrentStats().armor, 0);
+            defenderTeam[targetIndex].getCurrentStats().armor--;
         }
         console.log('Reduced ' + (attackerTeam[attackTeamPos].getCreatureStats().attack - dmg) + ' damage');
         return dmg;
     }
-    getDamageAfterMagicResistCheck(attackerTeam, attackTeamPos, defenderTeam) {
-        var reducedDmg = attackerTeam[attackTeamPos].getCurrentStats().magicAttack * defenderTeam[0].getCurrentStats().magicResist / 100;
+    getDamageAfterMagicResistCheck(attackerTeam, attackTeamPos, defenderTeam, targetIndex) {
+        var reducedDmg = attackerTeam[attackTeamPos].getCurrentStats().magicAttack * defenderTeam[targetIndex].getCurrentStats().magicResist / 100;
         var dmg = attackerTeam[attackTeamPos].getCurrentStats().magicAttack - reducedDmg;
         console.log('Reduced ' + reducedDmg + ' damage');
         return dmg;
@@ -1486,6 +1492,10 @@ class Creature {
         this.currentArmorBuffUsed = false;
         this.currentLifeBuffUsed = false;
     }
+    getWoundedDebuff() { return this.currentStats.woundedDebuff; }
+    setWoundedDebuff(woundedDebuff) {
+        this.currentStats.woundedDebuff = woundedDebuff;
+    }
     setArmorBuff(buff) {
         this.creatureStats.armorBuff = buff;
     }
@@ -1501,7 +1511,7 @@ class Creature {
     getCreatureStatsFor(creatureType) {
         var creatureStats = new _creatureStats__WEBPACK_IMPORTED_MODULE_1__["CreatureStats"]();
         var name, image;
-        var life, dex, armor, charisma = 10, attack = 0, magicAttack = 0, magicResist = 0, revivals = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0, magicBuff = 0;
+        var life, dex, armor, charisma = 10, attack = 0, magicAttack = 0, magicResist = 0, revivals = 0, woundAttack = 0, magicResistBuff = 0, armorBuff = 0, lifeBuff = 0, magicBuff = 0;
         switch (creatureType) {
             case CreatureType.Archer:
                 name = 'Archer';
@@ -1537,6 +1547,7 @@ class Creature {
                 dex = 10;
                 armor = 4;
                 charisma = 4;
+                woundAttack = 30;
                 image = 'demon.png';
                 break;
             case CreatureType.DemonPortal:
@@ -1561,6 +1572,7 @@ class Creature {
                 attack = 10;
                 dex = 6;
                 armor = 3;
+                woundAttack = 10;
                 image = 'dwarfwarrior.png';
                 break;
             case CreatureType.Elaron:
@@ -1659,6 +1671,7 @@ class Creature {
                 dex = 8;
                 armor = 3;
                 image = 'orc.png';
+                woundAttack = 20;
                 break;
             case CreatureType.Paladin:
                 name = 'Paladin';
@@ -1789,6 +1802,8 @@ class Creature {
         creatureStats.magicBuff = magicBuff;
         creatureStats.revivals = revivals;
         creatureStats.charisma = charisma;
+        creatureStats.woundAttack = woundAttack;
+        creatureStats.woundedDebuff = 0;
         return creatureStats;
     }
 }
@@ -2486,25 +2501,43 @@ let TavernAppComponent = class TavernAppComponent {
             case 1:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 2:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 3:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 4:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             case 5:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
             case 6:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
                 this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
                 break;
             default:
                 this.localGameState.playerList[1].creatureList.splice(0, this.localGameState.playerList[1].creatureList.length);
@@ -2530,7 +2563,7 @@ let TavernAppComponent = class TavernAppComponent {
                 var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
                 tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
                 this.localGameState.playerList[3].creatureList.push(tempCreature);
-                this.localGameState.playerList[4].creatureList.splice(0, this.localGameState.playerList[3].creatureList.length);
+                this.localGameState.playerList[4].creatureList.splice(0, this.localGameState.playerList[4].creatureList.length);
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Paladin));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
@@ -2539,9 +2572,18 @@ let TavernAppComponent = class TavernAppComponent {
                 tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
                 this.localGameState.playerList[4].creatureList.push(tempCreature);
                 this.localGameState.playerList[4].creatureList.push(tempCreature);
+                this.localGameState.playerList[5].creatureList.splice(0, this.localGameState.playerList[5].creatureList.length);
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
+                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                this.localGameState.playerList[5].creatureList.push(tempCreature);
+                this.localGameState.playerList[5].creatureList.push(tempCreature);
                 break;
         }
-        for (var i = 5; i < this.localGameState.playerList.length; i++) {
+        for (var i = 6; i < this.localGameState.playerList.length; i++) {
             if (this.localGameState.playerList[i].creatureList.length < 8) {
                 let slot = this.getRandomSlot(1);
                 this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
