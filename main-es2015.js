@@ -512,6 +512,7 @@ let AppComponent = class AppComponent {
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Orc);
         this.gameState.creaturePool.addCreatureToPool(8, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].InfestedRat);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].FrostGiant);
+        this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].MossGolem);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].TreeOfLife);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Wizard);
         this.gameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_5__["CreatureType"].Necromancer);
@@ -1450,20 +1451,21 @@ var CreatureType;
     CreatureType[CreatureType["Necromancer"] = 14] = "Necromancer";
     CreatureType[CreatureType["Mortiserion"] = 15] = "Mortiserion";
     CreatureType[CreatureType["Archer"] = 16] = "Archer";
-    CreatureType[CreatureType["Bard"] = 17] = "Bard";
-    CreatureType[CreatureType["DragonEgg"] = 18] = "DragonEgg";
-    CreatureType[CreatureType["DemonPortal"] = 19] = "DemonPortal";
-    CreatureType[CreatureType["Demon"] = 20] = "Demon";
-    CreatureType[CreatureType["Dragon"] = 21] = "Dragon";
-    CreatureType[CreatureType["FrostGiant"] = 22] = "FrostGiant";
-    CreatureType[CreatureType["InfestedRat"] = 23] = "InfestedRat";
-    CreatureType[CreatureType["PurpleWand"] = 24] = "PurpleWand";
-    CreatureType[CreatureType["GoldPile"] = 25] = "GoldPile";
-    CreatureType[CreatureType["Recruitment"] = 26] = "Recruitment";
-    CreatureType[CreatureType["Refresh"] = 27] = "Refresh";
-    CreatureType[CreatureType["NoRats"] = 28] = "NoRats";
-    CreatureType[CreatureType["TrojanHorse"] = 29] = "TrojanHorse";
-    CreatureType[CreatureType["Sorcerous"] = 30] = "Sorcerous";
+    CreatureType[CreatureType["MossGolem"] = 17] = "MossGolem";
+    CreatureType[CreatureType["Bard"] = 18] = "Bard";
+    CreatureType[CreatureType["DragonEgg"] = 19] = "DragonEgg";
+    CreatureType[CreatureType["DemonPortal"] = 20] = "DemonPortal";
+    CreatureType[CreatureType["Demon"] = 21] = "Demon";
+    CreatureType[CreatureType["Dragon"] = 22] = "Dragon";
+    CreatureType[CreatureType["FrostGiant"] = 23] = "FrostGiant";
+    CreatureType[CreatureType["InfestedRat"] = 24] = "InfestedRat";
+    CreatureType[CreatureType["PurpleWand"] = 25] = "PurpleWand";
+    CreatureType[CreatureType["GoldPile"] = 26] = "GoldPile";
+    CreatureType[CreatureType["Recruitment"] = 27] = "Recruitment";
+    CreatureType[CreatureType["Refresh"] = 28] = "Refresh";
+    CreatureType[CreatureType["NoRats"] = 29] = "NoRats";
+    CreatureType[CreatureType["TrojanHorse"] = 30] = "TrojanHorse";
+    CreatureType[CreatureType["Sorcerous"] = 31] = "Sorcerous";
 })(CreatureType || (CreatureType = {}));
 ;
 class Creature {
@@ -1638,6 +1640,15 @@ class Creature {
                 magicResist = 10;
                 image = 'kobold.png';
                 break;
+            case CreatureType.MossGolem:
+                name = 'Moss Golem';
+                life = 50;
+                attack = 3;
+                dex = 12;
+                armor = 5;
+                magicResist = 25;
+                image = 'mossgolem.png';
+                break;
             case CreatureType.Necromancer:
                 name = 'Necromancer';
                 life = 16;
@@ -1708,7 +1719,7 @@ class Creature {
                 life = 30;
                 attack = 2;
                 dex = 8;
-                armor = 1;
+                armor = 5;
                 revivals = 1;
                 image = 'treeoflife.png';
                 lifeBuff = 5;
@@ -2568,7 +2579,7 @@ let TavernAppComponent = class TavernAppComponent {
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
-                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].MossGolem);
                 tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
                 this.localGameState.playerList[4].creatureList.push(tempCreature);
                 this.localGameState.playerList[4].creatureList.push(tempCreature);
@@ -2600,7 +2611,7 @@ let TavernAppComponent = class TavernAppComponent {
         if (this.tavernCreatureList[slot].creature.getName() === 'Demon Portal') {
             console.log('adding 3 demons');
             this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Demon);
-            this.localGameState.creaturePool.addCreatureToPool(3, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Mortiserion);
+            this.localGameState.creaturePool.addCreatureToPool(2, _creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Mortiserion);
             // this.localGameState.playerList[0].creatureList.push(new Creature('Imp', 2, 2, 'blank.jpg'));
         }
         else if (this.tavernCreatureList[slot].creature.getName() === 'Dragon Egg') {
