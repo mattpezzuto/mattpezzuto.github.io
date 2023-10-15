@@ -1218,6 +1218,11 @@ class Battle {
             this.creatureListTeam2 = this.processRevivals(this.creatureListTeam2, this.player2.name);
             var deathsOnTeam1 = this.getDeathsOnTeam(this.creatureListTeam1);
             var deathsOnTeam2 = this.getDeathsOnTeam(this.creatureListTeam2);
+            if (deathsOnTeam1.length > 1) {
+                for (var i = 0; i < this.creatureListTeam1.length; i++) {
+                    console.log('deathsOnTeam1 ' + i + ': ' + this.creatureListTeam1[i].getName() + ' life = ' + this.creatureListTeam1[i].getCurrentStats().life);
+                }
+            }
             console.log('deathsOnTeam1= ' + deathsOnTeam1);
             console.log('deathsOnTeam2= ' + deathsOnTeam2);
             for (var i = deathsOnTeam1.length; i > 0; i--) {
@@ -1290,23 +1295,38 @@ class Battle {
             this.logBuffAction(attackPlayerName, creatureListAttackTeam[attackTeamPos].getName());
         }
         else {
+            var targetIndex = this.getTargetIndex(creatureListDefenderTeam);
+            var pDmgDone = 0, mDmgDone = 0;
             if (creatureListAttackTeam[attackTeamPos].getCurrentStats().attack > 0) {
-                var dmgDone = this.performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
+                pDmgDone = this.performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex, attackPlayerName, defendPlayerName);
                 if (isTurnTeam1) {
-                    this.pDamageDoneTeam1 += dmgDone;
+                    this.pDamageDoneTeam1 += pDmgDone;
                 }
                 else {
-                    this.pDamageDoneTeam2 += dmgDone;
+                    this.pDamageDoneTeam2 += pDmgDone;
                 }
             }
             if (creatureListAttackTeam[attackTeamPos].getCurrentStats().magicAttack > 0) {
-                var dmgDone = this.performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName);
+                mDmgDone = this.performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex, attackPlayerName, defendPlayerName);
                 if (isTurnTeam1) {
-                    this.mDamageDoneTeam1 += dmgDone;
+                    this.mDamageDoneTeam1 += mDmgDone;
                 }
                 else {
-                    this.mDamageDoneTeam2 += dmgDone;
+                    this.mDamageDoneTeam2 += mDmgDone;
                 }
+            }
+            creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - pDmgDone - mDmgDone;
+            if (pDmgDone > 0 && mDmgDone > 0) {
+                this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + pDmgDone + " physical damage & " +
+                    mDmgDone + " to " + creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
+            }
+            else if (pDmgDone > 0) {
+                this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + pDmgDone + " physical damage to " +
+                    creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
+            }
+            else if (mDmgDone > 0) {
+                this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + mDmgDone + " magic damage to " +
+                    creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
             }
         }
     }
@@ -1341,8 +1361,7 @@ class Battle {
         }
         return index;
     }
-    performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        var targetIndex = this.getTargetIndex(creatureListDefenderTeam);
+    performPhysicalAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex, attackPlayerName, defendPlayerName) {
         console.log('targetIndex = ' + targetIndex);
         var dodgedDefenderTeam = this.doesDefenderDodge(creatureListDefenderTeam[targetIndex].getCurrentStats().dex);
         var dmgDone = 0;
@@ -1350,9 +1369,6 @@ class Battle {
             dmgDone = this.getDamageAfterArmorCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex);
             dmgDone = dmgDone * (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100));
             console.log('equation = ' + (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100)));
-            creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - dmgDone;
-            this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmgDone + " physical damage to " +
-                creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
             if (creatureListAttackTeam[attackTeamPos].getCreatureStats().woundAttack > 0) {
                 creatureListDefenderTeam[targetIndex].setWoundedDebuff(creatureListDefenderTeam[targetIndex].getWoundedDebuff() + creatureListAttackTeam[attackTeamPos].getCreatureStats().woundAttack);
             }
@@ -1363,13 +1379,9 @@ class Battle {
         }
         return dmgDone;
     }
-    performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, attackPlayerName, defendPlayerName) {
-        var targetIndex = this.getTargetIndex(creatureListDefenderTeam);
+    performMagicAttack(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex, attackPlayerName, defendPlayerName) {
         var dmgDone = this.getDamageAfterMagicResistCheck(creatureListAttackTeam, attackTeamPos, creatureListDefenderTeam, targetIndex);
         dmgDone = dmgDone * (1 + (creatureListDefenderTeam[targetIndex].getWoundedDebuff() / 100));
-        creatureListDefenderTeam[targetIndex].getCurrentStats().life = creatureListDefenderTeam[targetIndex].getCurrentStats().life - dmgDone;
-        this.battleLogs.push(creatureListAttackTeam[attackTeamPos].getName() + "(" + attackPlayerName + ") deals " + dmgDone + " magic damage to " +
-            creatureListDefenderTeam[targetIndex].getName() + "(" + defendPlayerName + ")");
         return dmgDone;
     }
     getDamageAfterArmorCheck(attackerTeam, attackTeamPos, defenderTeam, targetIndex) {
@@ -2511,44 +2523,44 @@ let TavernAppComponent = class TavernAppComponent {
         switch (this.localGameState.turn) {
             case 1:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
                 break;
             case 2:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
                 break;
             case 3:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
                 break;
             case 4:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
                 break;
             case 5:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Necromancer));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
             case 6:
                 this.localGameState.playerList[1].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].SkeletonWarrior));
-                this.localGameState.playerList[2].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[3].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[4].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
-                this.localGameState.playerList[5].creatureList.push(this.localGameState.creaturePool.tier1[this.getRandomSlot(1)]);
+                this.localGameState.playerList[2].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[3].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
+                this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[this.getRandomSlot(1)].creatureType));
                 break;
             default:
                 this.localGameState.playerList[1].creatureList.splice(0, this.localGameState.playerList[1].creatureList.length);
@@ -2579,25 +2591,29 @@ let TavernAppComponent = class TavernAppComponent {
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[4].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
-                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].MossGolem);
-                tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
-                this.localGameState.playerList[4].creatureList.push(tempCreature);
-                this.localGameState.playerList[4].creatureList.push(tempCreature);
+                var tempCreature1 = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].MossGolem);
+                tempCreature1.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                var tempCreature2 = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].MossGolem);
+                tempCreature2.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                this.localGameState.playerList[4].creatureList.push(tempCreature1);
+                this.localGameState.playerList[4].creatureList.push(tempCreature2);
                 this.localGameState.playerList[5].creatureList.splice(0, this.localGameState.playerList[5].creatureList.length);
                 this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Orc));
                 this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
                 this.localGameState.playerList[5].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].Sorcerous));
-                var tempCreature = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
-                tempCreature.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
-                this.localGameState.playerList[5].creatureList.push(tempCreature);
-                this.localGameState.playerList[5].creatureList.push(tempCreature);
+                var tempCreature1 = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                tempCreature1.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                var tempCreature2 = new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](_creature__WEBPACK_IMPORTED_MODULE_2__["CreatureType"].TreeOfLife);
+                tempCreature2.setGear(new _gear__WEBPACK_IMPORTED_MODULE_5__["Gear"](_gear__WEBPACK_IMPORTED_MODULE_5__["GearType"].Taunt));
+                this.localGameState.playerList[5].creatureList.push(tempCreature1);
+                this.localGameState.playerList[5].creatureList.push(tempCreature2);
                 break;
         }
         for (var i = 6; i < this.localGameState.playerList.length; i++) {
             if (this.localGameState.playerList[i].creatureList.length < 8) {
                 let slot = this.getRandomSlot(1);
-                this.localGameState.playerList[i].creatureList.push(this.localGameState.creaturePool.tier1[slot]);
+                this.localGameState.playerList[i].creatureList.push(new _creature__WEBPACK_IMPORTED_MODULE_2__["Creature"](this.localGameState.creaturePool.tier1[slot].creatureType));
             }
         }
         this.localGameState.stage++;
